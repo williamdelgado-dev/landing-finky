@@ -1,0 +1,364 @@
+/* ===================================================
+   Template Uno CSS — scoped under .template-uno-host
+   Color mapping from ConfigService:
+     --color-oscuro → PRIMARY color (buttons, cards, sections, titles)
+     --color-claro  → SECONDARY color (currently unused in main theme)
+   Fixed brand colors:
+     #A5C34D (UCC green banner), #F96123 (Finky orange icon)
+   =================================================== */
+
+.template-uno-host {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    color: #333333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.template-uno-host * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.template-uno-host .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.template-uno-host .text-center { text-align: center; }
+
+/* ── Header ───────────────────────────────────────── */
+.template-uno-host .header {
+    background: #ffffff;
+    padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.template-uno-host .logos-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+
+.template-uno-host .logo-b4m svg { max-width: 100%; height: auto; }
+.template-uno-host .logo-finky { height: 40px; }
+.template-uno-host .divider { width: 2px; height: 40px; background: #eee; }
+
+/* ── Hero section ─────────────────────────────────── */
+.template-uno-host .hero-bg {
+    position: relative;
+    height: 65vh; /* Un poco más de altura para compensar el translateY */
+    min-height: 550px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: visible; /* IMPORTANTE: Permitir que la tarjeta "salga" del hero */
+}
+
+.template-uno-host .green-banner {
+    background: var(--color-oscuro, #A5C34D); /* Usamos el color institucional */
+    padding: 60px 40px;
+    width: 90%;
+    max-width: 1100px;
+    text-align: center;
+    position: relative;
+    z-index: 30;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    transform: translateY(50%); /* Para que flote entre secciones */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.template-uno-host .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
+    z-index: 10;
+}
+
+.template-uno-host #banner-title {
+    font-family: 'Archivo Narrow', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.75rem, 1.2rem + 2.5vw, 3.25rem);
+    color: #ffffff;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.template-uno-host #banner-subtitle {
+    font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.15rem);
+    color: #ffffff;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.5;
+    display: block;
+}
+
+.template-uno-host .green-banner h1 {
+    font-family: 'Archivo Narrow', sans-serif;
+    /* Tipografía fluida: min 26px, max 52px */
+    font-size: clamp(1.625rem, 1.1rem + 2.5vw, 3.25rem);
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.1;
+    text-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+    text-transform: none;
+}
+
+.template-uno-host .green-banner p {
+    font-family: 'Inter', sans-serif;
+    /* Párrafo fluido: min 1rem, max 1.25rem */
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.template-uno-host .mt-5 { margin-top: 3rem; }
+.template-uno-host .mt-4 { margin-top: 2rem; }
+
+/* ── Intro ────────────────────────────────────────── */
+.template-uno-host .intro {
+    padding: 200px 0 80px 0;
+    background: #ffffff;
+}
+
+/* ✅ section-title → --color-oscuro */
+.template-uno-host .section-title {
+    font-family: 'Archivo Narrow', sans-serif;
+    /* Fluido: min 28px, max 52px */
+    font-size: clamp(1.75rem, 1.2rem + 2.5vw, 3.25rem);
+    color: var(--color-oscuro, #00ACCA);
+    margin: 40px 0 30px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+.template-uno-host .section-title.white { color: #ffffff; }
+
+.template-uno-host .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    text-align: left;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.template-uno-host .intro-grid p {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    line-height: 35px;
+    color: #686868;
+    font-weight: 400;
+}
+
+/* Botones: Ahora gestionados por SimuladorButtonComponent global */
+
+/* ── Stats ────────────────────────────────────────── */
+.template-uno-host .stats {
+    padding: 60px 0;
+    background: #ffffff;
+}
+
+.template-uno-host .stats-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* ✅ stat-card → --color-oscuro */
+.template-uno-host .stat-card {
+    flex: 1;
+    min-width: 200px;
+    background: var(--color-oscuro, #00ACCA);
+    color: #ffffff;
+    padding: 20px 30px;
+    border-radius: 14px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.template-uno-host .stat-card h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    margin-bottom: 0;
+    line-height: 35px;
+    color: #ffffff !important;
+}
+
+.template-uno-host .stat-card .stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 50px;
+    color: #ffffff !important;
+}
+
+/* ── Oferta Académica ─────────────────────────────── */
+/* ✅ academic-offer → --color-oscuro */
+.template-uno-host .academic-offer {
+    background: var(--color-oscuro, #00ACCA);
+    padding: 80px 0;
+    margin: 0;
+}
+
+.template-uno-host .section-subtitle {
+    margin-bottom: 40px;
+    font-size: 20px;
+    color: #686868;
+    line-height: 1.5;
+}
+.template-uno-host .section-subtitle.white { color: #ffffff; opacity: 0.9; }
+
+.template-uno-host .select-wrapper { max-width: 600px; margin: 0 auto; }
+
+.template-uno-host .select-wrapper select {
+    width: 100%;
+    height: 70px;
+    padding: 10px 40px;
+    border-radius: 35px;
+    border: none;
+    font-size: 20px;
+    font-family: 'Inter', sans-serif;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #ffffff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23686868' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 40px center;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    color: #686868;
+}
+
+.template-uno-host .programs-inner {
+    padding-top: 60px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+/* ── Alliance Section ─────────────────────────────── */
+.template-uno-host .finky-alliance {
+    padding: 0;
+    background: #fff;
+    overflow: hidden;
+}
+
+.template-uno-host .alliance-grid {
+    display: grid;
+    grid-template-columns: 725px 1fr;
+    gap: 0;
+    align-items: stretch;
+    max-width: 100%;
+}
+
+.template-uno-host .alliance-image {
+    width: 100%;
+    aspect-ratio: 725 / 900;
+    max-height: 900px;
+    overflow: hidden;
+}
+
+.template-uno-host .alliance-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.template-uno-host .alliance-content {
+    padding: 60px;
+    max-width: 900px;
+}
+
+/* Se conservan únicamente las reglas de dimensionamiento visual (layout de cuadrícula) de Template Uno. 
+   La tipografía y colores vienen directamente del alliance-section.component.css para que todas las 
+   plantillas se vean idénticas y la lista use viñetas de puntos estándar. */
+
+/* ── Simulador ────────────────────────────────────── */
+/* ✅ bg-cyan → --color-oscuro */
+.template-uno-host .bg-cyan {
+    background: var(--color-oscuro, #00ACCA);
+    padding: 80px 0;
+}
+
+.template-uno-host .calc-icon {
+    font-size: 40px;
+    vertical-align: middle;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+/* ── Footer ───────────────────────────────────────── */
+.template-uno-host .footer {
+    padding: 60px 0 20px;
+    background: #ffffff;
+    color: #666;
+}
+
+.template-uno-host .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.template-uno-host .footer-title {
+    font-size: 16px;
+    color: #f96123;
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+}
+
+.template-uno-host .footer-col:first-child .footer-title { color: #555; font-size: 1.15rem; }
+.template-uno-host .footer-col p { font-size: 0.85rem; line-height: 1.6; color: #777; }
+.template-uno-host .footer-col ul { list-style: none; padding: 0; }
+.template-uno-host .footer-col ul li { margin-bottom: 15px; }
+.template-uno-host .footer-col ul li a { color: #777; text-decoration: none; font-size: 0.85rem; cursor: pointer; }
+.template-uno-host .contact-item { font-size: 0.85rem; margin-bottom: 15px; color: #777; display: flex; align-items: center; gap: 12px; }
+.template-uno-host .contact-item .material-icons { font-size: 18px; color: #f96123; flex-shrink: 0; }
+
+.template-uno-host .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 25px;
+    border-top: 1px solid #ddd;
+}
+
+.template-uno-host .copyright { font-size: 0.85rem; color: #999; }
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 1024px) {
+    .template-uno-host .alliance-grid { grid-template-columns: 450px 1fr; }
+    .template-uno-host .alliance-image { max-height: 700px; }
+}
+
+@media (max-width: 768px) {
+    .template-uno-host .intro { padding: 150px 0 60px 0; }
+    .template-uno-host .intro-grid,
+    .template-uno-host .alliance-grid,
+    .template-uno-host .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+    .template-uno-host .green-banner { padding: 40px 20px; transform: translateY(30%); }
+    .template-uno-host .header .logos-wrapper { flex-direction: column; gap: 15px; }
+}
+
+@media (max-width: 480px) {
+}

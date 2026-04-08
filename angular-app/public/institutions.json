@@ -1,0 +1,72 @@
+{
+  "b4m": {
+    "plantilla": 1,
+    "colores": {
+      "oscuro": "#A5C34D",
+      "claro": "#FFFFFF"
+    },
+    "nombreUniversidad": "B4M",
+    "banner": {
+      "pc": "/assets/images/ucc_campus_bg_1774448798607.png",
+      "movil": "",
+      "titulo": "Tu Futuro Académico Comienza Aquí",
+      "contenido": "Financia tu educación superior con planes flexibles diseñados para alcanzar tus metas profesionales"
+    },
+    "bullets": [
+      { "titulo": "Pregrados", "desc": "127" },
+      { "titulo": "Postgrados", "desc": "152" },
+      { "titulo": "Técnicos", "desc": "51" },
+      { "titulo": "Campus", "desc": "15" },
+      { "titulo": "Estudiantes", "desc": "215.640" }
+    ],
+    "oferta": ["Pregrado", "Posgrado", "Técnico", "Tecnólogo"]
+  },
+  "ucc": {
+    "plantilla": 2,
+    "colores": {
+      "oscuro": "#101361",
+      "claro": "#FFFFFF"
+    },
+    "nombreUniversidad": "UCC",
+    "banner": {
+      "pc": "/assets/images/fondosalle.png",
+      "movil": "",
+      "titulo": "Universidad Cooperativa de Colombia",
+      "contenido": "Financia tu semestre con Finky y enfócate en lo más importante: estudiar"
+    },
+    "bullets": [
+      { "titulo": "Carreras profesionales", "desc": "45" },
+      { "titulo": "Maestrías", "desc": "35" },
+      { "titulo": "Técnicos laborales", "desc": "26" },
+      { "titulo": "Doctorados", "desc": "11" },
+      { "titulo": "Técnicos profesionales", "desc": "2" },
+      { "titulo": "Cursos", "desc": "33" },
+      { "titulo": "Tecnólogos", "desc": "8" },
+      { "titulo": "Idiomas", "desc": "3" },
+      { "titulo": "Especializaciones", "desc": "30" },
+      { "titulo": "Diplomados", "desc": "20" }
+    ],
+    "oferta": ["Pregrado", "Posgrado", "Especialización", "Tecnólogo"]
+  },
+  "tres": {
+    "plantilla": 2,
+    "colores": {
+      "oscuro": "#4876B7",
+      "claro": "#A5C34D"
+    },
+    "banner": {
+      "pc": "/assets/images/ucc_banner.png",
+      "movil": "",
+      "titulo": "Universidad Cooperativa de Colombia",
+      "contenido": "Financia tu semestre con Finky y enfócate en lo más importante: estudiar"
+    },
+    "bullets": [
+      { "titulo": "Pregrados", "desc": "127" },
+      { "titulo": "Postgrados", "desc": "152" },
+      { "titulo": "Técnicos", "desc": "51" },
+      { "titulo": "Campus", "desc": "15" },
+      { "titulo": "Estudiantes", "desc": "215.640" }
+    ],
+    "oferta": ["Pregrado", "Posgrado", "Especialización", "Tecnólogo"]
+  }
+}

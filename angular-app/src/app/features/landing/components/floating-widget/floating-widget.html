@@ -1,0 +1,64 @@
+<!-- Floating Button Hablemos -->
+<div 
+  class="fixed bottom-4 right-4 md:bottom-8 md:right-8 flex items-center cursor-pointer z-[1000] transition-all duration-300 hover:-translate-y-2 hover:scale-105 active:scale-95"
+  (click)="openModal()"
+>
+  <div class="relative z-[4] w-44 md:w-64">
+    <img 
+      class="w-full h-auto object-contain drop-shadow-2xl" 
+      src="/assets/images/icon_hablemos.png" 
+      alt="Lina"
+    >
+  </div>
+</div>
+
+<!-- Modal Lina Te LLama -->
+<div class="modal-overlay" [class.active]="isModalOpen()">
+  <div class="modal-content">
+    <button class="modal-close" (click)="closeModal()">
+      <span class="material-icons">close</span>
+    </button>
+
+    <div class="modal-header">
+
+      <h3 class="modal-title">¡Lina te llama!</h3>
+    </div>
+
+    <div class="modal-body">
+      <p class="modal-intro">Déjanos tus datos y nos comunicaremos contigo en
+        breve.</p>
+
+      <div class="form-group">
+        <label>Tu nombre completo</label>
+        <div class="input-wrapper">
+          <span class="material-icons">person</span>
+          <input type="text" [(ngModel)]="name" placeholder="Ej: Juan Pérez">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Número de teléfono</label>
+        <div class="input-wrapper">
+          <span class="material-icons">phone</span>
+          <input type="tel" [(ngModel)]="phone" placeholder="Ej: 300 123 4567">
+        </div>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" id="habeasData" [(ngModel)]="habeasData">
+        <label for="habeasData">Acepto la <a href="#">política de privacidad</a>
+          y el tratamiento de datos personales.</label>
+      </div>
+
+      <button class="btn-submit" (click)="sendCallbackRequest()"
+        [disabled]="isSubmitting()">
+        @if (isSubmitting()) {
+        <span class="spinner"></span>
+        <span>Enviando...</span>
+        } @else {
+        <span>SOLICITAR LLAMADA</span>
+        }
+      </button>
+    </div>
+  </div>
+</div>
