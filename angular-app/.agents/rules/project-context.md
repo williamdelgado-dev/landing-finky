@@ -87,10 +87,11 @@ El sistema de rutas determina qué institución/plantilla mostrar basándose en 
 
 Ejemplos:
 ```
-localhost:4200/             → Página en construcción
-localhost:4200/areandina    → Template 1 (config de Areandina)
-localhost:4200/ucc          → Template 2 (config de UCC)
-localhost:4200/nueva-ies    → Slug no encontrado → Template 2 genérico
+localhost:4200/       → Página en construcción
+localhost:4200/uno    → Renderiza el Template 1 directamente (Pruebas)
+localhost:4200/dos    → Renderiza el Template 2 directamente (Pruebas)
+localhost:4200/tres   → Renderiza el Template 3 directamente (Pruebas)
+localhost:4200/foo    → Slug no encontrado → Redirige a home (/)
 ```
 
 ### Flujo de carga por slug
@@ -155,18 +156,24 @@ export interface LandingConfig {
 }
 ```
 
-Los colores se aplican automáticamente como **variables CSS globales en `:root`** mediante `applyColors()`:
-- `--color-oscuro` → color primario institucional
-- `--color-claro` → color secundario institucional
-- `--secondary-blue` y `--dark-bg` → alias retrocompatibles de `--color-oscuro`
+### 🎨 Sistema de Branding Dinámico (Colores)
 
-**Variables CSS de Utilidad (Inyectadas en TemplateDos):**
-- `.white`: Fuerza color blanco con `!important`.
-- `.finky-yellow-text`: Fuerza color amarillo institucional `#f7ab00`.
-- `.dark-blue-text`: Fuerza el azul profundo de la marca.
+Los colores definidos en el JSON se inyectan en tiempo de ejecución en el `:root` como variables CSS globales:
+- `--color-oscuro` → Color principal de la marca (Fondos clave, botones).
+- `--color-claro` → Color secundario o de contraste (Textos oscuros, acentos, tarjetas).
+- `--secondary-blue` y `--dark-bg` → Alias por retrocompatibilidad con clases antiguas.
 
-**Fondos Dinámicos (TemplateDos):**
-Las secciones `academic-offer-premium`, `simulador`, `hero-section` y las tarjetas de programas usan `[style.background-color]="config()?.colores?.oscuro"` para adoptar el color institucional automáticamente.
+Para garantizar la armonía en todos los perfiles de universidades, cada plantilla aplica estos colores a elementos específicos, manteniendo una regla estricta:
+
+| Plantilla | Dónde se usa `--color-oscuro` | Dónde se usa `--color-claro` |
+| :--- | :--- | :--- |
+| **1 (Uno)** | **Fondo del banner principal** | Botón Simular, Título "Somos...", Cards Stats, Fondo Oferta Académica, Fondo del Simulador |
+| **2 (Dos)** | Fondo Banner, Botón Simular, Título "Somos...", Divisores, Fondo Oferta, Fondo Simulador | Título Banner, Textos de Bullets, Títulos de Secciones, Fondo Tarjeta CTA, Borde de Cards, Etiquetas Nivel, Tabs Activas |
+| **3 (Tres)** | Botón Simular, Título "Somos...", Divisores, Fondo Oferta, Fondo Simulador, Textos del Banner, Letras Bullets | **Fondo del Banner**, Títulos de Secciones, Fondo Tarjeta CTA, Borde de Cards, Etiquetas Nivel, Tabs Activas |
+
+**Variables y Clases Globales Estandarizadas:**
+- Las plantillas delegan sus fondos en el CSS dinámico (`background-color: var(--color-oscuro);`). Se limpiaron los `[style.background-color]` en línea para una arquitectura más limpia.
+- Clases de texto como `.dark-blue-text` o `.finky-yellow-text` han sido desplazadas por `color: var(...)` nativo para lograr adaptación dinámica.
 
 ---
 

@@ -5,6 +5,7 @@ export interface LandingConfig {
     claro: string;
   };
   nombreUniversidad?: string;
+  iconUniversity?: string;
   banner: {
     pc: string;
     movil: string;

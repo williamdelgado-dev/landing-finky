@@ -1,15 +1,15 @@
 {
-  "b4m": {
+  "uno": {
     "plantilla": 1,
     "colores": {
-      "oscuro": "#A5C34D",
-      "claro": "#FFFFFF"
+      "oscuro": "#5CBB00",
+      "claro": "#00ACCA"
     },
     "nombreUniversidad": "B4M",
+    "iconUniversity": "",
     "banner": {
       "pc": "/assets/images/ucc_campus_bg_1774448798607.png",
-      "movil": "",
-      "titulo": "Tu Futuro Académico Comienza Aquí",
+      "titulo": "Tu Futuro Académico Comienza Aquí Plantilla Uno",
       "contenido": "Financia tu educación superior con planes flexibles diseñados para alcanzar tus metas profesionales"
     },
     "bullets": [
@@ -17,22 +17,25 @@
       { "titulo": "Postgrados", "desc": "152" },
       { "titulo": "Técnicos", "desc": "51" },
       { "titulo": "Campus", "desc": "15" },
+      { "titulo": "Estudiantes", "desc": "215.640" },
+      { "titulo": "Estudiantes", "desc": "215.640" },
       { "titulo": "Estudiantes", "desc": "215.640" }
     ],
     "oferta": ["Pregrado", "Posgrado", "Técnico", "Tecnólogo"]
   },
-  "ucc": {
+  "dos": {
     "plantilla": 2,
     "colores": {
-      "oscuro": "#101361",
-      "claro": "#FFFFFF"
+      "oscuro": "#12164A",
+      "claro": "#ADB360"
     },
     "nombreUniversidad": "UCC",
+    "iconUniversity": "/assets/images/ucc-logo-universidad-cooperativa-de-colombia.svg",
     "banner": {
       "pc": "/assets/images/fondosalle.png",
       "movil": "",
-      "titulo": "Universidad Cooperativa de Colombia",
-      "contenido": "Financia tu semestre con Finky y enfócate en lo más importante: estudiar"
+      "titulo": "Tu futuro académico comienza aquí",
+      "contenido": "Financia tu educación superior con planes flexibles diseñados para alcanzar tus metas profesionales"
     },
     "bullets": [
       { "titulo": "Carreras profesionales", "desc": "45" },
@@ -49,23 +52,39 @@
     "oferta": ["Pregrado", "Posgrado", "Especialización", "Tecnólogo"]
   },
   "tres": {
-    "plantilla": 2,
+    "plantilla": 3,
     "colores": {
-      "oscuro": "#4876B7",
-      "claro": "#A5C34D"
+      "oscuro": "#494646",
+      "claro": "#E8C042"
     },
+    "iconUniversity": "/assets/images/ibero.png",
     "banner": {
-      "pc": "/assets/images/ucc_banner.png",
+      "pc": "/assets/images/iberoFondo.jpg",
       "movil": "",
-      "titulo": "Universidad Cooperativa de Colombia",
-      "contenido": "Financia tu semestre con Finky y enfócate en lo más importante: estudiar"
+      "titulo": "Tu Futuro Académico Comienza Aquí",
+      "contenido": "Financia tu educación superior con planes flexibles diseñados para alcanzar tus metas profesionales"
     },
     "bullets": [
-      { "titulo": "Pregrados", "desc": "127" },
-      { "titulo": "Postgrados", "desc": "152" },
-      { "titulo": "Técnicos", "desc": "51" },
-      { "titulo": "Campus", "desc": "15" },
-      { "titulo": "Estudiantes", "desc": "215.640" }
+      {
+        "titulo": "Cobertura nacional",
+        "desc": "Presentes en más de 1.024 municipios del país. Gracias a nuestras modalidades de estudio presencial y virtual, garantizamos el acceso a educación de calidad para todos los colombianos."
+      },
+      {
+        "titulo": "50 años de experiencia",
+        "desc": "Durante 5 décadas hemos formado más de 37.500 profesionales que transforman la realidad del país desde el mercado laboral, con un compromiso constante con la excelencia educativa."
+      },
+      {
+        "titulo": "Programas acreditados",
+        "desc": "Contamos con más de 51 programas académicos en niveles técnico, tecnológico, profesional y de posgrado, todos diseñados para responder a las necesidades del sector productivo colombiano."
+      },
+      {
+        "titulo": "15 sedes en Colombia",
+        "desc": "Con presencia en las principales ciudades del país, IBERO te ofrece flexibilidad para estudiar cerca de tu hogar o de manera 100% virtual, sin sacrificar la calidad de tu formación."
+      },
+      {
+        "titulo": "+215.000 egresados",
+        "desc": "Nuestra comunidad de egresados es uno de nuestros mayores orgullos. Profesionales IBERO lideran empresas, instituciones y proyectos en todo el territorio nacional e internacional."
+      }
     ],
     "oferta": ["Pregrado", "Posgrado", "Especialización", "Tecnólogo"]
   }

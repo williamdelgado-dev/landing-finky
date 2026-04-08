@@ -1,234 +1,624 @@
 :host {
     display: block;
+    box-sizing: border-box;
+}
+
+:host * {
+    box-sizing: border-box;
+}
+
+.template-tres-host {
     --primary-green: #A5C34D;
-    --secondary-blue: #4876B7;
-    --primary-dark: #333333;
-    --bg-light: #F9F9F9;
+    --secondary-blue: var(--color-oscuro, #003151);
+    --primary-yellow: var(--color-claro, #f7ab00);
+    --finky-yellow: var(--color-claro, #f7ab00);
+    --dark-bg: var(--color-oscuro, #003151);
     --white: #ffffff;
-    --gray-light: #f4f7f8;
-    --text-dark: #333333;
-    --font-main: 'Inter', sans-serif;
+    --text-muted: #686868;
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--color-oscuro, #003151);
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-.container {
+/* Color Utilities */
+.template-tres-host .white { color: #ffffff !important; }
+.template-tres-host .finky-yellow-text { color: var(--color-claro, #f7ab00) !important; }
+.template-tres-host .dark-blue-text { color: #003151 !important; }
+.template-tres-host .text-center { text-align: center; }
+
+.template-tres-host .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.text-center { text-align: center; }
-
-/* Header */
-.header {
-    background: var(--white);
-    padding: 15px 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+@media (max-width: 768px) {
+    .template-tres-host .container {
+        padding: 0 16px;
+    }
 }
 
-.logos-wrapper {
-    display: flex;
+@media (max-width: 360px) {
+    .template-tres-host .container {
+        padding: 0 12px;
+    }
+}
+
+
+
+/* ── Hero Option 3 (Elegant) ──────────────────────────── */
+.template-tres-host .hero-section {
+    background-color: var(--color-claro, #E8C042);
+    padding: 60px 0;
+    position: relative;
+    overflow-x: hidden; /* prevent bleed on mobile */
+    display: flex !important;
     align-items: center;
-    justify-content: center;
 }
 
-/* Hero Section */
-.hero-split {
-    background-color: var(--primary-green);
-    padding: 60px 0 0 0;
-    overflow: hidden;
-}
-
-.hero-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
+.template-tres-host .hero-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 60px;
     align-items: center;
-    padding: 0 20px;
-    gap: 40px;
+    width: 100%;
 }
 
-.hero-text-side {
-    flex: 1;
-    color: var(--primary-dark);
+.template-tres-host .hero-content {
+    text-align: left;
 }
 
-.hero-text-side h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
+.template-tres-host .hero-title {
+    font-size: clamp(2rem, 1.5rem + 2.5vw, 4rem); /* Estandarizado: H1 */
+    color: var(--color-oscuro, #494646) !important;
+    font-family: 'Afacad', sans-serif;
+    font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    text-transform: none;
 }
 
-.hero-text-side p {
-    font-size: 1.25rem;
-    opacity: 0.9;
-    max-width: 500px;
+.template-tres-host .hero-description {
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.25rem); /* Estandarizado: Subtitle */
+    color: var(--color-oscuro, #494646) !important;
+    font-family: 'Chenla', serif;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 40px;
+    max-width: 650px;
 }
 
-.hero-image-side {
-    flex: 1;
+.hero-cta-desktop {
+    display: block;
+}
+
+.hero-image-wrapper {
+    position: relative;
     display: flex;
     justify-content: flex-end;
 }
 
-.hero-main-img {
-    max-width: 100%;
+.hero-image-box {
+    position: relative;
+    width: 100%;
+    max-width: 580px;
+    border-radius: 40px;
+    overflow: visible;
+}
+
+.hero-img {
+    width: 100%;
     height: auto;
-    border-radius: 20px 20px 0 0;
+    border-radius: 40px;
     display: block;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.2);
 }
 
-/* Intro */
-.intro {
-    padding: 80px 0 40px 0;
-    background: var(--white);
+.whatsapp-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
 }
 
-.section-title {
-    font-size: 2.5rem;
-    color: var(--primary-dark);
-    margin: 20px 0 30px;
+/* Mobile Adjustments */
+.hero-actions-mobile {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .hero-grid {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .template-tres-host .hero-section {
+        padding: 0 0 40px;
+        min-height: 0;
+    }
+
+    .template-tres-host .hero-grid {
+        grid-template-columns: 1fr !important;  /* override the !important on desktop */
+        text-align: center;
+        gap: 24px;
+    }
+
+    .template-tres-host .hero-content {
+        text-align: center;
+        order: 2;
+        padding: 0 16px;
+    }
+
+    .template-tres-host .hero-description {
+        margin-inline: auto;
+        max-width: 100%;
+    }
+
+    .template-tres-host .hero-cta-desktop {
+        display: none;
+    }
+
+    .template-tres-host .hero-image-wrapper {
+        order: 1;
+        justify-content: center;
+        width: 100%;
+        margin: 0;
+    }
+
+    .template-tres-host .hero-image-box {
+        max-width: 100% !important;
+        width: calc(100% - 32px);
+        border-radius: 20px;
+        margin: 16px auto 0;
+        overflow: hidden;
+    }
+
+    .template-tres-host .hero-actions-mobile {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 10px;
+        order: 3;
+    }
+}
+
+/* ── Somos la mejor opción (Diseño Figma) ──────────────── */
+.template-tres-host .best-option {
+    padding: 40px 0 80px 0;
+    background-color: #f7f7f7;
+}
+
+.template-tres-host .simulador-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.template-tres-host .simulador-btn-container.bottom {
+    margin-top: 60px;
+    margin-bottom: 0;
+}
+
+.template-tres-host .best-option-title {
+    font-family: var(--font-main);
+    font-size: clamp(1.5rem, 1.25rem + 2vw, 3rem); /* Estandarizado: H2 */
     font-weight: 700;
-}
-
-.section-title.yellow { color: var(--primary-green); }
-.section-title.white { color: var(--white); }
-
-.intro-description {
-    max-width: 1000px;
-    margin: 0 auto;
+    color: var(--color-oscuro, #494646);
+    margin-bottom: 30px;
     text-align: center;
-    font-size: 1.1rem;
 }
 
-/* Botones unificados vía SimuladorButtonComponent */
-
-.bg-secondary-blue { background-color: var(--secondary-blue) !important; }
-
-/* Stats Boxes */
-.stats-grid-new {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+.template-tres-host .best-option-description {
+    max-width: 1000px;
+    margin: 0 auto 40px;
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    line-height: 1.5;
+    color: #333333;
+    font-family: var(--font-main);
+    text-align: center;
 }
 
-.stat-box {
-    padding: 30px;
-    border: 1px solid #eee;
-    border-radius: 15px;
-    background: #fff;
+.template-tres-host .highlights-grid {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: nowrap;
 }
 
-.stat-box h3 {
-    font-size: 2rem;
-    color: var(--primary-green);
-    margin: 10px 0;
+.template-tres-host .highlight-item {
+    padding: 0 40px;
+    text-align: left;
+}
+
+.template-tres-host .highlight-title {
+    font-family: var(--font-main);
+    font-size: clamp(1.2rem, 1rem + 1vw, 1.8rem); /* Estandarizado: Tarjetas */
     font-weight: 700;
+    color: var(--color-oscuro, #494646);
+    margin-bottom: 12px;
 }
 
-/* Academic Offer Dark */
-.academic-offer-dark {
-    background-color: var(--secondary-blue);
+.template-tres-host .highlight-text {
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); /* Estandarizado: Body */
+    line-height: 1.4;
+    color: var(--color-oscuro, #494646);
+    margin: 0;
+}
+
+.template-tres-host .highlight-divider {
+    width: 1.5px;
+    height: 160px;
+    background-color: var(--color-oscuro, #494646);
+    opacity: 0.8;
+}
+
+@media (max-width: 991px) {
+    .template-tres-host .highlight-item {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .template-tres-host .highlights-grid {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .template-tres-host .highlight-item {
+        text-align: center;
+        padding: 0;
+    }
+
+    .template-tres-host .highlight-divider {
+        display: none;
+    }
+
+    .template-tres-host .simulador-btn-container {
+        margin-bottom: 40px;
+    }
+
+    .template-tres-host .simulador-btn-container.bottom {
+        margin-top: 40px;
+    }
+}
+
+
+/* Academic Offer */
+.academic-offer {
+    background: var(--secondary-blue);
+}
+
+/* Section Styles */
+.template-tres-host .section-title {
+    font-family: var(--font-main);
+    font-size: clamp(1.5rem, 1.25rem + 2vw, 3rem); /* Estandarizado: H2 */
+    font-weight: 700;
+    margin-bottom: 25px;
+    line-height: 1.2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.template-tres-host .section-subtitle {
+    margin-bottom: 30px;
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.25rem); /* Estandarizado: Subtitle */
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.template-tres-host .section-subtitle.white { color: var(--white); opacity: 0.9; }
+
+/* ── Oferta Académica Premium ─────────────────────── */
+.academic-offer-premium {
+    background: var(--color-oscuro, #003151);
     padding: 100px 0;
-    color: var(--white);
+    position: relative;
 }
 
 .yellow-cta-box {
-    background-color: var(--primary-green);
-    color: var(--primary-dark);
-    padding: 40px;
-    border-radius: 20px;
-    margin: 40px auto;
-    max-width: 900px;
+    background: var(--color-claro, #f7ab00);
+    border-radius: 25px;
+    padding: 40px 30px; /* Reduced padding for mobile */
+    color: #003151;
+    max-width: 1300px;
+    margin: 0 auto 70px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(247, 171, 0, 0.2);
+    font-family: 'Inter', sans-serif;
 }
 
-.yellow-cta-box h3 {
-    font-size: 1.8rem;
-    font-weight: 800;
+@media (min-width: 768px) {
+    .yellow-cta-box {
+        padding: 55px 80px;
+    }
 }
 
-.oferta-header { margin-top: 80px; }
+.yellow-cta-box .cta-box-title {
+    font-weight: 700;
+    font-size: clamp(1.5rem, 1.25rem + 2vw, 3rem); /* Estandarizado: H2 */
+    line-height: 1.2;
+    color: #003151;
+    margin: 0 0 25px 0;
+}
+
+.yellow-cta-box .cta-box-body {
+    font-weight: 400;
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); /* Estandarizado: Body */
+    line-height: 1.5;
+    color: #003151;
+    margin: 0 0 20px 0;
+}
+
+.yellow-cta-box .cta-box-body:last-child {
+    margin-bottom: 0;
+}
+
+.search-bar-wrapper {
+    max-width: 1000px;
+    margin-inline: auto;
+    margin-bottom: 30px; /* Closer to the title above it according to mockup group */
+}
+
+.academic-offer-premium .section-title.finky-yellow-text:not(:first-child) {
+    margin-top: 70px; /* Gap from yellow-cta-box */
+    margin-bottom: 30px;
+}
+
+.search-input-container {
+    position: relative;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 25px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.search-input-container:focus-within {
+    border-color: var(--primary-yellow);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--primary-yellow);
+    margin-right: 15px;
+}
 
 .search-input {
-    width: 100%;
-    padding: 18px 30px;
-    border-radius: 50px;
+    background: transparent;
     border: none;
-    background: #fff;
-    font-size: 1.1rem;
+    color: #fff;
+    padding: 0;
+    width: 100%;
+    font-size: 1.25rem; /* ~20px */
+    outline: none;
 }
 
+.search-input::placeholder {
+    color: var(--text-muted);
+}
+
+.template-tres-host .offer-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap; /* Cambiado de nowrap a wrap para evitar que se salgan de la pantalla */
+    padding: 0 15px;
+    margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+    .template-tres-host .offer-tabs {
+        gap: 12px;
+        padding: 0;
+        margin-bottom: 50px;
+    }
+}
+
+.template-tres-host .tab-btn {
+    background: #fff;
+    border: 1px solid var(--secondary-blue);
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    color: var(--secondary-blue);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: clamp(0.9rem, 0.8rem + 1vw, 1.25rem); /* Fuente fluida para botones */
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.tab-btn.active {
+    background: var(--color-claro, #f7ab00);
+    border-color: var(--color-claro, #f7ab00);
+    color: var(--color-oscuro, #003151);
+}
+
+.tab-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* Grid de Programas */
 .program-cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 30px;
+    row-gap: 40px;
     margin-top: 40px;
+    padding-bottom: 50px;
+}
+
+@media (max-width: 900px) {
+    .program-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 580px) {
+    .program-cards-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .program-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--color-claro, #f7ab00);
     border-radius: 20px;
-    padding: 30px;
+    padding: 28px 30px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 260px;
+    box-sizing: border-box;
+    font-family: var(--font-main);
+    cursor: pointer;
 }
 
-.card-tag {
-    background: var(--primary-green);
-    color: var(--primary-dark);
-    padding: 5px 15px;
-    border-radius: 50px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    margin-bottom: 15px;
+.program-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
 }
 
-/* Alliance Section */
-.finky-alliance {
-    padding: 100px 0;
-    background: #fff;
+.card-level-tag {
+    display: inline-block;
+    background: var(--color-claro, #f7ab00);
+    color: #003151;
+    font-size: 0.875rem; /* ~14px */
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 25px;
+    width: fit-content;
+    text-transform: capitalize;
 }
 
-.alliance-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
+.program-name {
+    color: #fff;
+    font-size: clamp(1.2rem, 1rem + 1vw, 1.8rem); /* Estandarizado: Tarjetas */
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    letter-spacing: -0.4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-family: var(--font-main);
 }
 
-.alliance-image img {
+.program-divider {
+    height: 1.5px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 0 0 20px 0;
     width: 100%;
-    border-radius: 30px;
 }
 
-.benefits-list {
-    list-style: none;
-    margin: 30px 0;
+.program-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
 }
 
-.benefits-list li {
-    margin-bottom: 15px;
-    padding-left: 30px;
-    position: relative;
-    font-size: 1.1rem;
-    color: #555;
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-size: 1rem; /* ~16px */
 }
 
-.benefits-list li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--primary-green);
+.detail-icon {
+    width: 16px;
+    height: 16px;
+    color: #fff;
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+.program-details .font-bold {
+    color: #fff;
+    margin-top: 8px;
+    font-size: 1.25rem; /* ~20px */
     font-weight: 700;
 }
 
-/* Simulador */
-.bg-simulator {
-    background-color: var(--secondary-blue);
-    padding: 80px 0;
+/* ── Alliance Section — overrides de layout para template-dos ─── */
+/* Los estilos base del componente viven en alliance-section.component.css */
+.template-tres-host .finky-alliance {
+    padding: 0;
+    background: #fff;
+    overflow: hidden;
 }
 
+.template-tres-host .alliance-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 0;
+    align-items: stretch;
+    max-width: 100%;
+    width: 100%;
+}
+
+.template-tres-host .alliance-image {
+    width: 100%;
+    overflow: hidden;
+    max-height: 600px;
+}
+
+.template-tres-host .alliance-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.template-tres-host .alliance-content {
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #ffffff;
+}
+
+/* Se confía en el alliance-section.component.css para la tipografía, listas y colores estándares */
+
+/* Responsive alliance template-dos */
+@media (max-width: 1024px) {
+    .template-tres-host .alliance-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+    .template-tres-host .best-option { padding: 80px 0; }
+    .template-tres-host .alliance-grid { grid-template-columns: 1fr; }
+    .template-tres-host .alliance-image { height: 400px; max-height: 400px; order: 1; }
+    .template-tres-host .alliance-content { padding: 50px 30px; order: 2; }
+    .template-tres-host .alliance-title { font-size: 1.8rem; }
+}
+
+
+/* Footer */
 .footer {
-    padding: 60px 0 20px;
+    padding: 60px 0 100px; /* Extra padding for floating widget */
     background: var(--white);
     color: #666;
 }
@@ -239,18 +629,41 @@
     gap: 40px;
 }
 
-@media (max-width: 992px) {
-    .hero-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    .stats-grid-new {
+@media (max-width: 768px) {
+    .template-tres-host .alliance-grid,
+    .template-tres-host .footer-grid,
+    .template-tres-host .stats-grid {
         grid-template-columns: 1fr;
     }
 }
 
-@media (max-width: 768px) {
-    .alliance-grid, .footer-grid {
-        grid-template-columns: 1fr;
-    }
+.template-tres-host .bg-dynamic {
+    background: var(--color-oscuro, #003151);
+    padding: 100px 0;
+}
+
+/* Simulador Header Sync con Template 1 */
+.template-tres-host .simulador .section-title {
+    font-family: 'Roboto', sans-serif !important;
+    font-size: clamp(2rem, 1.5rem + 2vw, 4.5rem) !important;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 40px 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.template-tres-host .calc-icon {
+    font-size: clamp(24px, 5vw, 44px);
+    vertical-align: middle;
+}
+
+.template-tres-host .simulador .section-subtitle {
+    font-family: 'Inter', sans-serif !important;
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.6rem) !important;
+    line-height: 1.4;
+    margin-bottom: 35px;
 }

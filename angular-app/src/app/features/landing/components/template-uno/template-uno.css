@@ -134,12 +134,12 @@
     background: #ffffff;
 }
 
-/* ✅ section-title → --color-oscuro */
+/* ✅ section-title → --color-claro */
 .template-uno-host .section-title {
     font-family: 'Archivo Narrow', sans-serif;
     /* Fluido: min 28px, max 52px */
     font-size: clamp(1.75rem, 1.2rem + 2.5vw, 3.25rem);
-    color: var(--color-oscuro, #00ACCA);
+    color: var(--color-claro, #00ACCA);
     margin: 40px 0 30px;
     font-weight: 700;
     line-height: 1.1;
@@ -179,11 +179,11 @@
     flex-wrap: wrap;
 }
 
-/* ✅ stat-card → --color-oscuro */
+/* ✅ stat-card → --color-claro */
 .template-uno-host .stat-card {
     flex: 1;
     min-width: 200px;
-    background: var(--color-oscuro, #00ACCA);
+    background: var(--color-claro, #00ACCA);
     color: #ffffff;
     padding: 20px 30px;
     border-radius: 14px;
@@ -214,9 +214,9 @@
 }
 
 /* ── Oferta Académica ─────────────────────────────── */
-/* ✅ academic-offer → --color-oscuro */
+/* ✅ academic-offer → --color-claro */
 .template-uno-host .academic-offer {
-    background: var(--color-oscuro, #00ACCA);
+    background: var(--color-claro, #00ACCA);
     padding: 80px 0;
     margin: 0;
 }
@@ -292,10 +292,28 @@
    plantillas se vean idénticas y la lista use viñetas de puntos estándar. */
 
 /* ── Simulador ────────────────────────────────────── */
-/* ✅ bg-cyan → --color-oscuro */
-.template-uno-host .bg-cyan {
-    background: var(--color-oscuro, #00ACCA);
+/* ✅ bg-claro → --color-claro */
+.template-uno-host .bg-claro {
+    background: var(--color-claro, #00ACCA);
     padding: 80px 0;
+}
+
+/* Simulador Header Sync con Todos los Templates */
+.template-uno-host .simulador .section-title {
+    font-family: 'Roboto', sans-serif !important;
+    font-size: clamp(2rem, 1.5rem + 2vw, 4.5rem) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 40px 0 30px;
+    font-weight: 700;
+}
+
+.template-uno-host .simulador .section-subtitle {
+    font-family: 'Inter', sans-serif !important;
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.6rem) !important;
+    margin-bottom: 40px;
 }
 
 .template-uno-host .calc-icon {

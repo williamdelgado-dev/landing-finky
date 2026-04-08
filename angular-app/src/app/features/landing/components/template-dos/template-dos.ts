@@ -7,51 +7,25 @@ import { FooterComponent } from '../../../../shared/components/footer/footer.com
 import { AllianceSectionComponent } from '../../../../shared/components/alliance-section/alliance-section.component';
 import { SimuladorButtonComponent } from '../../../../shared/components/simulador-button/simulador-button.component';
 
+import { HeaderComponent } from '../../../../shared/components/header/header.component';
+
 @Component({
   selector: 'app-template-dos',
   standalone: true,
-  imports: [CommonModule, FooterComponent, AllianceSectionComponent, SimuladorButtonComponent],
+  imports: [CommonModule, FooterComponent, AllianceSectionComponent, SimuladorButtonComponent, HeaderComponent],
   templateUrl: './template-dos.html',
   styleUrl: './template-dos.css',
   encapsulation: ViewEncapsulation.None,
   host: { class: 'template-dos-host' }
 })
-export class TemplateDos implements OnInit, OnDestroy {
+export class TemplateDos implements OnInit {
   private configService = inject(ConfigService);
-
-  // Consumimos directamente la señal del servicio
+  
   public config = this.configService.config;
-
-  // Computed properties for validated data
-  public validatedBanner = computed(() => {
-    const banner = this.config()?.banner;
-    if (!banner) return null;
-    return {
-      ...banner,
-      titulo: this.truncate(banner.titulo, 150),
-      contenido: this.truncate(banner.contenido, 300)
-    };
-  });
-
-  public validatedBullets = computed(() => {
-    const bullets = this.config()?.bullets || [];
-    return bullets.slice(0, 10).map((b: { titulo: string; desc: string }, i: number) => {
-      return {
-        ...b,
-        desc: this.truncate(b.desc, 40) // Template 2 seems more flexible with desc
-      };
-    });
-  });
+  public validatedBanner = this.configService.validatedBanner;
+  public validatedBullets = this.configService.validatedBullets;
 
   ngOnInit() {
-  }
-
-  ngOnDestroy() {
-  }
-
-  private truncate(text: string, limit: number): string {
-    if (!text) return '';
-    return text.length > limit ? text.slice(0, limit) + '…' : text;
   }
 
   public scrollToSimulador() {

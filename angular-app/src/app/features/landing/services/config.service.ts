@@ -63,6 +63,41 @@ export class ConfigService {
     }
   }
 
+  /**
+   * Computed Signals para datos validados (Único punto de verdad)
+   * Esto evita duplicar lógica de truncado y validación en cada template.
+   */
+  
+  public validatedBanner = computed(() => {
+    const banner = this._config()?.banner;
+    if (!banner) return null;
+    return {
+      ...banner,
+      titulo: this.truncate(banner.titulo, 150),
+      contenido: this.truncate(banner.contenido, 300)
+    };
+  });
+
+  public validatedBullets = computed(() => {
+    const bullets = this._config()?.bullets || [];
+    return bullets.slice(0, 10).map((b, i) => {
+      // Golden Rule #4 check (2 words title for statistics)
+      const words = (b.titulo || '').trim().split(/\s+/);
+      if (words.length !== 2 && this._config()?.plantilla === 1) {
+        console.warn(`[ConfigService] Bullet #${i + 1}: El título debería tener 2 palabras para Template 1 ("${b.titulo}")`);
+      }
+      return {
+        ...b,
+        desc: this.truncate(b.desc, 100)
+      };
+    });
+  });
+
+  private truncate(text: string, limit: number): string {
+    if (!text) return '';
+    return text.length > limit ? text.slice(0, limit) + '…' : text;
+  }
+
   // Método legacy por compatibilidad (opcional, para no romper componentes actuales)
   getConfig(): LandingConfig | null {
     return this._config();

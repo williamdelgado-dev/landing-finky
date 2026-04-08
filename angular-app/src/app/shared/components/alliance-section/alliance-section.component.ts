@@ -12,6 +12,7 @@ import { SimuladorButtonComponent } from '../simulador-button/simulador-button.c
 export class AllianceSectionComponent {
   @Input() imageSrc: string = '/assets/images/finker_1.png';
   @Input() universityName: string = '';
+  @Input() useClaro: boolean = false;
 
   public scrollToSimulador() {
     const ids = ['simulador', 'seccion-simulador'];

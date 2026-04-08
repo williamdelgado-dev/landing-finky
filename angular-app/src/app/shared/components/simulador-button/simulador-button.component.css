@@ -53,6 +53,10 @@
     -webkit-font-smoothing: antialiased;
 }
 
+.btn-ripple span.claro {
+    background: var(--color-claro, #00ACCA);
+}
+
 .cursor-pointer {
     cursor: pointer;
 }
@@ -69,7 +73,7 @@
         height: 55px;
         font-size: 18px;
         margin-left: 30px;
-        padding: 0 35px 0 50px;
+        padding: 0 35px 0 60px; /* Incrementado para evitar solapamiento */
     }
 }
 
@@ -84,7 +88,7 @@
         height: 48px;
         font-size: 16px;
         margin-left: 25px;
-        padding: 0 25px 0 45px;
+        padding: 0 25px 0 55px; /* Incrementado para evitar solapamiento */
         white-space: normal;
         line-height: 1.2;
     }

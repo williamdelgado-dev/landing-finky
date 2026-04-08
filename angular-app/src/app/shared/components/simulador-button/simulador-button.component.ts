@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class SimuladorButtonComponent {
   @Input() text: string = 'Simular mi crédito';
+  @Input() useClaro: boolean = false;
 
   public scrollToSimulador() {
     const ids = ['simulador', 'seccion-simulador'];

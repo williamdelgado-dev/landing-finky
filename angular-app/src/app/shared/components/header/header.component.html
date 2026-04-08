@@ -1,0 +1,27 @@
+<header class="header">
+  <div class="container">
+    <div class="logos-wrapper">
+      <div class="logo-university">
+        <ng-container *ngIf="universityIcon; else defaultLogo">
+          <img [src]="universityIcon" alt="University Logo" class="responsive-logo-img">
+        </ng-container>
+        <ng-template #defaultLogo>
+          <svg width="220" height="60" viewBox="0 0 400 110" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="5" width="100" height="100" fill="#A5C34D" />
+            <text x="55" y="65" font-family="Inter, sans-serif" font-weight="800" font-size="48" fill="white"
+              text-anchor="middle">B4M</text>
+            <text x="55" y="95" font-family="Inter, sans-serif" font-weight="400" font-size="18" fill="white"
+              text-anchor="middle">EUROPE</text>
+            <text x="120" y="50" font-family="Inter, sans-serif" font-weight="700" font-size="45" fill="#555">BRIDGE</text>
+            <text x="315" y="50" font-family="Inter, sans-serif" font-weight="400" font-size="30" fill="#A5C34D">FOR</text>
+            <text x="120" y="100" font-family="Inter, sans-serif" font-weight="400" font-size="55"
+              fill="#A5C34D">MOBILITY</text>
+          </svg>
+        </ng-template>
+      </div>
+      <div class="divider"></div>
+      <img src="https://finky.la/wp-content/uploads/2025/11/Diseno_sin_titulo__2___1_-removebg-preview-e1769455260406.png"
+        alt="Finky Logo" class="logo-finky">
+    </div>
+  </div>
+</header>

@@ -4,28 +4,32 @@
 
 .template-dos-host {
     --primary-green: #A5C34D;
-    --secondary-blue: #003151;
-    --primary-yellow: #f7ab00;
-    --finky-yellow: #f7ab00;
-    --dark-bg: #003151;
+    --secondary-blue: var(--color-oscuro, #003151);
+    --primary-yellow: var(--color-claro, #f7ab00);
+    --finky-yellow: var(--color-claro, #f7ab00);
+    --dark-bg: var(--color-oscuro, #003151);
     --white: #ffffff;
     --text-muted: #686868;
     --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #003151;
+    background-color: var(--color-oscuro, #003151);
+    overflow-x: hidden; /* global guard: no horizontal scroll on any viewport */
+    width: 100%;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .text-center { text-align: center; }
 
 /* Color Utilities */
 .white { color: #ffffff !important; }
-.finky-yellow-text { color: #f7ab00 !important; }
-.dark-blue-text { color: #003151 !important; }
+.finky-yellow-text { color: var(--color-claro, #f7ab00) !important; }
+.dark-blue-text { color: var(--color-oscuro, #003151) !important; }
 
 /* Header */
 .header {
@@ -51,22 +55,32 @@
 
 /* ── Hero La Salle Style ──────────────────────────── */
 .hero-section {
-    padding: 60px 0 80px; /* Recuperamos el aire superior en e inferior */
-    background: #001f3f;
+    padding: 60px 0 80px;
+    background: var(--color-oscuro, #001f3f);
     position: relative;
-    overflow: visible;
+    overflow-x: hidden; /* prevent banner bleeding on mobile */
 }
 
 .hero-image-container {
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
-    border-radius: 48px; /* El redondeo premium */
+    border-radius: 48px;
     overflow: hidden;
     aspect-ratio: 16 / 9;
     position: relative;
     box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-    border: none; /* Eliminamos el marco grueso definitivamente */
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .hero-image-container {
+        border-radius: 16px;
+        aspect-ratio: 4 / 3;
+    }
+    .hero-section {
+        padding: 30px 0 40px;
+    }
 }
 
 .hero-main-img {
@@ -80,13 +94,13 @@
     background: transparent;
     padding-top: 40px;
     text-align: center;
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
 .hero-text-overlay h1 {
     font-size: clamp(2rem, 1.5rem + 3vw, 3.5rem);
-    color: #FFC800;
+    color: var(--color-claro, #FFC800);
     font-weight: 800;
     margin-bottom: 0.8rem;
     text-transform: none;
@@ -97,7 +111,7 @@
     font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
     color: #ffffff;
     font-weight: 400;
-    max-width: 800px;
+    max-width: 1050px;
     margin: 0 auto;
     opacity: 0.9;
 }
@@ -147,14 +161,14 @@
 .stat-pill .stat-number {
     font-size: 2.2rem;
     font-weight: 800;
-    color: #FFC800 !important;
+    color: var(--color-claro, #FFC800) !important;
     line-height: 1;
 }
 
 .stat-pill .stat-label {
     font-size: 1.2rem;
     font-weight: 500;
-    color: #FFC800;
+    color: var(--color-claro, #FFC800);
     text-transform: none;
     line-height: 1.2;
 }
@@ -162,12 +176,50 @@
 @media (max-width: 768px) {
     .stats-pills-grid {
         grid-template-columns: 1fr;
-        padding: 0 20px;
+        padding: 0 16px;
     }
 
     .stat-pill {
         padding: 15px 20px;
         min-height: auto;
+    }
+
+    /* Somos la mejor opcion */
+    .template-dos-host .intro {
+        padding: 50px 0;
+    }
+
+    .template-dos-host .section-title {
+        font-size: clamp(1.8rem, 1.5rem + 2vw, 3rem);
+    }
+
+    .template-dos-host .section-subtitle {
+        font-size: clamp(1rem, 0.9rem + 0.5vw, 1.3rem);
+        margin-bottom: 25px;
+    }
+
+    /* Oferta Académica tabs */
+    .offer-tabs {
+        gap: 8px;
+    }
+    .tab-btn {
+        font-size: 1rem;
+        padding: 6px 16px;
+        height: auto;
+    }
+
+    /* CTA box */
+    .yellow-cta-box {
+        padding: 35px 25px;
+        border-radius: 16px;
+    }
+    .yellow-cta-box .cta-box-title {
+        font-size: 1.6rem;
+        line-height: 1.2;
+    }
+    .yellow-cta-box .cta-box-body {
+        font-size: 1.1rem;
+        line-height: 1.4;
     }
 }
 
@@ -183,7 +235,7 @@
     font-weight: 700;
     margin-bottom: 30px;
     line-height: 1.1;
-    color: #f7ab00; /* Default to yellow for sections within this component */
+    color: var(--color-claro, #f7ab00); /* Default to claro for sections within this component */
 }
 
 .section-subtitle {
@@ -196,16 +248,16 @@
 
 /* ── Oferta Académica Premium ─────────────────────── */
 .academic-offer-premium {
-    background: #003151;
+    background: var(--color-oscuro, #003151);
     padding: 100px 0;
     position: relative;
 }
 
 .yellow-cta-box {
-    background: #f7ab00;
+    background: var(--color-claro, #f7ab00);
     border-radius: 25px;
     padding: 55px 80px;
-    color: #003151;
+    color: var(--color-oscuro, #003151);
     max-width: 1300px;
     margin: 0 auto 70px;
     text-align: center;
@@ -215,17 +267,17 @@
 
 .yellow-cta-box .cta-box-title {
     font-weight: 700;
-    font-size: 2.5rem; /* 40px */
-    line-height: 35px;
-    color: #003151;
+    font-size: clamp(1.4rem, 1.2rem + 1.5vw, 2.5rem);
+    line-height: 1.2;
+    color: var(--color-oscuro, #003151);
     margin: 0 0 35px 0;
 }
 
 .yellow-cta-box .cta-box-body {
     font-weight: 400;
-    font-size: 1.875rem; /* 30px */
-    line-height: 35px;
-    color: #003151;
+    font-size: clamp(1rem, 0.9rem + 0.8vw, 1.875rem);
+    line-height: 1.4;
+    color: var(--color-oscuro, #003151);
     margin: 0 0 20px 0;
 }
 
@@ -338,7 +390,7 @@
 
 .program-card {
     background: rgba(0, 0, 0, 0.25);
-    border: 1px solid #f7ab00;
+    border: 1px solid var(--color-claro, #f7ab00);
     border-radius: 20px;
     padding: 28px 30px;
     text-align: left;
@@ -359,7 +411,7 @@
 .card-level-tag {
     display: inline-block;
     background: var(--primary-yellow, #f7ab00);
-    color: #003151;
+    color: var(--color-oscuro, #003151);
     font-size: 0.875rem; /* ~14px */
     font-weight: 600;
     padding: 6px 16px;
@@ -440,14 +492,17 @@
 .template-dos-host .alliance-image {
     width: 100%;
     overflow: hidden;
-    max-height: 600px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .template-dos-host .alliance-image img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
+    height: auto;
+    object-fit: contain;
+    display: block;
 }
 
 .template-dos-host .alliance-content {
@@ -462,14 +517,14 @@
 
 /* Responsive alliance template-dos */
 @media (max-width: 1024px) {
-    .template-dos-host .alliance-grid { grid-template-columns: 1fr 1fr; }
+    .template-dos-host .alliance-grid { grid-template-columns: 1fr; }
+    .template-dos-host .alliance-image { height: auto; aspect-ratio: 16/9; order: 1; }
+    .template-dos-host .alliance-content { padding: 60px 40px; order: 2; }
 }
 
 @media (max-width: 768px) {
-    .template-dos-host .alliance-grid { grid-template-columns: 1fr; }
-    .template-dos-host .alliance-image { height: 400px; max-height: 400px; order: 1; }
-    .template-dos-host .alliance-content { padding: 50px 30px; order: 2; }
-    .template-dos-host .alliance-title { font-size: 1.8rem; }
+    .template-dos-host .alliance-image { aspect-ratio: 4/3; }
+    .template-dos-host .alliance-content { padding: 50px 20px; }
 }
 
 
@@ -495,14 +550,14 @@
 }
 
 .template-dos-host .bg-dynamic {
-    background: #003151;
+    background: var(--color-oscuro, #003151);
     padding: 100px 0;
 }
 
 /* Simulador Header Sync con Template 1 */
 .template-dos-host .simulador .section-title {
-    font-family: 'Roboto', sans-serif;
-    font-size: clamp(2.5rem, 2rem + 4vw, 4.5rem); /* Match Figma ~72px */
+    font-family: 'Roboto', sans-serif !important;
+    font-size: clamp(2rem, 1.5rem + 2vw, 4.5rem) !important;
     font-weight: 700;
     line-height: 1.1;
     margin: 40px 0 30px;
@@ -518,8 +573,8 @@
 }
 
 .template-dos-host .simulador .section-subtitle {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(1.1rem, 1rem + 1vw, 1.875rem); /* Match Figma ~30px */
+    font-family: 'Inter', sans-serif !important;
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.6rem) !important;
     line-height: 1.4;
     margin-bottom: 40px;
 }

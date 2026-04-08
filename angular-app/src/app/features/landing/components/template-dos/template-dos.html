@@ -1,32 +1,7 @@
-<header class="header">
-  <div class="container">
-    <div class="logos-wrapper">
-      <div class="logo-b4m">
-        <svg width="220" height="60" viewBox="0 0 400 110"
-          xmlns="http://www.w3.org/2000/svg">
-          <rect x="5" y="5" width="100" height="100" fill="#A5C34D" />
-          <text x="55" y="65" font-family="Inter, sans-serif" font-weight="800"
-            font-size="48" fill="white" text-anchor="middle">B4M</text>
-          <text x="55" y="95" font-family="Inter, sans-serif" font-weight="400"
-            font-size="18" fill="white" text-anchor="middle">EUROPE</text>
-          <text x="120" y="50" font-family="Inter, sans-serif" font-weight="700"
-            font-size="45" fill="#555">BRIDGE</text>
-          <text x="315" y="50" font-family="Inter, sans-serif" font-weight="400"
-            font-size="30" fill="#A5C34D">FOR</text>
-          <text x="120" y="100" font-family="Inter, sans-serif"
-            font-weight="400" font-size="55" fill="#A5C34D">MOBILITY</text>
-        </svg>
-      </div>
-      <div class="divider"></div>
-      <img
-        src="https://finky.la/wp-content/uploads/2025/11/Diseno_sin_titulo__2___1_-removebg-preview-e1769455260406.png"
-        alt="Finky Logo" class="logo-finky">
-    </div>
-  </div>
-</header>
+<app-header [universityIcon]="config()?.iconUniversity"></app-header>
 
 <main *ngIf="config()">
-  <section class="hero-section" [style.background-color]="config()?.colores?.oscuro || '#001f3f'">
+  <section class="hero-section">
     <div class="container relative">
       <div class="hero-image-container">
         <img [src]="validatedBanner()?.pc || '/assets/images/fondo.jpg'"
@@ -59,7 +34,7 @@
     <div class="container">
       <div class="stats-pills-grid">
         @for (stat of validatedBullets(); track stat.titulo) {
-        <div class="stat-pill" [style.background-color]="config()?.colores?.oscuro || '#001f3f'">
+        <div class="stat-pill">
           <span class="stat-number">{{ stat.desc }}</span>
           <span class="stat-label">{{ stat.titulo }}</span>
         </div>
@@ -72,7 +47,7 @@
     </div>
   </section>
 
-  <section class="academic-offer-premium" [style.background-color]="config()?.colores?.oscuro || '#003151'">
+  <section class="academic-offer-premium">
     <div class="container text-center">
       <h2 class="section-title finky-yellow-text">Tu futuro empieza con una decisión.</h2>
       <p class="section-subtitle white">Elige el nivel de formación que
@@ -107,6 +82,7 @@
         <button class="tab-btn" [class.active]="activeTab() === nivel"
           [style.color]="activeTab() === nivel ? (config()?.colores?.oscuro || '#003151') : (config()?.colores?.oscuro || '#003151')"
           [style.border-color]="config()?.colores?.oscuro || '#003151'"
+          [style.background-color]="activeTab() === nivel ? (config()?.colores?.claro || '#f7ab00') : '#fff'"
           (click)="setActiveTab(nivel)">
           {{ nivel }}
         </button>
@@ -116,7 +92,7 @@
       <!-- Grid de Programas -->
       <div class="program-cards-grid">
         @for (prog of filteredPrograms(); track prog.name) {
-        <div class="program-card" [style.background-color]="config()?.colores?.oscuro || '#003151'">
+        <div class="program-card">
           <div class="card-level-tag">{{ prog.level }}</div>
           <h4 class="program-name">{{ prog.name }}</h4>
 
@@ -166,7 +142,7 @@
     [universityName]="config()?.nombreUniversidad || ''">
   </app-alliance-section>
 
-  <section id="simulador" class="simulador bg-dynamic" [style.background-color]="config()?.colores?.oscuro || '#003151'">
+  <section id="simulador" class="simulador bg-dynamic">
     <div class="container text-center">
       <h2 class="section-title finky-yellow-text">
         <span class="material-icons calc-icon">calculate</span> Simula tu
