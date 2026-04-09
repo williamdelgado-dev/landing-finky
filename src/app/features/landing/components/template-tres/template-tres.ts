@@ -1,4 +1,12 @@
-import { Component, inject, OnInit, OnDestroy, signal, computed, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+  OnDestroy,
+  signal,
+  computed,
+  ViewEncapsulation,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConfigService } from '../../services/config.service';
 import { LandingConfig } from '../../models/landing-config.model';
@@ -13,11 +21,18 @@ import { SafeUrlPipe } from '../../../../shared/pipes/safe-url.pipe';
 @Component({
   selector: 'app-template-tres',
   standalone: true,
-  imports: [CommonModule, FooterComponent, AllianceSectionComponent, SimuladorButtonComponent, HeaderComponent, SafeUrlPipe],
+  imports: [
+    CommonModule,
+    FooterComponent,
+    AllianceSectionComponent,
+    SimuladorButtonComponent,
+    HeaderComponent,
+    SafeUrlPipe,
+  ],
   templateUrl: './template-tres.html',
   styleUrl: './template-tres.css',
   encapsulation: ViewEncapsulation.None,
-  host: { class: 'template-tres-host' }
+  host: { class: 'template-tres-host' },
 })
 export class TemplateTres implements OnInit {
   private configService = inject(ConfigService);
@@ -30,8 +45,7 @@ export class TemplateTres implements OnInit {
   public validatedBullets = this.configService.validatedBullets;
   public simuladorUrl = this.configService.simuladorUrl;
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   public scrollToSimulador() {
     const element = document.getElementById('simulador');
@@ -46,19 +60,19 @@ export class TemplateTres implements OnInit {
   // Tipos de programa (niveles) dinámicos para las pestañas
   public niveles = computed(() => {
     const oferta = this.config()?.oferta || [];
-    const tipos = oferta.map(item => item.tipoPrograma);
+    const tipos = oferta.map((item) => item.tipoPrograma);
     return ['Todos', ...new Set(tipos)];
   });
 
   // Catálogo de programas dinámico basado en la configuración
   public programas = computed(() => {
     const oferta = this.config()?.oferta || [];
-    return oferta.map(item => ({
+    return oferta.map((item) => ({
       name: item.Nombre,
       level: item.tipoPrograma,
-      duration: 'Consultar', // El nuevo modelo no incluye duración
+      duration: '', // El nuevo modelo no incluye duración
       modality: item.modalidad || 'Presencial',
-      price: item.valorSemestre ? `$ ${item.valorSemestre}` : 'Consultar'
+      price: item.valorSemestre ? `$ ${item.valorSemestre}` : 'Consultar',
     }));
   });
 
@@ -67,7 +81,7 @@ export class TemplateTres implements OnInit {
     const tab = this.activeTab();
     const allPrograms = this.programas();
     if (tab === 'Todos') return allPrograms;
-    return allPrograms.filter(p => p.level === tab);
+    return allPrograms.filter((p) => p.level === tab);
   });
 
   public setActiveTab(tab: string) {
