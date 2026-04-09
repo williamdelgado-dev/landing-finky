@@ -1,0 +1,119 @@
+<app-header [universityIcon]="config()?.iconUniversity"></app-header>
+
+<main *ngIf="config()">
+  <section id="banner-hero" class="hero-bg overflow-hidden">
+    <picture class="absolute inset-0 w-full h-full">
+      <!-- Imagen Móvil (320x560 o similar) -->
+      <source media="(max-width: 768px)"
+        [srcset]="validatedBanner()?.movil || validatedBanner()?.pc">
+      <!-- Imagen Escritorio (1920x1080 o similar) -->
+      <img [src]="validatedBanner()?.pc"
+        class="w-full h-full object-cover object-center"
+        alt="Banner institucional" fetchpriority="high">
+    </picture>
+
+    <div class="overlay"></div>
+    <div class="green-banner relative z-20">
+      <div class="container">
+        <h1 id="banner-title">{{ validatedBanner()?.titulo }}</h1>
+        <p id="banner-subtitle">{{ validatedBanner()?.contenido }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="container text-center">
+      <app-simulador-button [useClaro]="true"></app-simulador-button>
+
+      <h2 class="section-title">Somos la mejor opción para tu
+        educación</h2>
+      <div class="intro-grid">
+        <p>El modelo de la Universidad Cooperativa de Colombia se enfoca en el
+          desarrollo de
+          competencias; lo hacemos a través de la
+          pedagogía crítica, que es la manera como se concreta en
+          lo educativo el ideal de la Teoría
+          Crítica de educar para el mundo de la vida.</p>
+        <p>En la UCC queremos crear lazos contigo para que juntos
+          construyamos el futuro. Entérate de todos
+          nuestros programas y la mejor manera de financiar tu
+          educación con Finky, ahora estamos más
+          cerca que nunca.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        @for (stat of validatedBullets(); track stat.titulo) {
+        <div class="stat-card">
+          <h3>{{ stat.titulo }}</h3>
+          <div class="stat-number">{{ stat.desc }}</div>
+        </div>
+        }
+      </div>
+      <div class="text-center mt-5">
+        <app-simulador-button [useClaro]="true"
+          style="margin-top: 40px; display: block;"></app-simulador-button>
+      </div>
+    </div>
+  </section>
+
+  <section class="academic-offer">
+    <div class="container text-center">
+      <h2 class="section-title white">Oferta Académica</h2>
+      <p class="section-subtitle white">Explora las diferentes
+        opciones educativas que podemos
+        financiar<br>para impulsar tu desarrollo profesional</p>
+
+      <div class="select-wrapper">
+        <select id="select-oferta" (change)="onTipoChange($event)">
+          <option value="">Tipos de programa</option>
+          @for (tipo of tiposPrograma(); track tipo) {
+          <option [value]="tipo">{{ tipo }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="programs-inner">
+        <h2 class="section-title white mt-5">Nuestros programas</h2>
+        <p class="section-subtitle white">Encuentra el programa
+          académico perfecto para tu desarrollo
+          profesional</p>
+
+        <div class="select-wrapper">
+          <select id="programas" (change)="onProgramaChange($event)">
+            <option value="" [disabled]="!selectedTipo()">Programas de estudio</option>
+            @for (prog of programasFiltrados(); track prog.Nombre) {
+            <option [value]="prog.Nombre">{{ prog.Nombre }}</option>
+            }
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <app-alliance-section imageSrc="/assets/images/finker_1.png"
+    [universityName]="config()?.nombreUniversidad || ''" [useClaro]="true">
+  </app-alliance-section>
+
+  <section id="seccion-simulador" class="simulador bg-claro">
+    <div class="container text-center">
+      <h2 class="section-title white">
+        <span class="material-icons calc-icon">calculate</span> Simula tu
+        Crédito Educativo
+      </h2>
+      <p class="section-subtitle white">Descubre cuánto puedes financiar y
+        calcula tu cuota mensual en segundos</p>
+
+      <div class="iframe-container"
+        style="max-width: 900px; margin: 40px auto 0;">
+        <iframe [src]="simuladorUrl() | safeUrl" width="100%" height="600px"
+          style="border: none; border-radius: 20px; background: #fff; box-shadow: 0 20px 40px rgba(0,0,0,0.1);"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<app-footer></app-footer>
