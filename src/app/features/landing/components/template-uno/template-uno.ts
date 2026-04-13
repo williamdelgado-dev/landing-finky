@@ -1,4 +1,12 @@
-import { Component, inject, OnInit, signal, computed, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+  signal,
+  computed,
+  ViewEncapsulation,
+  HostListener,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConfigService } from '../../services/config.service';
 import { LandingConfig } from '../../models/landing-config.model';
@@ -14,19 +22,28 @@ import { SafeUrlPipe } from '../../../../shared/pipes/safe-url.pipe';
 @Component({
   selector: 'app-template-uno',
   standalone: true,
-  imports: [CommonModule, FooterComponent, AllianceSectionComponent, SimuladorButtonComponent, HeaderComponent, SafeUrlPipe],
+  imports: [
+    CommonModule,
+    FooterComponent,
+    AllianceSectionComponent,
+    SimuladorButtonComponent,
+    HeaderComponent,
+    SafeUrlPipe,
+  ],
   templateUrl: './template-uno.html',
   styleUrl: './template-uno.css',
   encapsulation: ViewEncapsulation.None,
-  host: { class: 'template-uno-host' }
+  host: { class: 'template-uno-host' },
 })
 export class TemplateUno implements OnInit {
   private configService = inject(ConfigService);
-  
+
   public config = this.configService.config;
   public validatedBanner = this.configService.validatedBanner;
   public validatedBullets = this.configService.validatedBullets;
   public simuladorUrl = this.configService.simuladorUrl;
+  public iframeHeight = signal<number>(560);
+  public iframeWidth = signal<string | number>('100%');
 
   // Estado de los selectores
   public selectedTipo = signal<string>('');
@@ -34,7 +51,7 @@ export class TemplateUno implements OnInit {
   // Tipos de programa únicos (Primer selector)
   public tiposPrograma = computed(() => {
     const oferta = this.config()?.oferta || [];
-    const tipos = oferta.map(item => item.tipoPrograma);
+    const tipos = oferta.map((item) => item.tipoPrograma);
     return [...new Set(tipos)];
   });
 
@@ -43,11 +60,10 @@ export class TemplateUno implements OnInit {
     const oferta = this.config()?.oferta || [];
     const tipo = this.selectedTipo();
     if (!tipo) return [];
-    return oferta.filter(item => item.tipoPrograma === tipo);
+    return oferta.filter((item) => item.tipoPrograma === tipo);
   });
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   public scrollToSimulador() {
     const element = document.getElementById('seccion-simulador');
@@ -65,6 +81,21 @@ export class TemplateUno implements OnInit {
     const val = (event.target as HTMLSelectElement).value;
     if (val) {
       this.scrollToSimulador();
+    }
+  }
+
+  @HostListener('window:message', ['$event'])
+  async onMessage(event: MessageEvent) {
+    console.log('se realiza simulación');
+
+    if (event.data && typeof event.data === 'object') {
+      console.log('se realiza simulación');
+      if (event.data.height) {
+        this.iframeHeight.set(event.data.height);
+      }
+      if (event.data.width) {
+        this.iframeWidth.set(event.data.width);
+      }
     }
   }
 }

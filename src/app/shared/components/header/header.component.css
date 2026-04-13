@@ -23,7 +23,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 60px; /* Fixed height for consistency */
+    height: 45px; /* Altura estandarizada para balance visual */
     width: auto;
     min-width: 120px;
     max-width: 240px;
@@ -43,13 +43,13 @@
 }
 
 .logo-finky {
-    height: 40px;
+    height: 45px; /* Altura igualada al logo de la universidad */
     object-fit: contain;
 }
 
 .divider {
     width: 2px;
-    height: 40px;
+    height: 35px; /* Ligeramente más corto para un look más limpio */
     background: #eee;
 }
 
@@ -59,6 +59,11 @@
         gap: 15px;
         text-align: center;
     }
+
+    .logo-university, .logo-finky {
+        height: 32px;
+    }
+
     .divider {
         display: none;
     }

@@ -28,13 +28,14 @@
       <h2 class="section-title">Somos la mejor opción para tu
         educación</h2>
       <div class="intro-grid">
-        <p>El modelo de la Universidad Cooperativa de Colombia se enfoca en el
+        <p>El modelo de {{config()?.nombreUniversidad}} se enfoca en el
           desarrollo de
           competencias; lo hacemos a través de la
           pedagogía crítica, que es la manera como se concreta en
           lo educativo el ideal de la Teoría
           Crítica de educar para el mundo de la vida.</p>
-        <p>En la UCC queremos crear lazos contigo para que juntos
+        <p>En la {{config()?.nombreUniversidad}} queremos crear lazos contigo
+          para que juntos
           construyamos el futuro. Entérate de todos
           nuestros programas y la mejor manera de financiar tu
           educación con Finky, ahora estamos más
@@ -84,7 +85,8 @@
 
         <div class="select-wrapper">
           <select id="programas" (change)="onProgramaChange($event)">
-            <option value="" [disabled]="!selectedTipo()">Programas de estudio</option>
+            <option value="" [disabled]="!selectedTipo()">Programas de estudio
+            </option>
             @for (prog of programasFiltrados(); track prog.Nombre) {
             <option [value]="prog.Nombre">{{ prog.Nombre }}</option>
             }
@@ -107,9 +109,10 @@
       <p class="section-subtitle white">Descubre cuánto puedes financiar y
         calcula tu cuota mensual en segundos</p>
 
-      <div class="iframe-container"
-        style="max-width: 900px; margin: 40px auto 0;">
-        <iframe [src]="simuladorUrl() | safeUrl" width="100%" height="600px"
+      <div class="iframe-container" style="max-height: 700px; ">
+        <iframe id="simulador-iframe" [src]="simuladorUrl() | safeUrl"
+          width="100%" [style.height.px]="iframeHeight()"
+          [style.width.px]="iframeWidth()"
           style="border: none; border-radius: 20px; background: #fff; box-shadow: 0 20px 40px rgba(0,0,0,0.1);"></iframe>
       </div>
     </div>

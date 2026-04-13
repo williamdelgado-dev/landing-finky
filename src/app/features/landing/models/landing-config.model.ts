@@ -1,7 +1,6 @@
 export interface OfertaAcademica {
   tipoPrograma: string;
   Nombre: string;
-  modalidad?: string;
   valorSemestre: string;
 }
 

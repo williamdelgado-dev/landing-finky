@@ -6,6 +6,7 @@ import {
   signal,
   computed,
   ViewEncapsulation,
+  HostListener,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConfigService } from '../../services/config.service';
@@ -41,6 +42,8 @@ export class TemplateDos implements OnInit {
   public validatedBanner = this.configService.validatedBanner;
   public validatedBullets = this.configService.validatedBullets;
   public simuladorUrl = this.configService.simuladorUrl;
+  public iframeHeight = signal<number>(600);
+  public iframeWidth = signal<string | number>('100%');
 
   ngOnInit() {}
 
@@ -67,9 +70,7 @@ export class TemplateDos implements OnInit {
     return oferta.map((item) => ({
       name: item.Nombre,
       level: item.tipoPrograma,
-      duration: '', // El nuevo modelo no incluye duración
-      modality: item.modalidad || 'Presencial',
-      price: item.valorSemestre ? `$ ${item.valorSemestre}` : 'Consultar',
+      price: item.valorSemestre ? `${item.valorSemestre}` : 'Consultar',
     }));
   });
 
@@ -89,6 +90,18 @@ export class TemplateDos implements OnInit {
     const val = (event.target as HTMLSelectElement).value;
     if (val) {
       this.scrollToSimulador();
+    }
+  }
+
+  @HostListener('window:message', ['$event'])
+  async onMessage(event: MessageEvent) {
+    if (event.data && typeof event.data === 'object') {
+      if (event.data.height) {
+        this.iframeHeight.set(event.data.height);
+      }
+      if (event.data.width) {
+        this.iframeWidth.set(event.data.width);
+      }
     }
   }
 }
