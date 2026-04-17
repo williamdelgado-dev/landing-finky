@@ -21,6 +21,7 @@ export interface LandingConfig {
   };
   bullets: Array<{ titulo: string; desc: string }>;
   oferta: OfertaAcademica[];
+  prompt_version?: string;
 }
 
 export interface ConfigApiResponse {

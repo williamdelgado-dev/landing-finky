@@ -58,7 +58,8 @@ type PageState = 'loading' | 'loaded' | 'error';
           </div>
         }
       }
-      <app-floating-widget />
+      <app-floating-widget [config]="config()" />
+      <!-- Re-sync component state -->
     }
   `,
   styles: [
