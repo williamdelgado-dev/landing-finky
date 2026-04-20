@@ -1,16 +1,15 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-simulador-button',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './simulador-button.component.html',
-  styleUrl: './simulador-button.component.css'
+  styleUrl: './simulador-button.component.css',
 })
 export class SimuladorButtonComponent {
-  @Input() text: string = 'Simular mi crédito';
-  @Input() useClaro: boolean = false;
+  @Input() text = 'Simular mi crédito';
+  @Input() useClaro = false;
 
   public scrollToSimulador() {
     const ids = ['simulador', 'seccion-simulador'];

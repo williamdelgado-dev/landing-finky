@@ -2,16 +2,16 @@
   <div class="container footer-grid">
     <div class="footer-col">
       <h4 class="footer-title">Finky S.A.S.</h4>
-      <p>Tu aliado estratégico en financiamiento educativo.<br>Hacemos realidad
-        tus sueños académicos.</p>
+      <p>
+        Tu aliado estratégico en financiamiento educativo.<br />Hacemos realidad tus sueños
+        académicos.
+      </p>
     </div>
     <div class="footer-col">
       <h4 class="footer-title">Enlaces Rápidos</h4>
       <ul>
-        <li><a (click)="scrollToSimulador()" class="cursor-pointer">Sobre
-            Nosotros</a></li>
-        <li><a (click)="scrollToSimulador()" class="cursor-pointer">Simula tu
-            crédito</a></li>
+        <li><a routerLink="/que-es-finky" class="cursor-pointer">¿Qué es Finky?</a></li>
+        <li><a (click)="scrollToSimulador()" (keydown.enter)="scrollToSimulador()" tabindex="0" role="button" class="cursor-pointer">Simula tu crédito</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -37,8 +37,7 @@
   </div>
   <div class="container">
     <div class="footer-bottom">
-      <div class="copyright">© 2026 Finky S.A.S. Todos los derechos reservados.
-      </div>
+      <div class="copyright">© 2026 Finky S.A.S. Todos los derechos reservados.</div>
     </div>
   </div>
 </footer>

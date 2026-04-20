@@ -1,0 +1,16 @@
+# Folders to ignore for formatting
+.agents/
+.angular/
+.git/
+node_modules/
+dist/
+pnpm-lock.yaml
+*.ico
+*.png
+*.jpg
+*.svg
+
+# Angular artifacts
+package.json
+angular.json
+tsconfig.*.json

@@ -1,18 +1,18 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { SimuladorButtonComponent } from '../simulador-button/simulador-button.component';
 
 @Component({
   selector: 'app-alliance-section',
   standalone: true,
-  imports: [CommonModule, SimuladorButtonComponent],
+  imports: [SimuladorButtonComponent],
   templateUrl: './alliance-section.component.html',
-  styleUrl: './alliance-section.component.css'
+  styleUrl: './alliance-section.component.css',
 })
 export class AllianceSectionComponent {
-  @Input() imageSrc: string = '/assets/images/finker_1.png';
-  @Input() universityName: string = '';
-  @Input() useClaro: boolean = false;
+  @Input() imageSrc = '/assets/images/finker_1.png';
+  @Input() universityName = '';
+  @Input() useClaro = false;
 
   public scrollToSimulador() {
     const ids = ['simulador', 'seccion-simulador'];

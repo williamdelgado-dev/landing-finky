@@ -19,7 +19,7 @@ import { Component } from '@angular/core';
             <path d="M45 10L30 25H35L50 10H45Z" fill="#1F2937" />
             <path d="M65 10L50 25H55L70 10H65Z" fill="#1F2937" />
             <path d="M85 10L70 25H75L90 10H85Z" fill="#1F2937" />
-            
+
             <!-- Barrier Posts -->
             <rect x="25" y="25" width="8" height="25" rx="2" fill="#E879F9" />
             <rect x="67" y="25" width="8" height="25" rx="2" fill="#E879F9" />
