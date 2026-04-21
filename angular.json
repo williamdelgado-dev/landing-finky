@@ -85,6 +85,9 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "allowedHosts": [".preview.emergentagent.com", ".preview.emergentcf.cloud", ".emergentagent.com", ".emergentcf.cloud", "localhost"]
+          },
           "configurations": {
             "production": {
               "buildTarget": "angular-app:build:production"

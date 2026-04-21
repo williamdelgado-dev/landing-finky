@@ -1,0 +1,157 @@
+<app-portal-header></app-portal-header>
+
+<main class="ia-host">
+  <!-- HERO -->
+  <section class="ia-hero">
+    <div class="ia-container">
+      <span class="ia-eyebrow reveal" data-testid="ia-eyebrow">
+        <span class="ia-dot"></span> Convenios activos
+      </span>
+      <h1 class="ia-hero-title reveal delay-1" data-testid="ia-hero-title">
+        Instituciones que <span class="ia-accent">confían</span> en nosotros.
+      </h1>
+      <p class="ia-hero-sub reveal delay-2" data-testid="ia-hero-sub">
+        Más de 25 universidades, corporaciones e instituciones de educación
+        superior en Colombia ya hacen parte de la comunidad Finky. Estudia donde
+        quieras con el respaldo de nuestros aliados.
+      </p>
+
+      <div class="ia-hero-stats reveal delay-3" data-testid="ia-hero-stats">
+        <div class="ia-stat">
+          <span class="ia-stat-num">{{ instituciones.length }}+</span>
+          <span class="ia-stat-label">Aliados activos</span>
+        </div>
+        <div class="ia-stat-div"></div>
+        <div class="ia-stat">
+          <span class="ia-stat-num">6</span>
+          <span class="ia-stat-label">Ciudades de Colombia</span>
+        </div>
+        <div class="ia-stat-div"></div>
+        <div class="ia-stat">
+          <span class="ia-stat-num">+20k</span>
+          <span class="ia-stat-label">Estudiantes activos</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTERS & SEARCH -->
+  <section class="ia-filters-section">
+    <div class="ia-container">
+      <div class="ia-toolbar" data-testid="ia-toolbar">
+        <div class="ia-search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" placeholder="Busca tu universidad por nombre..." data-testid="ia-search-input" aria-label="Buscar institución" />
+        </div>
+
+        <div class="ia-filters" data-testid="ia-filters">
+          @for (tipo of tipos; track tipo.id) {
+            <button
+              type="button"
+              class="ia-filter"
+              [class.active]="filtroActivo === tipo.id"
+              (click)="setFiltro(tipo.id)"
+              [attr.data-testid]="'ia-filter-' + tipo.id"
+            >
+              {{ tipo.label }}
+              <span class="ia-filter-count">{{ countFor(tipo.id) }}</span>
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRID -->
+  <section class="ia-grid-section">
+    <div class="ia-container">
+      <div class="ia-grid" data-testid="ia-grid">
+        @for (inst of institucionesFiltradas; track inst.slug) {
+          <article class="ia-card" [attr.data-testid]="'ia-card-' + inst.slug">
+            <div class="ia-card-head">
+              <span class="ia-tag">{{ inst.tipo }}</span>
+              <span class="ia-check">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+            </div>
+            <div class="ia-logo-wrap">
+              <img [src]="inst.logo" [alt]="inst.nombre" loading="lazy" />
+            </div>
+            <h3 class="ia-card-name">{{ inst.nombre }}</h3>
+            <div class="ia-card-meta">
+              <span class="ia-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                {{ inst.ciudad }}
+              </span>
+              <span class="ia-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M2 20h20"/></svg>
+                {{ inst.modalidades.join(' · ') }}
+              </span>
+            </div>
+
+            <div class="ia-card-actions">
+              <a [href]="'https://finky.la/' + inst.slug" target="_blank" rel="noopener" class="ia-card-link" [attr.data-testid]="'ia-link-' + inst.slug">
+                Ver detalles
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+              <a href="https://app.finky.la/registro" class="ia-card-sim" [attr.data-testid]="'ia-sim-' + inst.slug">
+                Simular
+              </a>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- NO ENCUENTRAS -->
+  <section class="ia-request">
+    <div class="ia-container">
+      <div class="ia-request-box reveal" data-testid="ia-request-box">
+        <div class="ia-request-visual">
+          <div class="ia-request-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <div class="ia-request-circles">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="ia-request-text">
+          <span class="ia-eyebrow-light">¿No ves tu universidad?</span>
+          <h3>Ayúdanos a llegar hasta ella.</h3>
+          <p>
+            Si tu institución aún no tiene convenio con Finky, déjanos tus datos y,
+            si hay suficientes interesados, hablamos con ellos para abrirlo.
+          </p>
+          <a href="https://app.finky.la/registro" class="ia-btn ia-btn-primary" data-testid="ia-request-cta">
+            Solicitar mi universidad
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA CALCULAR -->
+  <section class="ia-cta">
+    <div class="ia-container">
+      <div class="ia-cta-box">
+        <div>
+          <h3>¿Listo para financiar tu próximo semestre?</h3>
+          <p>Calcula tu cuota mensual en segundos y pide tu cupo de crédito.</p>
+        </div>
+        <div class="ia-cta-actions">
+          <a href="https://app.finky.la/registro" class="ia-btn ia-btn-white" data-testid="ia-cta-registro">
+            Calcular cuotas
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a routerLink="/preguntas" class="ia-btn ia-btn-outline-white" data-testid="ia-cta-faq">
+            Ver preguntas frecuentes
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<app-portal-footer></app-portal-footer>

@@ -15,8 +15,8 @@ import { RouterModule } from '@angular/router';
         <nav class="nav">
           <div class="nav-links">
             <a class="nav-link" routerLink="/que-es-finky" routerLinkActive="active">Qué es Finky</a>
-            <a class="nav-link" href="#aliadas">Instituciones aliadas</a>
-            <a class="nav-link" href="#faq">FAQ</a>
+            <a class="nav-link" routerLink="/instituciones-aliadas" routerLinkActive="active">Instituciones aliadas</a>
+            <a class="nav-link" routerLink="/preguntas" routerLinkActive="active">FAQ</a>
             <a class="nav-link" href="#paga">Paga tu cuota</a>
           </div>
           
@@ -37,8 +37,8 @@ import { RouterModule } from '@angular/router';
       <!-- Mobile Menu -->
       <div class="mobile-menu" [class.open]="isMobileMenuOpen">
         <a class="mobile-link" routerLink="/que-es-finky" (click)="isMobileMenuOpen = false">Qué es Finky</a>
-        <a class="mobile-link" href="#aliadas" (click)="isMobileMenuOpen = false">Instituciones aliadas</a>
-        <a class="mobile-link" href="#faq" (click)="isMobileMenuOpen = false">FAQ</a>
+        <a class="mobile-link" routerLink="/instituciones-aliadas" (click)="isMobileMenuOpen = false">Instituciones aliadas</a>
+        <a class="mobile-link" routerLink="/preguntas" (click)="isMobileMenuOpen = false">FAQ</a>
         <a class="mobile-link" href="#paga" (click)="isMobileMenuOpen = false">Paga tu cuota</a>
         <div class="mobile-auth">
           <a href="https://app.finky.la/login" class="login-btn">Ingreso</a>
@@ -53,8 +53,8 @@ import { RouterModule } from '@angular/router';
 
       :host {
         --header-height: 84px;
-        --primary-orange: #f16c2d;
-        --primary-purple: #3e2a7e;
+        --primary-orange: #fc6223;
+        --primary-purple: #fc6223;
         --nav-text: #4b5563;
       }
 
@@ -152,7 +152,7 @@ import { RouterModule } from '@angular/router';
 
       .login-btn {
         font-size: 15px;
-        color: var(--primary-purple);
+        color: var(--primary-orange);
         text-decoration: none;
         font-weight: 700;
         transition: all 0.2s;
@@ -160,10 +160,11 @@ import { RouterModule } from '@angular/router';
 
       .login-btn:hover {
         color: var(--primary-orange);
+        opacity: 0.7;
       }
 
       .register-btn {
-        background: var(--primary-purple);
+        background: var(--primary-orange);
         color: white;
         padding: 12px 28px;
         border-radius: 14px;
@@ -171,7 +172,7 @@ import { RouterModule } from '@angular/router';
         font-weight: 700;
         text-decoration: none;
         transition: all 0.4s cubic-bezier(0.2, 1, 0.2, 1);
-        box-shadow: 0 10px 20px rgba(62, 42, 126, 0.15);
+        box-shadow: 0 10px 20px rgba(252, 98, 35, 0.25);
         display: inline-flex;
         align-items: center;
         gap: 8px;
@@ -183,8 +184,8 @@ import { RouterModule } from '@angular/router';
       }
 
       .register-btn:hover {
-        background: var(--primary-orange);
-        box-shadow: 0 15px 30px rgba(241, 108, 45, 0.25);
+        background: #e5521a;
+        box-shadow: 0 15px 30px rgba(252, 98, 35, 0.35);
         transform: translateY(-2px);
       }
 

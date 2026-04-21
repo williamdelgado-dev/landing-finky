@@ -1,163 +1,254 @@
 <app-portal-header></app-portal-header>
 
-<main class="que-es-finky-host">
-  <!-- 1. Hero Section -->
-  <section class="hero">
-    <div class="hero-bg">
-      <img src="/assets/images/que-es-finky-hero-v2.png" alt="Finky Students" />
-    </div>
-    <div class="hero-overlay"></div>
-    <div class="container hero-content">
-      <span class="hero-tag reveal mt-20">Conoce nuestra historia</span>
-      <h1 class="reveal delay-1">Cambiando el futuro de la
-        <span>educación</span>.
+<main class="qef-host">
+  <!-- 1. HERO MINIMALISTA -->
+  <section class="qef-hero">
+    <div class="qef-container">
+      <span class="qef-eyebrow reveal" data-testid="qef-hero-eyebrow">
+        <span class="qef-dot"></span> Conoce Finky
+      </span>
+      <h1 class="qef-hero-title reveal delay-1" data-testid="qef-hero-title">
+        Estudiar no debería <br />
+        depender de un <span class="qef-accent">codeudor</span>.
       </h1>
-      <p class="reveal delay-2">
-        Somos el aliado financiero de los estudiantes. Encontramos la forma de
-        que el dinero no sea un impedimento para tus sueños.
+      <p class="qef-hero-sub reveal delay-2" data-testid="qef-hero-sub">
+        Somos una plataforma 100% digital que financia tu semestre en cuotas
+        mensuales. Sin historial, sin papeleo y con respuesta en minutos.
       </p>
-      <div class="hero-btns reveal delay-3">
-        <a href="/#aliadas" class="btn btn-primary">
-          Ver universidades
-          <span class="material-icons">school</span>
+
+      <div class="qef-hero-actions reveal delay-3">
+        <a href="https://app.finky.la/registro" class="qef-btn qef-btn-primary" data-testid="qef-hero-cta-registro">
+          Solicitar mi cupo
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
-        <a href="/" class="btn btn-glass">
-          Calcular cuotas
-          <span class="material-icons">arrow_forward</span>
+        <a routerLink="/instituciones-aliadas" class="qef-btn qef-btn-ghost" data-testid="qef-hero-cta-instituciones">
+          Ver instituciones aliadas
         </a>
       </div>
-    </div>
-  </section>
 
-  <!-- 2. Quiénes Somos / Misión -->
-  <section class="mision-section">
-    <div class="container mision-grid">
-      <div class="mision-img-stack reveal">
-        <img src="/assets/images/que-es-finky-mision.png" alt="Equipo Finky"
-          class="mision-img-main" />
-        <div class="experience-card">
-          <div class="exp-num">5+</div>
-          <div class="exp-text">años de<br />impacto real</div>
+      <!-- Stats strip -->
+      <div class="qef-hero-stats reveal delay-4" data-testid="qef-hero-stats">
+        <div class="qef-stat">
+          <span class="qef-stat-num">+20k</span>
+          <span class="qef-stat-label">Estudiantes financiados</span>
+        </div>
+        <div class="qef-stat-divider"></div>
+        <div class="qef-stat">
+          <span class="qef-stat-num">25+</span>
+          <span class="qef-stat-label">Instituciones aliadas</span>
+        </div>
+        <div class="qef-stat-divider"></div>
+        <div class="qef-stat">
+          <span class="qef-stat-num">5 min</span>
+          <span class="qef-stat-label">Aprobación promedio</span>
+        </div>
+        <div class="qef-stat-divider"></div>
+        <div class="qef-stat">
+          <span class="qef-stat-num">8/10</span>
+          <span class="qef-stat-label">Aprobaciones</span>
         </div>
       </div>
-      <div class="mision-content reveal delay-1">
-        <div class="accent-line"></div>
-        <h2>Más que un crédito, somos una oportunidad.</h2>
-        <p>
-          En Finky creemos que el talento no tiene estrato social. Por eso,
-          diseñamos una plataforma que usa tecnología y datos para abrir puertas
-          que antes estaban cerradas.
+    </div>
+  </section>
+
+  <!-- 2. MISIÓN -->
+  <section class="qef-mision">
+    <div class="qef-container qef-mision-grid">
+      <div class="qef-mision-visual reveal">
+        <div class="qef-visual-card">
+          <img src="/assets/images/que-es-finky-mision.png" alt="Estudiantes Finky" />
+        </div>
+        <div class="qef-visual-chip" data-testid="qef-mision-chip">
+          <div class="qef-chip-num">5+</div>
+          <div class="qef-chip-text">años abriendo<br/>puertas</div>
+        </div>
+      </div>
+
+      <div class="qef-mision-content reveal delay-1">
+        <span class="qef-eyebrow-light">Nuestra misión</span>
+        <h2 class="qef-section-title">
+          Finky es una <span class="qef-accent">plataforma</span> que te ayuda a financiar tu semestre en cuotas.
+        </h2>
+        <p class="qef-section-text">
+          Tú te registras, nosotros te aprobamos un crédito educativo para pagar
+          el semestre de tu universidad y luego lo pagas mes a mes. Sin codeudor,
+          sin historial crediticio y sin letras chiquitas.
         </p>
-        <p>
-          Olvídate del papeleo infinito y las esperas. Nuestra experiencia es
-          100% digital, rápida y transparente, permitiéndote enfocarte en lo que
-          realmente importa: tu educación.
+        <p class="qef-section-text">
+          Creemos que el talento no tiene estrato social, por eso usamos
+          tecnología y datos para abrir puertas que antes estaban cerradas.
         </p>
-        <a href="https://app.finky.la/registro" class="btn btn-primary"
-          style="margin-top: 20px">
-          Únete a la comunidad
-          <span class="material-icons">bolt</span>
-        </a>
+
+        <ul class="qef-checklist" data-testid="qef-mision-checklist">
+          <li>
+            <span class="qef-check">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            Sin codeudor ni fiador
+          </li>
+          <li>
+            <span class="qef-check">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            100% online, sin filas ni papeleo
+          </li>
+          <li>
+            <span class="qef-check">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            Pagas cómodo en cuotas mensuales durante el semestre
+          </li>
+          <li>
+            <span class="qef-check">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            Renueva cada semestre sin nuevos análisis
+          </li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- 3. Nuestros Pilares -->
-  <section class="pillars-section">
-    <div class="container">
-      <div class="section-intro reveal">
-        <span class="hero-tag"
-          style="border-color: rgba(255,255,255,0.1)">Valores Finky</span>
-        <h2>Nuestros pilares</h2>
-        <p>Diseñamos cada parte de nuestra plataforma pensando en la realidad de
-          los estudiantes de hoy.</p>
+  <!-- 3. PILARES -->
+  <section class="qef-pilares">
+    <div class="qef-container">
+      <div class="qef-section-intro reveal">
+        <span class="qef-eyebrow-light">Nuestros pilares</span>
+        <h2 class="qef-section-title center">
+          Pensado para la realidad de <br />los <span class="qef-accent">estudiantes de hoy</span>.
+        </h2>
       </div>
 
-      <div class="pillars-grid">
-        <div class="pillar-card reveal delay-1">
-          <div class="pillar-icon-box">
-            <span class="material-icons">speed</span>
+      <div class="qef-pilares-grid">
+        <article class="qef-pilar reveal delay-1" data-testid="qef-pilar-digital">
+          <div class="qef-pilar-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="3"/><path d="M12 18h.01"/></svg>
           </div>
           <h3>100% Digital</h3>
-          <p>
-            Desde la simulación hasta el desembolso. Todo pasa tan rápido como
-            una conversación por WhatsApp. Sin salir de casa.
-          </p>
-        </div>
+          <p>Desde la simulación hasta el desembolso. Todo pasa tan rápido como una conversación por WhatsApp, sin salir de casa.</p>
+          <span class="qef-pilar-num">01</span>
+        </article>
 
-        <div class="pillar-card reveal delay-2">
-          <div class="pillar-icon-box">
-            <span class="material-icons">verified</span>
+        <article class="qef-pilar reveal delay-2" data-testid="qef-pilar-aprobacion">
+          <div class="qef-pilar-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
           </div>
-          <h3>Aprobación Inmediata</h3>
-          <p>
-            No te hacemos esperar. Reportamos de inmediato a tu universidad para
-            que legalices tu matrícula en minutos.
-          </p>
-        </div>
+          <h3>Aprobación inmediata</h3>
+          <p>No te hacemos esperar. Reportamos de inmediato a tu universidad para que legalices tu matrícula en minutos.</p>
+          <span class="qef-pilar-num">02</span>
+        </article>
 
-        <div class="pillar-card reveal delay-3">
-          <div class="pillar-icon-box">
-            <span class="material-icons">visibility_off</span>
+        <article class="qef-pilar reveal delay-3" data-testid="qef-pilar-historial">
+          <div class="qef-pilar-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
           </div>
-          <h3>Sin Historial</h3>
-          <p>
-            Tu pasado no te define. Nos enfocamos en tu potencial académico y en
-            las metas que vas a cumplir en el futuro.
-          </p>
-        </div>
+          <h3>Sin historial crediticio</h3>
+          <p>Tu pasado no te define. Nos enfocamos en tu potencial académico y en las metas que vas a cumplir en el futuro.</p>
+          <span class="qef-pilar-num">03</span>
+        </article>
+
+        <article class="qef-pilar reveal delay-1" data-testid="qef-pilar-sin-codeudor">
+          <div class="qef-pilar-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h3>Sin codeudor</h3>
+          <p>Aquí respondes tú, no alguien más. No necesitas poner a un tercero como respaldo para acceder a tu crédito.</p>
+          <span class="qef-pilar-num">04</span>
+        </article>
+
+        <article class="qef-pilar reveal delay-2" data-testid="qef-pilar-flexible">
+          <div class="qef-pilar-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg>
+          </div>
+          <h3>Cuotas flexibles</h3>
+          <p>Paga hasta en 6 cuotas mensuales, adelanta cuando quieras y sin penalizaciones por pagar antes.</p>
+          <span class="qef-pilar-num">05</span>
+        </article>
+
+        <article class="qef-pilar reveal delay-3" data-testid="qef-pilar-renovable">
+          <div class="qef-pilar-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-9 9 9 9 0 0 1-6.74-3.04M3 12a9 9 0 0 1 15.74-6"/><polyline points="21 3 21 9 15 9"/><polyline points="3 21 3 15 9 15"/></svg>
+          </div>
+          <h3>Renovable cada semestre</h3>
+          <p>Si pagaste el crédito anterior, renuevas tu cupo sin nuevos análisis. Así de simple, así de confiable.</p>
+          <span class="qef-pilar-num">06</span>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- 4. CTA Box -->
-  <section class="cta-section">
-    <div class="container">
-      <div class="cta-box reveal">
-        <div class="cta-content">
-          <h2>Inicia tu camino hoy mismo</h2>
-          <p style="font-size: 1.1rem; opacity: 0.8; margin-bottom: 40px">
-            Solicita tu cupo de crédito en menos de 5 minutos y comienza a
-            estudiar la carrera de tus sueños sin preocupaciones.
+  <!-- 4. COMO FUNCIONA -->
+  <section class="qef-pasos">
+    <div class="qef-container">
+      <div class="qef-pasos-grid">
+        <div class="qef-pasos-intro reveal">
+          <span class="qef-eyebrow-light">¿Cómo funciona?</span>
+          <h2 class="qef-section-title">
+            4 pasos y <span class="qef-accent">listo</span>.
+          </h2>
+          <p class="qef-section-text">
+            Todo el proceso se hace online. No necesitas ir a una oficina ni
+            imprimir nada. Te acompañamos en cada paso por WhatsApp.
           </p>
-          <a href="/" class="btn btn-primary">
-            Solicitar crédito
-            <span class="material-icons">rocket_launch</span>
+          <a href="https://app.finky.la/registro" class="qef-btn qef-btn-primary qef-btn-inline" data-testid="qef-pasos-cta">
+            Empezar ahora
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
+        </div>
 
-          <div class="cta-stats">
-            <div class="stat">
-              <span class="stat-val">+20k</span>
-              <span class="stat-label">Estudiantes</span>
+        <ol class="qef-steps" data-testid="qef-pasos-lista">
+          <li class="qef-step reveal delay-1">
+            <span class="qef-step-num">01</span>
+            <div>
+              <h4>Simula tu cuota</h4>
+              <p>Ingresa el valor del semestre y elige en cuántas cuotas quieres pagarlo.</p>
             </div>
-            <div class="stat">
-              <span class="stat-val">100%</span>
-              <span class="stat-label">Online</span>
+          </li>
+          <li class="qef-step reveal delay-2">
+            <span class="qef-step-num">02</span>
+            <div>
+              <h4>Regístrate en minutos</h4>
+              <p>Correo, celular y una contraseña. Te pediremos datos simples de tus ingresos y tu universidad.</p>
             </div>
-            <div class="stat">
-              <span class="stat-val">5min</span>
-              <span class="stat-label">Proceso</span>
+          </li>
+          <li class="qef-step reveal delay-3">
+            <span class="qef-step-num">03</span>
+            <div>
+              <h4>Recibe aprobación</h4>
+              <p>Nuestro scoring propio evalúa tu perfil de forma integral. Respuesta en pocos minutos.</p>
             </div>
-          </div>
-        </div>
-        <div class="cta-img-wrap">
-          <img src="/assets/images/que-es-finky-cta.png"
-            alt="Futuro Estudiante" />
-        </div>
+          </li>
+          <li class="qef-step reveal delay-4">
+            <span class="qef-step-num">04</span>
+            <div>
+              <h4>Firma y estudia</h4>
+              <p>Firmas digital por WhatsApp o web, reportamos a tu universidad y legalizas la matrícula.</p>
+            </div>
+          </li>
+        </ol>
       </div>
     </div>
   </section>
 
-  <!-- 5. Alliances -->
-  <section class="alliances reveal">
-    <div class="container">
-      <p class="alliances-title">Instituciones que confían en nosotros</p>
-      <div class="logo-grid">
-        <img src="/assets/images/fondosalle.png" alt="Salle" />
-        <img src="/assets/images/ibero.png" alt="Ibero" />
-        <img
-          src="/assets/images/ucc-logo-universidad-cooperativa-de-colombia.svg"
-          alt="UCC" />
+  <!-- 5. CTA -->
+  <section class="qef-cta">
+    <div class="qef-container">
+      <div class="qef-cta-box reveal">
+        <h2 class="qef-cta-title">
+          Da el primer paso hacia tu carrera.
+        </h2>
+        <p class="qef-cta-sub">
+          Solicita tu cupo de crédito educativo en menos de 5 minutos y enfócate en lo que realmente importa: estudiar.
+        </p>
+        <div class="qef-cta-actions">
+          <a href="https://app.finky.la/registro" class="qef-btn qef-btn-white" data-testid="qef-cta-registro">
+            Solicitar cupo
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a routerLink="/preguntas" class="qef-btn qef-btn-outline-white" data-testid="qef-cta-faq">
+            Ver preguntas frecuentes
+          </a>
+        </div>
       </div>
     </div>
   </section>
