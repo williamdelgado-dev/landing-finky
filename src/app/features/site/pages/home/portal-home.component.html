@@ -87,8 +87,7 @@
       <h3 class="unis-title">Universidades que ofrecen esta carrera</h3>
       <div class="unis-grid">
         @for (uni of universidadesCarrera; track uni.id) {
-        <div class="uni-card" (click)="selectUniversidad(uni)"
-          (keydown.enter)="selectUniversidad(uni)" tabindex="0" role="button">
+        <div class="uni-card">
           <img [src]="uni.logo" [alt]="uni.nombre" class="uni-logo" />
           <div class="uni-info">
             <h4 class="uni-name">{{ uni.nombre }}</h4>
@@ -105,10 +104,7 @@
               </span>
             </div>
           </div>
-          <button class="simular-btn"
-            (click)="onSimularClick(uni); $event.stopPropagation()">
-            Simular crédito
-          </button>
+          <!-- Botón de simulación removido para evitar aperturas no deseadas -->
         </div>
         }
       </div>
