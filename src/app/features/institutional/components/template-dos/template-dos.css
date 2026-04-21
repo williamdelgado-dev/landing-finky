@@ -499,7 +499,7 @@
 
 .template-dos-host .alliance-grid {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: 725px 1fr;
   gap: 0;
   align-items: stretch;
   max-width: 100%;
@@ -508,21 +508,19 @@
 .template-dos-host .alliance-image {
   width: 100%;
   overflow: hidden;
-  background: #f8f9fa;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  aspect-ratio: 725 / 900;
+  max-height: 900px;
 }
 
 .template-dos-host .alliance-image img {
   width: 100%;
-  height: auto;
-  object-fit: contain;
-  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .template-dos-host .alliance-content {
-  padding: 60px 80px;
+  padding: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -5,6 +5,7 @@ import {
   computed,
   ViewEncapsulation,
   HostListener,
+  OnInit,
 } from '@angular/core';
 
 import { ConfigService } from '@institutional/services/config.service';
@@ -15,6 +16,7 @@ import { SimuladorButtonComponent } from '@shared/components/simulador-button/si
 
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { SafeUrlPipe } from '@shared/pipes/safe-url.pipe';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-template-uno',
@@ -31,7 +33,7 @@ import { SafeUrlPipe } from '@shared/pipes/safe-url.pipe';
   encapsulation: ViewEncapsulation.None,
   host: { class: 'template-uno-host' },
 })
-export class TemplateUno {
+export class TemplateUno implements OnInit {
   private configService = inject(ConfigService);
 
   public config = this.configService.config;
@@ -43,6 +45,16 @@ export class TemplateUno {
 
   // Estado de los selectores
   public selectedTipo = signal<string>('');
+
+  ngOnInit(): void {
+    if (typeof window !== 'undefined') {
+      AOS.init({
+        duration: 1000,
+        once: true,
+        mirror: false,
+      });
+    }
+  }
 
   // Tipos de programa únicos (Primer selector)
   public tiposPrograma = computed(() => {

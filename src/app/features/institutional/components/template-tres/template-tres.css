@@ -583,7 +583,7 @@
 
 .template-tres-host .alliance-grid {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: 725px 1fr;
   gap: 0;
   align-items: stretch;
   max-width: 100%;
@@ -593,7 +593,8 @@
 .template-tres-host .alliance-image {
   width: 100%;
   overflow: hidden;
-  max-height: 600px;
+  aspect-ratio: 725 / 900;
+  max-height: 900px;
 }
 
 .template-tres-host .alliance-image img {
@@ -604,7 +605,7 @@
 }
 
 .template-tres-host .alliance-content {
-  padding: 60px 80px;
+  padding: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -5,7 +5,10 @@ import {
   computed,
   ViewEncapsulation,
   HostListener,
+  OnInit,
 } from '@angular/core';
+
+import * as AOS from 'aos';
 
 import { ConfigService } from '@institutional/services/config.service';
 import { FooterComponent } from '@shared/components/footer/footer.component';
@@ -30,7 +33,15 @@ import { SafeUrlPipe } from '@shared/pipes/safe-url.pipe';
   encapsulation: ViewEncapsulation.None,
   host: { class: 'template-tres-host' },
 })
-export class TemplateTres  {
+export class TemplateTres implements OnInit {
+  ngOnInit(): void {
+    if (typeof window !== 'undefined') {
+      AOS.init({
+        duration: 1000,
+        once: true,
+      });
+    }
+  }
   private configService = inject(ConfigService);
 
   // Consumimos directamente la señal del servicio

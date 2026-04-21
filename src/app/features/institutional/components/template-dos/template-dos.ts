@@ -5,7 +5,10 @@ import {
   computed,
   ViewEncapsulation,
   HostListener,
+  OnInit,
 } from '@angular/core';
+
+import * as AOS from 'aos';
 
 import { ConfigService } from '@institutional/services/config.service';
 import { FooterComponent } from '@shared/components/footer/footer.component';
@@ -30,7 +33,15 @@ import { SafeUrlPipe } from '@shared/pipes/safe-url.pipe';
   encapsulation: ViewEncapsulation.None,
   host: { class: 'template-dos-host' },
 })
-export class TemplateDos  {
+export class TemplateDos implements OnInit {
+  ngOnInit(): void {
+    if (typeof window !== 'undefined') {
+      AOS.init({
+        duration: 1000,
+        once: true,
+      });
+    }
+  }
   private configService = inject(ConfigService);
 
   public config = this.configService.config;
