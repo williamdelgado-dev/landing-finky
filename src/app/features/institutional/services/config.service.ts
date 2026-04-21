@@ -40,6 +40,9 @@ export class ConfigService {
     return null;
   }
 
+  // Registro de instituciones que no existen para evitar bucles en subdominios
+  private failedSlugs = new Set<string>();
+
   /**
    * Carga la configuración desde la API basándose en el slug.
    * Si no se encuentra, redirige.
@@ -54,6 +57,11 @@ export class ConfigService {
         return false;
       }
 
+      // Si ya sabemos que falló, no re-intentamos (evita bucles infinitos)
+      if (this.failedSlugs.has(finalSlug)) {
+        return false;
+      }
+
       // 2. Llamada a la API de Staging (vía Variable de Entorno)
       const apiUrl = `${environment.apiUrl}/portal-legalizaciones/ies-landing-config/search?slug=${finalSlug}`;
 
@@ -64,11 +72,15 @@ export class ConfigService {
       console.log(`[ConfigService] Respuesta de API para "${finalSlug}":`, response);
 
       if (response && response.status && response.data) {
-        this.applySettings(response.data);
+        this._config.set(response.data);
+        this.applyColors(response.data.colores);
         return true;
       }
 
       console.warn(`[ConfigService] Configuración no encontrada para "${finalSlug}"`);
+      
+      // Registramos el fallo y redirigimos
+      this.failedSlugs.add(finalSlug);
       this.router.navigate(['/']);
       return false;
     } catch (error) {
@@ -76,6 +88,13 @@ export class ConfigService {
       this.router.navigate(['/']);
       return false;
     }
+  }
+
+  /**
+   * Verifica si un slug o subdominio ya falló previamente
+   */
+  public hasFailed(slug: string): boolean {
+    return this.failedSlugs.has(slug.toLowerCase());
   }
 
   private applySettings(config: LandingConfig) {

@@ -137,7 +137,8 @@ export class LandingPageComponent implements OnInit {
       this.state.set('loaded');
       this.validateBannerDimensions();
     } else {
-      this.state.set('error');
+      // El ConfigService ya se encarga de redirigir si loadConfig devuelve false
+      console.warn('[LandingPage] Configuración fallida, redirigiendo...');
     }
   }
 

@@ -10,7 +10,14 @@ import { InstitucionesAliadasComponent } from '@site/pages/instituciones-aliadas
 export const routes: Routes = [
   {
     path: '',
-    canMatch: [() => !!inject(ConfigService).getSubdomain()],
+    canMatch: [
+      () => {
+        const configService = inject(ConfigService);
+        const subdomain = configService.getSubdomain();
+        // Solo aplica si hay subdominio Y no ha fallado previamente
+        return !!subdomain && !configService.hasFailed(subdomain);
+      },
+    ],
     component: LandingPageComponent,
     title: 'Finky — Landing Institucional',
   },
