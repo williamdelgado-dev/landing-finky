@@ -21,23 +21,25 @@ export class ConfigService {
 
   /**
    * Extrae el subdominio si está presente (ej: salle.finky.la -> salle)
+   * Ignora subdominios técnicos como www, staging, dev, etc.
    */
   public getSubdomain(): string | null {
     if (typeof window === 'undefined') return null;
     const host = window.location.hostname;
     const parts = host.split('.');
 
-    // Si estamos en localhost para pruebas, o en el dominio real con subdominio
-    if (parts.length >= 3) {
-      return parts[0];
+    // Si no hay suficientes partes, no hay subdominio
+    if (parts.length < 3) return null;
+
+    const potentialSubdomain = parts[0].toLowerCase();
+    
+    // Lista de subdominios que NUNCA son instituciones
+    const ignoredSubdomains = ['www', 'staging', 'dev', 'portal', 'app', 'localhost', 'api', 'admin'];
+    if (ignoredSubdomains.includes(potentialSubdomain)) {
+      return null;
     }
 
-    // Soporte para pruebas locales: salle.localhost
-    if (parts.length === 2 && parts[1] === 'localhost') {
-      return parts[0];
-    }
-
-    return null;
+    return potentialSubdomain;
   }
 
   // Registro de instituciones que no existen para evitar bucles en subdominios
