@@ -23,7 +23,6 @@ import * as AOS from 'aos';
   imports: [
     FormsModule,
     PortalHeaderComponent,
-    PortalSimuladorComponent,
     PortalBeneficiosComponent,
     PortalStatsComponent,
     PortalTestimoniosComponent,
@@ -48,7 +47,7 @@ export class PortalHomeComponent implements OnInit {
   public scrollingMode = signal<string>('no');
   public mainIframeUrl: SafeResourceUrl | null = null;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadData();
 
     // Pre-calculamos la URL del iframe principal para evitar re-renderizados constantes (flickering)
@@ -56,11 +55,18 @@ export class PortalHomeComponent implements OnInit {
     const url = `https://d13p412flothha.cloudfront.net/new-simulador.html?secondaryColor=${color}`;
     this.mainIframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
 
-    AOS.init({
-      duration: 1000,
-      once: true,
-      easing: 'ease-out-back',
-    });
+    if (typeof window !== 'undefined') {
+      AOS.init({
+        duration: 800,
+        once: true,
+        mirror: false,
+      });
+
+      // Enable scrolling on mobile/tablet devices automatically
+      if (window.innerWidth < 1024) {
+        this.scrollingMode.set('yes');
+      }
+    }
   }
 
   /**

@@ -16,10 +16,18 @@ interface FaqCategoria {
   preguntas: FaqItem[];
 }
 
+import { LinaPortalComponent } from '@site/components/lina-portal/lina-portal.component';
+
 @Component({
   selector: 'app-preguntas',
   standalone: true,
-  imports: [CommonModule, RouterModule, PortalHeaderComponent, PortalFooterComponent],
+  imports: [
+    CommonModule, 
+    RouterModule, 
+    PortalHeaderComponent, 
+    PortalFooterComponent,
+    LinaPortalComponent
+  ],
   templateUrl: './preguntas.component.html',
   styleUrl: './preguntas.component.css',
 })

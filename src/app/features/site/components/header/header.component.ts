@@ -28,7 +28,7 @@ import { RouterModule } from '@angular/router';
             </a>
           </div>
           
-          <button class="mobile-toggle" (click)="isMobileMenuOpen = !isMobileMenuOpen">
+          <button class="mobile-toggle" (click)="toggleMobileMenu()">
             <span class="material-icons">{{ isMobileMenuOpen ? 'close' : 'menu' }}</span>
           </button>
         </nav>
@@ -36,13 +36,13 @@ import { RouterModule } from '@angular/router';
 
       <!-- Mobile Menu -->
       <div class="mobile-menu" [class.open]="isMobileMenuOpen">
-        <a class="mobile-link" routerLink="/que-es-finky" (click)="isMobileMenuOpen = false">Qué es Finky</a>
-        <a class="mobile-link" routerLink="/instituciones-aliadas" (click)="isMobileMenuOpen = false">Instituciones aliadas</a>
-        <a class="mobile-link" routerLink="/preguntas" (click)="isMobileMenuOpen = false">FAQ</a>
-        <a class="mobile-link paga-cuota-mobile" href="https://app.finky.la/pagos" (click)="isMobileMenuOpen = false">Paga tu cuota</a>
+        <a class="mobile-link" routerLink="/que-es-finky" (click)="toggleMobileMenu()">Qué es Finky</a>
+        <a class="mobile-link" routerLink="/instituciones-aliadas" (click)="toggleMobileMenu()">Instituciones aliadas</a>
+        <a class="mobile-link" routerLink="/preguntas" (click)="toggleMobileMenu()">FAQ</a>
+        <a class="mobile-link paga-cuota-mobile" href="https://app.finky.la/pagos" (click)="toggleMobileMenu()">Paga tu cuota</a>
         <div class="mobile-auth">
-          <a href="https://app.finky.la/login" class="login-btn">Ingreso</a>
-          <a href="https://app.finky.la/registro" class="register-btn">Registrarse</a>
+          <a href="https://app.finky.la/login" class="login-btn" (click)="toggleMobileMenu()">Ingreso</a>
+          <a href="https://app.finky.la/registro" class="register-btn" (click)="toggleMobileMenu()">Registrarse</a>
         </div>
       </div>
     </header>
@@ -53,8 +53,8 @@ import { RouterModule } from '@angular/router';
 
       :host {
         --header-height: 84px;
-        --primary-orange: #fc6223;
-        --primary-purple: #fc6223;
+        --primary-orange: #f16c2d;
+        --primary-purple: #f16c2d;
         --nav-text: #4b5563;
       }
 
@@ -104,17 +104,17 @@ import { RouterModule } from '@angular/router';
       .nav {
         display: flex;
         align-items: center;
-        gap: 40px;
+        gap: 24px;
       }
 
       .nav-links {
         display: flex;
-        gap: 32px;
+        gap: 20px;
         align-items: center;
       }
 
       .nav-link {
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 600;
         color: var(--nav-text);
         text-decoration: none;
@@ -142,132 +142,151 @@ import { RouterModule } from '@angular/router';
       }
 
       .paga-cuota-btn {
-        background: rgba(252, 98, 35, 0.1);
+        background: rgba(241, 108, 45, 0.1);
         color: var(--primary-orange) !important;
-        padding: 8px 20px;
+        padding: 6px 16px;
         border-radius: 50px;
         border: 2px solid var(--primary-orange);
         transition: all 0.3s ease !important;
-      }
-
-      .paga-cuota-btn::after {
-        display: none;
+        font-size: 14px;
+        text-decoration: none;
       }
 
       .paga-cuota-btn:hover {
         background: var(--primary-orange);
         color: white !important;
         transform: scale(1.05);
-        box-shadow: 0 4px 15px rgba(252, 98, 35, 0.3);
-      }
-
-      .paga-cuota-mobile {
-        background: var(--primary-orange);
-        color: white !important;
-        padding: 12px;
-        border-radius: 12px;
-        text-align: center;
-        margin-top: 8px;
+        box-shadow: 0 4px 15px rgba(241, 108, 45, 0.3);
       }
 
       .nav-auth {
         display: flex;
         align-items: center;
-        gap: 24px;
-        margin-left: 12px;
-        padding-left: 32px;
+        gap: 16px;
+        margin-left: 8px;
+        padding-left: 20px;
         border-left: 1px solid rgba(0, 0, 0, 0.08);
       }
 
       .login-btn {
-        font-size: 15px;
+        font-size: 14px;
         color: var(--primary-orange);
         text-decoration: none;
         font-weight: 700;
         transition: all 0.2s;
       }
 
-      .login-btn:hover {
-        color: var(--primary-orange);
-        opacity: 0.7;
-      }
-
       .register-btn {
         background: var(--primary-orange);
         color: white;
-        padding: 12px 28px;
-        border-radius: 14px;
-        font-size: 14px;
+        padding: 10px 20px;
+        border-radius: 12px;
+        font-size: 13px;
         font-weight: 700;
         text-decoration: none;
         transition: all 0.4s cubic-bezier(0.2, 1, 0.2, 1);
-        box-shadow: 0 10px 20px rgba(252, 98, 35, 0.25);
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-      }
-
-      .register-btn span {
-        font-size: 18px;
-        transition: transform 0.3s ease;
-      }
-
-      .register-btn:hover {
-        background: #e5521a;
-        box-shadow: 0 15px 30px rgba(252, 98, 35, 0.35);
-        transform: translateY(-2px);
-      }
-
-      .register-btn:hover span {
-        transform: translateX(4px);
+        gap: 6px;
       }
 
       .mobile-toggle {
         display: none;
         background: none;
         border: none;
-        color: var(--primary-purple);
+        color: var(--primary-orange);
         cursor: pointer;
         padding: 8px;
+        transition: transform 0.3s ease;
       }
 
       /* Mobile Menu Styles */
       .mobile-menu {
         position: fixed;
-        top: var(--header-height);
+        top: 0;
         left: 0;
         right: 0;
-        background: white;
-        padding: 32px;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        padding: 100px 32px 40px;
         display: flex;
         flex-direction: column;
-        gap: 24px;
-        transform: translateY(-100%);
+        gap: 0;
+        transform: translateX(100%);
         opacity: 0;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         pointer-events: none;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        z-index: 2000000;
       }
 
       .mobile-menu.open {
-        transform: translateY(0);
+        transform: translateX(0);
         opacity: 1;
         pointer-events: auto;
       }
 
       .mobile-link {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 700;
-        color: var(--primary-purple);
+        color: #1e293b;
+        text-decoration: none;
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .paga-cuota-mobile {
+        background: var(--primary-orange);
+        color: white !important;
+        padding: 14px;
+        border-radius: 12px;
+        text-align: center;
+        margin-top: 16px;
+        font-weight: 700;
+        font-size: 16px;
         text-decoration: none;
       }
 
-      @media (max-width: 1024px) {
-        .nav-links, .nav-auth {
-          display: none;
-        }
+      .mobile-auth {
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding-top: 0;
+      }
+
+      .mobile-auth .login-btn {
+        text-align: center;
+        font-size: 15px;
+        padding: 6px;
+      }
+
+      .mobile-auth .register-btn {
+        justify-content: center;
+        padding: 12px;
+        font-size: 14px;
+        border-radius: 10px;
+      }
+
+      @media (max-width: 1280px) {
+        .container { padding: 0 32px; }
+        .nav { gap: 20px; }
+      }
+
+      @media (max-width: 991px) {
+        .nav-links, .nav-auth { display: none; }
         .mobile-toggle {
           display: block;
+          position: relative;
+          z-index: 2000001;
+        }
+        .header { height: 70px; }
+        .logo { height: 38px; }
+        .paga-cuota-mobile, .mobile-auth .login-btn, .mobile-auth .register-btn {
+          max-width: 320px;
+          margin-left: auto;
+          margin-right: auto;
+          width: 100%;
         }
       }
     `,
@@ -277,11 +296,14 @@ export class PortalHeaderComponent {
   isScrolled = false;
   isMobileMenuOpen = false;
 
-  constructor() {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', () => {
-        this.isScrolled = window.scrollY > 50;
-      });
+  public toggleMobileMenu() {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    if (typeof document !== 'undefined') {
+      if (this.isMobileMenuOpen) {
+        document.body.classList.add('menu-open');
+      } else {
+        document.body.classList.remove('menu-open');
+      }
     }
   }
 }

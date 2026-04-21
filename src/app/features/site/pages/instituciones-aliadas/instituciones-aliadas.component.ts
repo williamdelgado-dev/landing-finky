@@ -15,10 +15,18 @@ interface Institucion {
   modalidades: string[];
 }
 
+import { LinaPortalComponent } from '@site/components/lina-portal/lina-portal.component';
+
 @Component({
   selector: 'app-instituciones-aliadas',
   standalone: true,
-  imports: [CommonModule, RouterModule, PortalHeaderComponent, PortalFooterComponent],
+  imports: [
+    CommonModule, 
+    RouterModule, 
+    PortalHeaderComponent, 
+    PortalFooterComponent,
+    LinaPortalComponent
+  ],
   templateUrl: './instituciones-aliadas.component.html',
   styleUrl: './instituciones-aliadas.component.css',
 })
