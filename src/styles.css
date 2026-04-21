@@ -2,13 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'aos/dist/aos.css';
+
 /* Universal reset to prevent white borders */
 html,
 body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
   overflow-x: hidden;
   scroll-behavior: smooth;
 }

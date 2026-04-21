@@ -17,7 +17,7 @@ import { RouterModule } from '@angular/router';
             <a class="nav-link" routerLink="/que-es-finky" routerLinkActive="active">Qué es Finky</a>
             <a class="nav-link" routerLink="/instituciones-aliadas" routerLinkActive="active">Instituciones aliadas</a>
             <a class="nav-link" routerLink="/preguntas" routerLinkActive="active">FAQ</a>
-            <a class="nav-link" href="#paga">Paga tu cuota</a>
+            <a class="nav-link paga-cuota-btn" href="https://app.finky.la/pagos">Paga tu cuota</a>
           </div>
           
           <div class="nav-auth">
@@ -39,7 +39,7 @@ import { RouterModule } from '@angular/router';
         <a class="mobile-link" routerLink="/que-es-finky" (click)="isMobileMenuOpen = false">Qué es Finky</a>
         <a class="mobile-link" routerLink="/instituciones-aliadas" (click)="isMobileMenuOpen = false">Instituciones aliadas</a>
         <a class="mobile-link" routerLink="/preguntas" (click)="isMobileMenuOpen = false">FAQ</a>
-        <a class="mobile-link" href="#paga" (click)="isMobileMenuOpen = false">Paga tu cuota</a>
+        <a class="mobile-link paga-cuota-mobile" href="https://app.finky.la/pagos" (click)="isMobileMenuOpen = false">Paga tu cuota</a>
         <div class="mobile-auth">
           <a href="https://app.finky.la/login" class="login-btn">Ingreso</a>
           <a href="https://app.finky.la/registro" class="register-btn">Registrarse</a>
@@ -139,6 +139,35 @@ import { RouterModule } from '@angular/router';
 
       .nav-link:hover::after, .nav-link.active::after {
         width: 100%;
+      }
+
+      .paga-cuota-btn {
+        background: rgba(252, 98, 35, 0.1);
+        color: var(--primary-orange) !important;
+        padding: 8px 20px;
+        border-radius: 50px;
+        border: 2px solid var(--primary-orange);
+        transition: all 0.3s ease !important;
+      }
+
+      .paga-cuota-btn::after {
+        display: none;
+      }
+
+      .paga-cuota-btn:hover {
+        background: var(--primary-orange);
+        color: white !important;
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(252, 98, 35, 0.3);
+      }
+
+      .paga-cuota-mobile {
+        background: var(--primary-orange);
+        color: white !important;
+        padding: 12px;
+        border-radius: 12px;
+        text-align: center;
+        margin-top: 8px;
       }
 
       .nav-auth {

@@ -3,12 +3,14 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-inner reveal">
+    <div class="hero-inner" data-aos="fade-up">
       <h1 class="hero-title">
-        Crédito educativo aprobado en solo <span class="highlight">5 minutos</span>
+        Crédito educativo aprobado en solo <span class="highlight">5
+          minutos</span>
       </h1>
       <p class="hero-sub">
-        Busca tu carrera, descubre universidades aliadas y solicita tu crédito sin codeudor. 100% online.
+        Busca tu carrera, descubre universidades aliadas y solicita tu crédito
+        sin codeudor. 100% online.
       </p>
 
       <!-- Search -->
@@ -18,6 +20,11 @@
           placeholder="¿Qué quieres estudiar? Ej: Ingeniería de Sistemas, Administración..."
           [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange()"
           class="search-input" />
+        @if (searchTerm) {
+        <button class="clear-btn" (click)="searchTerm = ''; onSearchChange()">
+          <span class="material-icons">close</span>
+        </button>
+        }
       </div>
 
       <!-- Tags -->
@@ -32,8 +39,16 @@
   <!-- SEARCH RESULTS -->
   @if (searchTerm && !selectedCarrera) {
   <section class="results-section">
-    <div class="container reveal">
-      <h2 class="results-title">{{ carrerasFiltradas.length }} carreras encontradas</h2>
+    <div class="container" data-aos="fade-up">
+      <div class="results-header">
+        <h2 class="results-title">{{ carrerasFiltradas.length }} carreras
+          encontradas</h2>
+        <button (click)="searchTerm = ''; onSearchChange()"
+          class="back-home-btn">
+          <span class="material-icons">home</span>
+          Ver todo el sitio
+        </button>
+      </div>
       <div class="results-grid">
         @for (carrera of carrerasFiltradas; track carrera.id) {
         <button (click)="selectCarrera(carrera)" class="carrera-card">
@@ -54,7 +69,7 @@
   <!-- CARRERA DETAIL -->
   @if (selectedCarrera && !selectedUniversidad) {
   <section class="results-section">
-    <div class="container reveal">
+    <div class="container" data-aos="fade-up">
       <button (click)="backToResults()" class="back-btn">
         <span class="material-icons">arrow_back</span>
         Volver a resultados
@@ -64,7 +79,8 @@
         <span class="area-badge">{{ selectedCarrera.area }}</span>
         <h2 class="carrera-detail-title">{{ selectedCarrera.nombre }}</h2>
         <p class="carrera-detail-meta">
-          {{ selectedCarrera.duracion }} • Desde {{ '$' + selectedCarrera.precio }} COP / semestre
+          {{ selectedCarrera.duracion }} • Desde {{ '$' + selectedCarrera.precio
+          }} COP / semestre
         </p>
       </div>
 
@@ -78,17 +94,19 @@
             <h4 class="uni-name">{{ uni.nombre }}</h4>
             <div class="uni-meta">
               <span class="uni-meta-item">
-                <span class="material-icons" style="font-size: 16px">location_on</span>
+                <span class="material-icons"
+                  style="font-size: 16px">location_on</span>
                 {{ uni.ciudad }}
               </span>
               <span class="uni-meta-item">
-                <span class="material-icons" style="font-size: 16px">laptop_mac</span>
+                <span class="material-icons"
+                  style="font-size: 16px">laptop_mac</span>
                 {{ uni.modalidades.join(' / ') }}
               </span>
             </div>
           </div>
           <button class="simular-btn"
-            (click)="selectUniversidad(uni); $event.stopPropagation()">
+            (click)="onSimularClick(uni); $event.stopPropagation()">
             Simular crédito
           </button>
         </div>
@@ -100,11 +118,14 @@
 
   <!-- MODAL SIMULADOR -->
   @if (selectedUniversidad) {
-  <div class="modal-overlay" (click)="closeModal()" tabindex="-1" role="presentation">
-    <div class="modal" (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()" tabindex="-1" role="dialog">
+  <div class="modal-overlay" (click)="closeModal()" tabindex="-1"
+    role="presentation">
+    <div class="modal" (click)="$event.stopPropagation()"
+      (keydown)="$event.stopPropagation()" tabindex="-1" role="dialog">
       <div class="modal-header">
         <div class="modal-header-info">
-          <img [src]="selectedUniversidad.logo" [alt]="selectedUniversidad.nombre" class="modal-logo" />
+          <img [src]="selectedUniversidad.logo"
+            [alt]="selectedUniversidad.nombre" class="modal-logo" />
           <div>
             <h3 class="modal-uni-name">{{ selectedUniversidad.nombre }}</h3>
             @if (selectedCarrera) {
@@ -118,9 +139,11 @@
           <span class="material-icons">close</span>
         </button>
       </div>
-      <div class="modal-body">
-        <app-portal-simulador [universidad]="selectedUniversidad.nombre"
-          [carrera]="selectedCarrera?.nombre"></app-portal-simulador>
+      <div class="modal-body"
+        style="padding: 0; overflow: hidden; border-radius: 0 0 20px 20px;">
+        <iframe [src]="getIframeUrl()" frameborder="0"
+          width="100%" height="700px" style="display: block;">
+        </iframe>
       </div>
     </div>
   </div>
@@ -132,37 +155,24 @@
   <app-portal-beneficios></app-portal-beneficios>
   <app-portal-stats></app-portal-stats>
 
-  <!-- Ejemplo Simulación -->
-  <section class="ejemplo-section">
-    <div class="ejemplo-container reveal">
-      <div class="ejemplo-grid">
-        <div class="ejemplo-text-col">
-          <h2 class="ejemplo-title">¿Cómo sería estudiar un semestre con Finky?</h2>
-          <p class="ejemplo-desc">
-            <strong>Juana</strong>, una de nuestros estudiantes, quería estudiar administración en la universidad. Hizo el cálculo de sus cuotas mensuales y con Finky esto fue lo que encontró:
-          </p>
-          <div class="ejemplo-card">
-            <div class="ejemplo-row">
-              <span>Valor del Semestre</span><span class="fw600">$5.000.000</span>
-            </div>
-            <div class="ejemplo-row"><span>Fianza</span><span class="fw600">$132.000</span></div>
-            <div class="ejemplo-row"><span>Seguro</span><span class="fw600">$17.000</span></div>
-            <div class="ejemplo-row">
-              <span>Tarifa de servicio Finky</span><span class="fw600">$576.000</span>
-            </div>
-            <div class="ejemplo-total">
-              <span class="fw700">Total</span><span class="fw700">$5.725.000</span>
-            </div>
-            
-            <div class="ejemplo-result">
-              <p class="ejemplo-result-label">Pago en 6 cuotas mensuales de</p>
-              <p class="ejemplo-result-value">$954.166 COP</p>
-            </div>
-          </div>
-        </div>
-        <div class="ejemplo-sim-col">
-          <app-portal-simulador></app-portal-simulador>
-        </div>
+  <!-- SIMULADOR INTEGRADO -->
+  <section class="integrated-sim-section" data-aos="fade-up">
+    <div class="container">
+      <h2 class="integrated-sim-title">Simula tu crédito educativo</h2>
+      <p class="integrated-sim-subtitle">Ingresa tus datos y descubre lo fácil
+        que es estudiar con Finky.</p>
+      <div class="iframe-container">
+        @if (mainIframeUrl) {
+          <iframe 
+            [src]="mainIframeUrl" 
+            (load)="onIframeLoad()" 
+            [scrolling]="scrollingMode()"
+            frameborder="0" 
+            width="100%" 
+            [style.height.px]="iframeHeight()"
+            style="border: none; border-radius: 20px; background: #fff; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); overflow: hidden;">
+          </iframe>
+        }
       </div>
     </div>
   </section>
@@ -173,5 +183,13 @@
 
   <app-portal-footer></app-portal-footer>
   <app-cookies-banner></app-cookies-banner>
-  <app-floating-widget></app-floating-widget>
+  <app-lina-portal></app-lina-portal>
+
+  <!-- Back to Top -->
+  @if (showScrollButton()) {
+  <button class="scroll-top-btn" (click)="scrollToTop()"
+    aria-label="Volver arriba">
+    <span class="material-icons">arrow_upward</span>
+  </button>
+  }
 </div>

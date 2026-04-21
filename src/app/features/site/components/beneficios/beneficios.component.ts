@@ -9,8 +9,8 @@ import { Component } from '@angular/core';
       <div class="container">
         <h2 class="title">¿Por qué elegir Finky?</h2>
         <div class="grid">
-          @for (item of beneficios; track item.titulo) {
-            <div class="card">
+          @for (item of beneficios; track item.titulo; let i = $index) {
+            <div class="card" data-aos="fade-up" [attr.data-aos-delay]="i * 100">
               <div class="icon-wrap">
                 @switch (item.icon) {
                   @case ('shield') {
@@ -127,10 +127,11 @@ import { Component } from '@angular/core';
         border-radius: 16px;
         padding: 24px;
         text-align: center;
-        transition: box-shadow 0.3s;
+        transition: all 0.3s;
       }
       .card:hover {
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(241, 108, 45, 0.12);
       }
       .icon-wrap {
         width: 56px;

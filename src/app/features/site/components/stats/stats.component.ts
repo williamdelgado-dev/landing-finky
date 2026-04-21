@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 
 @Component({
   selector: 'app-portal-stats',
@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
   template: `
     <section class="section">
       <div class="container">
-        @for (stat of stats; track stat.label) {
-          <div class="stat">
-            <p class="stat-value">{{ stat.value }}</p>
+        @for (stat of activeStats(); track stat.label; let i = $index) {
+          <div class="stat" data-aos="fade-up" [attr.data-aos-delay]="i * 100">
+            <p class="stat-value">{{ stat.current }}{{ stat.suffix }}</p>
             <p class="stat-label">{{ stat.label }}</p>
           </div>
         }
@@ -20,7 +20,7 @@ import { Component } from '@angular/core';
     `
       .section {
         padding: 48px 16px;
-        background: #ff6b35;
+        background: #f16c2d; /* Using primary orange */
       }
       .container {
         max-width: 1152px;
@@ -32,25 +32,65 @@ import { Component } from '@angular/core';
       }
       @media (min-width: 768px) {
         .container {
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(3, 1fr);
         }
       }
+      .stat {
+        /* Animación manejada por AOS */
+      }
       .stat-value {
-        font-size: 36px;
-        font-weight: 700;
+        font-size: 40px;
+        font-weight: 800;
         color: white;
+        font-family: 'Outfit', sans-serif;
+        margin-bottom: 4px;
       }
       .stat-label {
-        color: rgba(255, 255, 255, 0.8);
+        font-size: 16px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.9);
+        text-transform: uppercase;
+        letter-spacing: 1px;
       }
     `,
   ],
 })
-export class PortalStatsComponent {
-  stats = [
-    { value: '10k+', label: 'Estudiantes' },
-    { value: '25+', label: 'Universidades' },
-    { value: '20k+', label: 'Créditos' },
-    { value: '0', label: 'Codeudores' },
-  ];
+export class PortalStatsComponent implements OnInit {
+  public activeStats = signal([
+    { target: 10, current: 0, suffix: 'k+', label: 'Estudiantes' },
+    { target: 25, current: 0, suffix: '+', label: 'Universidades' },
+    { target: 20, current: 0, suffix: 'k+', label: 'Créditos' },
+  ]);
+
+  ngOnInit() {
+    this.animateCounters();
+  }
+
+  animateCounters() {
+    const duration = 2000; // 2 seconds
+    const fps = 60;
+    const steps = (duration / 1000) * fps;
+    
+    let currentStep = 0;
+    
+    const interval = setInterval(() => {
+      currentStep++;
+      const progress = currentStep / steps;
+      
+      this.activeStats.update(stats => 
+        stats.map(s => ({
+          ...s,
+          current: Math.floor(s.target * this.easeOutExpo(progress))
+        }))
+      );
+
+      if (currentStep >= steps) {
+        clearInterval(interval);
+      }
+    }, 1000 / fps);
+  }
+
+  private easeOutExpo(x: number): number {
+    return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+  }
 }

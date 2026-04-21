@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PortalHeaderComponent } from '@site/components/header/header.component';
 import { PortalFooterComponent } from '@site/components/footer/footer.component';
+import { UniversityService } from '@site/services/university.service';
+import { inject, OnInit } from '@angular/core';
 
 interface Institucion {
   nombre: string;
@@ -20,8 +22,23 @@ interface Institucion {
   templateUrl: './instituciones-aliadas.component.html',
   styleUrl: './instituciones-aliadas.component.css',
 })
-export class InstitucionesAliadasComponent {
+export class InstitucionesAliadasComponent implements OnInit {
+  private universityService = inject(UniversityService);
+  
+  public apiUniversities = this.universityService.universities;
+  public isLoading = this.universityService.loading;
+
   filtroActivo: 'todas' | 'Universidad' | 'Corporación' | 'Institución' | 'Fundación' = 'todas';
+
+  ngOnInit() {
+    this.loadApiData();
+  }
+
+  async loadApiData() {
+    console.log('[InstitucionesAliadas] Iniciando carga de universidades desde API...');
+    const data = await this.universityService.getAllUniversities();
+    console.log('[InstitucionesAliadas] Datos validados de la API:', data);
+  }
 
   instituciones: Institucion[] = [
     {
