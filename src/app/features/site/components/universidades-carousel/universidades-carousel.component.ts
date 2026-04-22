@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-
-import { universidades } from '@site/data/finky-data';
+import { Component, inject, computed } from '@angular/core';
+import { UniversityService } from '@site/services/university.service';
 
 @Component({
   selector: 'app-portal-universidades-carousel',
@@ -9,11 +8,11 @@ import { universidades } from '@site/data/finky-data';
   template: `
     <section class="section">
       <div class="title-container">
-        <h2 class="title">Estudia en las mejores universidades del país</h2>
+        <h2 class="title">Estudia en las mejores Instituciones de Educación Superior (IES) aliadas</h2>
       </div>
       <div class="scroll-track">
         <div class="scroll-inner">
-          @for (uni of allLogos; track uni.nombre + $index) {
+          @for (uni of allLogos(); track uni.nombre + $index) {
             <img [src]="uni.logo" [alt]="uni.nombre" class="uni-logo" />
           }
         </div>
@@ -53,21 +52,22 @@ import { universidades } from '@site/data/finky-data';
       }
       .scroll-inner {
         display: flex;
-        gap: 80px;
-        animation: scroll 40s linear infinite;
+        gap: 120px;
+        animation: scroll 60s linear infinite;
         align-items: center;
       }
       .uni-logo {
-        height: 90px;
+        height: 180px;
         width: auto;
+        max-width: 360px;
         object-fit: contain;
         flex-shrink: 0;
-        filter: grayscale(100%) opacity(0.6);
+        opacity: 0.9;
         transition: all 0.4s ease;
       }
       .uni-logo:hover {
-        filter: grayscale(0%) opacity(1);
-        transform: scale(1.1);
+        opacity: 1;
+        transform: scale(1.05);
       }
       @keyframes scroll {
         0% {
@@ -81,5 +81,31 @@ import { universidades } from '@site/data/finky-data';
   ],
 })
 export class PortalUniversidadesCarouselComponent {
-  allLogos = [...universidades, ...universidades];
+  private universityService = inject(UniversityService);
+
+  allLogos = computed(() => {
+    const unis = this.universityService.universities();
+    if (unis.length === 0) return [];
+
+    // Usamos un Map para asegurar que cada URL de logo sea única
+    const uniqueLogos = new Map<string, any>();
+
+    unis.forEach((u) => {
+      const logoPath = u.landingConfig?.iconUniversity;
+      if (logoPath && logoPath.trim() !== '') {
+        const fullUrl = `https://portal-legalizaciones.s3.us-east-1.amazonaws.com/${logoPath}`;
+        if (!uniqueLogos.has(fullUrl)) {
+          uniqueLogos.set(fullUrl, {
+            nombre: u.displayName || u.name,
+            logo: fullUrl,
+          });
+        }
+      }
+    });
+
+    const mapped = Array.from(uniqueLogos.values());
+
+    // Duplicamos para el efecto de scroll infinito (si hay suficientes logos)
+    return mapped.length > 0 ? [...mapped, ...mapped] : [];
+  });
 }

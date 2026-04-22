@@ -4,6 +4,7 @@ export interface Universidad {
   logo: string;
   ciudad: string;
   modalidades: string[];
+  slug?: string;
 }
 
 export interface Carrera {

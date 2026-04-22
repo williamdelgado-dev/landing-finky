@@ -44,12 +44,12 @@ export class PreguntasComponent {
         {
           pregunta: '¿Qué es Finky y cómo funciona?',
           respuesta:
-            'Finky es una plataforma que te ayuda a financiar tu semestre en cuotas mensuales. Tú te registras, nosotros te aprobamos un crédito educativo para pagar el semestre de tu universidad y luego tú nos pagas mes a mes.',
+            'Finky es una plataforma que te ayuda a financiar tu semestre en cuotas mensuales. Tú te registras, nosotros te aprobamos un crédito educativo para pagar el semestre de tu institución y luego tú nos pagas mes a mes.',
         },
         {
           pregunta: '¿Finky es una beca o un préstamo?',
           respuesta:
-            'Finky no es una beca, es un cupo de crédito educativo. Pero a diferencia de los bancos, no pedimos codeudor ni historial, y puedes pagarlo durante el semestre.',
+            'Finky no es una beca, es un crédito educativo. Pero a diferencia de los bancos, no pedimos codeudor ni historial, y puedes pagarlo durante el semestre.',
         },
         {
           pregunta: '¿Finky pide codeudor?',
@@ -66,12 +66,12 @@ export class PreguntasComponent {
     {
       id: 'registro',
       titulo: 'Registro y aprobación',
-      descripcion: 'Todo sobre el proceso para pedir tu cupo.',
+      descripcion: 'Todo sobre el proceso para pedir tu crédito educativo.',
       preguntas: [
         {
           pregunta: '¿Qué necesito para registrarme?',
           respuesta:
-            'Correo, número de celular y crear una contraseña. Luego te pediremos datos simples como dónde vives, cuánto pagas de arriendo, cuáles son tus gastos, cuáles tus ingresos y a qué universidad vas. Es necesario contar con tu documento de identidad original en mano para realizar el proceso.',
+            'Correo, número de celular y crear una contraseña. Luego te pediremos datos simples como dónde vives, cuánto pagas de arriendo, cuáles son tus gastos, cuáles tus ingresos y a qué institución vas. Es necesario contar con tu documento de identidad original en mano para realizar el proceso.',
         },
         {
           pregunta: '¿Cuánto tiempo tarda la aprobación?',
@@ -91,12 +91,12 @@ export class PreguntasComponent {
         {
           pregunta: '¿Cómo es el proceso de formalización del crédito educativo?',
           respuesta:
-            'Una vez te aprueban el crédito estudiantil, eliges si quieres terminar el proceso por WhatsApp o por la web. Allí firmas digitalmente y listo. Nosotros nos encargamos de comunicarle a tu universidad para que tu matrícula quede registrada.',
+            'Una vez te aprueban el crédito estudiantil, eliges si quieres terminar el proceso por WhatsApp o por la web. Allí firmas digitalmente y listo. Nosotros nos encargamos de comunicarle a tu institución para que tu matrícula quede registrada.',
         },
         {
-          pregunta: '¿Cuánto tiempo tarda la formalización con la universidad?',
+          pregunta: '¿Cuánto tiempo tarda la formalización con la institución?',
           respuesta:
-            'La formalización del cupo de crédito es inmediata una vez el estudiante realiza el pago de la primera cuota y la universidad confirma el registro. Esto permite activar tu matrícula sin demoras y continuar con el proceso académico.',
+            'La formalización del crédito educativo es inmediata una vez el estudiante realiza el pago de la primera cuota y la institución confirma el registro. Esto permite activar tu matrícula sin demoras y continuar con el proceso académico.',
         },
       ],
     },
@@ -130,7 +130,7 @@ export class PreguntasComponent {
         {
           pregunta: '¿Puedo renovar el crédito educativo cada semestre?',
           respuesta:
-            'Sí. El único requisito es haber pagado tu crédito educativo anterior. Si ya lo hiciste, puedes renovar tu cupo y listo: no te hacemos ningún nuevo análisis.',
+            'Sí. El único requisito es haber pagado tu crédito educativo anterior. Si ya lo hiciste, puedes renovar tu crédito educativo y listo: no te hacemos ningún nuevo análisis.',
         },
         {
           pregunta: '¿Puedo usar Finky para programas técnicos o tecnológicos?',
@@ -142,7 +142,7 @@ export class PreguntasComponent {
     {
       id: 'instituciones',
       titulo: 'Instituciones',
-      descripcion: 'Universidades y convenios.',
+      descripcion: 'Instituciones y convenios.',
       preguntas: [
         {
           pregunta: '¿Qué instituciones tienen convenio con Finky?',
@@ -150,9 +150,9 @@ export class PreguntasComponent {
             'Tenemos más de 25 aliados. Puedes buscarlas en nuestra sección de Instituciones aliadas. Si no ves la tuya, te contamos cómo puedes ayudarnos a llegar allá.',
         },
         {
-          pregunta: '¿Puedo usar Finky si mi universidad no tiene convenio?',
+          pregunta: '¿Puedo usar Finky si mi institución no tiene convenio?',
           respuesta:
-            'Sí. Si tu universidad aún no tiene convenio, puedes dejarnos tus datos y, si hay suficientes interesados, hablaremos con ellos para abrir el convenio.',
+            'Sí. Si tu institución aún no tiene convenio, puedes dejarnos tus datos y, si hay suficientes interesados, hablaremos con ellos para abrir el convenio.',
         },
       ],
     },

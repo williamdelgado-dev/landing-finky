@@ -9,8 +9,8 @@
           minutos</span>
       </h1>
       <p class="hero-sub">
-        Busca tu carrera, descubre universidades aliadas y solicita tu crédito
-        sin codeudor. 100% online.
+        Busca tu carrera, descubre Instituciones de Educación Superior (IES) aliadas y solicita tu crédito
+        sin codeudor. 100% en línea.
       </p>
 
       <!-- Search -->
@@ -57,7 +57,7 @@
           <p class="carrera-duracion">{{ carrera.duracion }}</p>
           <div class="carrera-unis">
             <span class="material-icons">domain</span>
-            {{ carrera.universidades.length }} universidades aliadas
+            {{ carrera.universidades.length }} IES aliadas
           </div>
         </button>
         }
@@ -84,7 +84,7 @@
         </p>
       </div>
 
-      <h3 class="unis-title">Universidades que ofrecen esta carrera</h3>
+      <h3 class="unis-title">Instituciones (IES) que ofrecen esta carrera</h3>
       <div class="unis-grid">
         @for (uni of universidadesCarrera; track uni.id) {
         <div class="uni-card">
@@ -152,7 +152,7 @@
   <app-portal-stats></app-portal-stats>
 
   <!-- SIMULADOR INTEGRADO -->
-  <section class="integrated-sim-section" data-aos="fade-up">
+  <section id="simulator" class="integrated-sim-section" data-aos="fade-up">
     <div class="container">
       <h2 class="integrated-sim-title">Simula tu crédito educativo</h2>
       <p class="integrated-sim-subtitle">Ingresa tus datos y descubre lo fácil
@@ -174,7 +174,6 @@
   </section>
 
   <app-portal-testimonios></app-portal-testimonios>
-  <app-portal-faqs></app-portal-faqs>
   }
 
   <app-portal-footer></app-portal-footer>
