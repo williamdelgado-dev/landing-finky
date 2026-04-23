@@ -107,20 +107,40 @@ export class InstitucionesAliadasComponent implements OnInit {
     const term = this.searchTerm.toLowerCase().trim();
     const data = this.apiUniversities();
 
-    return data
-      .filter(
-        (u) =>
-          u.name.toLowerCase().includes(term) ||
-          (u.displayName && u.displayName.toLowerCase().includes(term)),
-      )
-      .map((u) => ({
-        id: u.id,
-        nombre: u.name,
-        logo: this.resolveUniversityLogo(u),
+    // 1. Filtrar por término de búsqueda
+    const filtered = data.filter(
+      (u) =>
+        u.name.toLowerCase().includes(term) ||
+        (u.displayName && u.displayName.toLowerCase().includes(term)),
+    );
+
+    // 2. Agrupar por displayName (o name si no tiene displayName)
+    const grouped = new Map<string, typeof filtered>();
+    for (const u of filtered) {
+      const key = (u.displayName || u.name).trim();
+      if (!grouped.has(key)) {
+        grouped.set(key, []);
+      }
+      grouped.get(key)!.push(u);
+    }
+
+    // 3. Mapear cada grupo a una sola tarjeta, usando el primer registro como referencia
+    return Array.from(grouped.entries()).map(([displayName, entries]) => {
+      const first = entries[0];
+      // Buscar el primer entry que tenga slug configurado
+      const withSlug = entries.find((e) => e.landingConfig?.slug || e.slug);
+      // Combinar modalidades de todos los entries del grupo
+      const hasPresencial = entries.some((e) => e.aplicasede);
+
+      return {
+        id: first.id,
+        nombre: displayName,
+        logo: this.resolveUniversityLogo(first),
         ciudad: 'Colombia',
         tipo: 'Institución Aliada',
-        slug: u.landingConfig?.slug || u.slug,
-        modalidades: u.aplicasede ? ['Presencial', 'Virtual'] : ['Virtual'],
-      }));
+        slug: withSlug?.landingConfig?.slug || withSlug?.slug || first.slug,
+        modalidades: hasPresencial ? ['Presencial', 'Virtual'] : ['Virtual'],
+      };
+    });
   }
 }
