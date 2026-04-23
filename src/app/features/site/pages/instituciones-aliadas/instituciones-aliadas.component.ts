@@ -43,6 +43,34 @@ export class InstitucionesAliadasComponent implements OnInit {
 
   searchTerm = '';
 
+  /** Logos locales por defecto para IES que aún no tienen iconUniversity en S3 */
+  private readonly fallbackLogos: Record<number, string> = {
+    // Areandina
+    1: '/assets/images/universities/areandina.png',
+    // San Mateo
+    2: '/assets/images/universities/san-mateo.png',
+    // Unincca
+    16: '/assets/images/universities/unincca.png',
+    17: '/assets/images/universities/unincca.png',
+    // Unitec
+    18: '/assets/images/universities/unitec.png',
+    // Unimeta
+    65: '/assets/images/universities/unimeta.png',
+    66: '/assets/images/universities/unimeta.png',
+    67: '/assets/images/universities/unimeta.png',
+    78: '/assets/images/universities/unimeta.png',
+    79: '/assets/images/universities/unimeta.png',
+    // EAN
+    68: '/assets/images/universities/ean.png',
+    69: '/assets/images/universities/ean.png',
+    70: '/assets/images/universities/ean.png',
+    71: '/assets/images/universities/ean.png',
+    // Ibero
+    77: '/assets/images/universities/ibero.png',
+    85: '/assets/images/universities/ibero.png',
+    86: '/assets/images/universities/ibero.png',
+  };
+
   ngOnInit() {
     this.loadApiData();
   }
@@ -59,18 +87,36 @@ export class InstitucionesAliadasComponent implements OnInit {
     }
   }
 
+  /**
+   * Resuelve el logo de la institución con la siguiente prioridad:
+   * 1. landingConfig.iconUniversity (S3 remoto)
+   * 2. fallbackLogos por ID (logo local en public/assets)
+   * 3. Logo genérico de Finky
+   */
+  private resolveUniversityLogo(u: {
+    id: number;
+    landingConfig?: { iconUniversity?: string };
+  }): string {
+    if (u.landingConfig?.iconUniversity) {
+      return `https://portal-legalizaciones.s3.us-east-1.amazonaws.com/${u.landingConfig.iconUniversity}`;
+    }
+    return this.fallbackLogos[u.id] ?? '/assets/images/finkylogo.jpg';
+  }
+
   get institucionesFiltradas() {
     const term = this.searchTerm.toLowerCase().trim();
     const data = this.apiUniversities();
 
     return data
-      .filter((u) => u.name.toLowerCase().includes(term) || (u.displayName && u.displayName.toLowerCase().includes(term)))
+      .filter(
+        (u) =>
+          u.name.toLowerCase().includes(term) ||
+          (u.displayName && u.displayName.toLowerCase().includes(term)),
+      )
       .map((u) => ({
         id: u.id,
         nombre: u.name,
-        logo: u.landingConfig?.iconUniversity 
-          ? `https://portal-legalizaciones.s3.us-east-1.amazonaws.com/${u.landingConfig.iconUniversity}`
-          : '/assets/images/finkylogo.jpg',
+        logo: this.resolveUniversityLogo(u),
         ciudad: 'Colombia',
         tipo: 'Institución Aliada',
         slug: u.landingConfig?.slug || u.slug,
