@@ -146,10 +146,15 @@ h1, h2, h3, h4 {
 
 .ia-toolbar {
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 1fr;
   gap: 24px;
   align-items: center;
   padding: 8px 0 20px;
+}
+
+.ia-search.full-width {
+  grid-column: 1 / -1;
+  width: 100%;
 }
 
 .ia-search {
@@ -182,6 +187,22 @@ h1, h2, h3, h4 {
   outline: none;
 }
 .ia-search input::placeholder { color: #94a3b8; }
+.ia-search-clear {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+.ia-search-clear:hover {
+  background: rgba(15, 23, 42, 0.05);
+  color: var(--orange);
+}
 
 .ia-filters {
   display: flex;
@@ -305,11 +326,11 @@ h1, h2, h3, h4 {
 }
 
 .ia-logo-wrap {
-  height: 110px;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
+  padding: 24px;
   background: var(--bg-soft);
   border-radius: 16px;
   margin-bottom: 20px;
@@ -319,12 +340,10 @@ h1, h2, h3, h4 {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  filter: grayscale(0.3);
   transition: all 0.4s ease;
 }
 
 .ia-card:hover .ia-logo-wrap img {
-  filter: grayscale(0);
   transform: scale(1.04);
 }
 
@@ -374,6 +393,10 @@ h1, h2, h3, h4 {
   transition: all 0.3s ease;
   border-bottom: 1px solid transparent;
   width: fit-content;
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
 }
 
 .ia-card-link:hover {
@@ -392,6 +415,25 @@ h1, h2, h3, h4 {
   font-weight: 700;
   border-radius: 10px;
   transition: all 0.3s ease;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.ia-card-link.disabled, .ia-card-sim.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+.ia-card-sim.disabled {
+  animation: pulseLoading 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseLoading {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
 }
 
 .ia-card-sim:hover {

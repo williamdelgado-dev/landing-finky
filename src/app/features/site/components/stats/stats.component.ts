@@ -49,17 +49,16 @@ import { Component, OnInit, signal } from '@angular/core';
         font-size: 16px;
         font-weight: 500;
         color: rgba(255, 255, 255, 0.9);
-        text-transform: uppercase;
-        letter-spacing: 1px;
+        letter-spacing: 0.5px;
       }
     `,
   ],
 })
 export class PortalStatsComponent implements OnInit {
   public activeStats = signal([
-    { target: 10, current: 0, suffix: 'k+', label: 'Estudiantes' },
-    { target: 25, current: 0, suffix: '+', label: 'Universidades' },
-    { target: 20, current: 0, suffix: 'k+', label: 'Créditos' },
+    { target: 14, current: 0, suffix: 'k', label: 'Estudiantes activos' },
+    { target: 25, current: 0, suffix: '+', label: 'IES aliadas' },
+    { target: 1100, current: 0, suffix: '+', label: 'Ciudades y municipios' },
   ]);
 
   ngOnInit() {

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -15,4 +16,10 @@ import { RouterOutlet } from '@angular/router';
     `,
   ],
 })
-export class App {}
+export class App implements OnInit {
+  private viewportScroller = inject(ViewportScroller);
+
+  ngOnInit() {
+    this.viewportScroller.setOffset([0, 90]);
+  }
+}

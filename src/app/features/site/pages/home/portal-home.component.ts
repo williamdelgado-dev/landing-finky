@@ -7,7 +7,6 @@ import { PortalSimuladorComponent } from '@site/components/simulador/simulador.c
 import { PortalBeneficiosComponent } from '@site/components/beneficios/beneficios.component';
 import { PortalStatsComponent } from '@site/components/stats/stats.component';
 import { PortalTestimoniosComponent } from '@site/components/testimonios/testimonios.component';
-import { PortalFaqsComponent } from '@site/components/faqs/faqs.component';
 import { PortalUniversidadesCarouselComponent } from '@site/components/universidades-carousel/universidades-carousel.component';
 import { PortalFooterComponent } from '@site/components/footer/footer.component';
 import { carreras, tagsPopulares, getUniversidadesByCarrera } from '@site/data/finky-data';
@@ -26,7 +25,6 @@ import * as AOS from 'aos';
     PortalBeneficiosComponent,
     PortalStatsComponent,
     PortalTestimoniosComponent,
-    PortalFaqsComponent,
     PortalUniversidadesCarouselComponent,
     PortalFooterComponent,
     CookiesBannerComponent,
@@ -138,9 +136,12 @@ export class PortalHomeComponent implements OnInit {
   }
 
   async loadData() {
-    console.log('[Home] Cargando universidades dinámicas...');
-    const unis = await this.universityService.getAllUniversities();
-    console.log('[Home] Universidades recibidas:', unis);
+    console.log('[Home] Cargando datos dinámicos...');
+    const [unis, progs] = await Promise.all([
+      this.universityService.getAllUniversities(),
+      this.universityService.getAllPrograms()
+    ]);
+    console.log('[Home] Datos cargados:', { unis: unis.length, programs: progs.length });
   }
 
   onSearchChange() {
@@ -161,60 +162,54 @@ export class PortalHomeComponent implements OnInit {
       return;
     }
 
-    // 1. Filtrar datos estáticos originales
-    const staticResults = carreras.filter(
-      (c) => c.nombre.toLowerCase().includes(term) || c.area.toLowerCase().includes(term),
-    );
+    const allPrograms = this.universityService.programs();
+    const allUnis = this.universityService.universities();
 
-    // 2. Filtrar y mapear datos dinámicos de la API de Universidades
-    const dynamicResults: Carrera[] = [];
-    const allUnis = this.apiUniversities();
-
-    allUnis.forEach((uni) => {
-      uni.academicProgram.forEach((program) => {
+    // Filtramos y mapeamos los programas del API
+    this.carrerasFiltradas = allPrograms
+      .filter((program) => {
         const matchesName = program.name.toLowerCase().includes(term);
-        const matchesArea = program.programType.description.toLowerCase().includes(term);
-        const matchesUni = uni.displayName.toLowerCase().includes(term);
+        const matchesType = program.programType?.description.toLowerCase().includes(term);
+        
+        // También buscamos por el nombre de la universidad relacionada
+        const uni = allUnis.find(u => u.id === program.universityId);
+        const matchesUni = uni ? uni.name.toLowerCase().includes(term) : false;
 
-        if (matchesName || matchesArea || matchesUni) {
-          dynamicResults.push({
-            id: program.id + 10000, // Offset para evitar colisiones
-            nombre: program.name,
-            area: program.programType.description,
-            duracion: `${program.semesters} semestres`,
-            // Limpiamos el precio para evitar el doble $$ ($ 4.200.000 COP -> 4.200.000)
-            precio: program.semesterPriceString.replace('$', '').replace('COP', '').trim(),
-            universidades: [uni.id],
-          });
-        }
-      });
-    });
-
-    // 3. Unir y eliminar duplicados potenciales (por nombre si es necesario,
-    // pero aquí los mantenemos para mostrar todas las opciones de diferentes fuentes)
-    this.carrerasFiltradas = [...staticResults, ...dynamicResults];
+        return matchesName || matchesType || matchesUni;
+      })
+      .map((program) => {
+        const uni = allUnis.find(u => u.id === program.universityId);
+        return {
+          id: program.id,
+          nombre: program.name,
+          area: program.programType?.description || 'General',
+          duracion: `${program.semesters} semestres`,
+          precio: program.semesterPrice.toLocaleString('es-CO'),
+          universidades: [program.universityId],
+          // Guardamos referencia a la universidad para facilitar el detalle
+          _university: uni
+        };
+      }) as any;
   }
 
-  selectCarrera(carrera: Carrera) {
+  selectCarrera(carrera: any) {
     this.selectedCarrera = carrera;
+    const uni = carrera._university;
 
-    if (carrera.id >= 10000) {
-      // Caso dinámico: Buscar en las universidades del API
-      const apiUni = this.apiUniversities().find((u) => u.id === carrera.universidades[0]);
-      if (apiUni) {
-        this.universidadesCarrera = [
-          {
-            id: apiUni.id,
-            nombre: apiUni.displayName || apiUni.name,
-            logo: 'https://finky.la/wp-content/uploads/2025/11/Areandina-editado.png', // Logo por defecto si no hay en API
-            ciudad: 'Múltiples sedes',
-            modalidades: apiUni.aplicasede ? ['Presencial', 'Virtual'] : ['Virtual'],
-          },
-        ];
-      }
-    } else {
-      // Caso estático: Usar la función original
-      this.universidadesCarrera = getUniversidadesByCarrera(carrera);
+    if (uni) {
+      this.universidadesCarrera = [
+        {
+          id: uni.id,
+          nombre: uni.displayName || uni.name,
+          // Usamos el logo del landingConfig si existe, si no un placeholder
+          logo: uni.landingConfig?.iconUniversity 
+            ? `https://portal-legalizaciones.s3.us-east-1.amazonaws.com/${uni.landingConfig.iconUniversity}`
+            : '/assets/images/finkylogo.jpg',
+          ciudad: 'Múltiples sedes',
+          modalidades: uni.aplicasede ? ['Presencial', 'Virtual'] : ['Virtual'],
+          slug: uni.landingConfig?.slug || uni.slug
+        },
+      ];
     }
   }
 
