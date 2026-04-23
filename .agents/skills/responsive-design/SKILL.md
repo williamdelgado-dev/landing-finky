@@ -494,6 +494,29 @@ function ResponsiveDataTable({ data, columns }) {
 }
 ```
 
+## Browser Tool Validation Protocol
+
+When building or fixing components, the agent MUST validate the interface across these three target profiles using browser tools (screenshots or device emulation):
+
+### 1. Mobile (iPhone 12 Pro / Compact)
+
+- **Dimensions:** 390 x 844 px.
+- **Focus:** - Ensure `dvh` units prevent content from being hidden by the iOS Safari address bar.
+  - Check "Safe Area" insets for the notch and home indicator.
+  - Verify touch targets are at least 44x44px.
+
+### 2. Tablet (iPad / Medium)
+
+- **Dimensions:** 768 x 1024 px (Portrait).
+- **Focus:** - Validate the "in-between" state (where desktop layouts often break but mobile layouts look too stretched).
+  - Use **Container Queries** to switch from 1 column to 2 columns in cards.
+
+### 3. Laptop (Standard Desktop / Large)
+
+- **Dimensions:** 1280 x 800 px.
+- **Focus:** - Verify max-width constraints on containers to prevent "ultra-wide" unreadable text.
+  - Test hover states (which are disabled/ignored in the other two profiles).
+
 ## Best Practices
 
 1. **Mobile-First**: Start with mobile styles, enhance for larger screens
