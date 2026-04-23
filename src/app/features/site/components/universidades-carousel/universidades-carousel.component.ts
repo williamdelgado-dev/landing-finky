@@ -8,7 +8,9 @@ import { UniversityService } from '@site/services/university.service';
   template: `
     <section class="section">
       <div class="title-container">
-        <h2 class="title">Estudia en las mejores Instituciones de Educación Superior (IES) aliadas</h2>
+        <h2 class="title">
+          Estudia en las mejores Instituciones de Educación Superior (IES) aliadas
+        </h2>
       </div>
       <div class="scroll-track">
         <div class="scroll-inner">
@@ -42,18 +44,12 @@ import { UniversityService } from '@site/services/university.service';
       .scroll-track {
         width: 100%;
         overflow: hidden;
-        mask-image: linear-gradient(
-          to right,
-          transparent,
-          black 10%,
-          black 90%,
-          transparent
-        );
+        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
       }
       .scroll-inner {
         display: flex;
         gap: 120px;
-        animation: scroll 60s linear infinite;
+        animation: scroll 10s linear infinite;
         align-items: center;
       }
       .uni-logo {
