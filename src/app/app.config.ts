@@ -3,6 +3,11 @@ import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 import { routes } from './app.routes';
+import { environment } from '../environments/environment';
+import { mockConfigInterceptor } from './core/interceptors/mock-config.interceptor';
+
+// Mock interceptor SOLO en dev (file replacement → environment.local.ts)
+const interceptors = environment.production ? [] : [mockConfigInterceptor];
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +19,6 @@ export const appConfig: ApplicationConfig = {
         anchorScrolling: 'enabled',
       }),
     ),
-    provideHttpClient(withInterceptors([])),
+    provideHttpClient(withInterceptors(interceptors)),
   ],
 };

@@ -13,7 +13,6 @@ import * as AOS from 'aos';
 import { ConfigService } from '@institutional/services/config.service';
 import { FooterComponent } from '@shared/components/footer/footer.component';
 import { AllianceSectionComponent } from '@shared/components/alliance-section/alliance-section.component';
-import { SimuladorButtonComponent } from '@shared/components/simulador-button/simulador-button.component';
 
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { SafeUrlPipe } from '@shared/pipes/safe-url.pipe';
@@ -24,7 +23,6 @@ import { SafeUrlPipe } from '@shared/pipes/safe-url.pipe';
   imports: [
     FooterComponent,
     AllianceSectionComponent,
-    SimuladorButtonComponent,
     HeaderComponent,
     SafeUrlPipe,
   ],
@@ -58,6 +56,44 @@ export class TemplateDos implements OnInit {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
+
+  public scrollToOferta() {
+    const element = document.getElementById('oferta');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  /**
+   * Divide el título del banner en [main, accent] para destacar las últimas
+   * 1-2 palabras con --color-claro. Mantiene 100% reactividad sobre el signal.
+   */
+  public titleParts = computed(() => {
+    const raw = (this.validatedBanner()?.titulo || '').trim();
+    if (!raw) return { main: '', accent: '' };
+    const tokens = raw.split(/\s+/);
+    if (tokens.length <= 2) return { main: '', accent: raw };
+    const accentCount = tokens.length >= 5 ? 2 : 1;
+    const main = tokens.slice(0, tokens.length - accentCount).join(' ');
+    const accent = tokens.slice(tokens.length - accentCount).join(' ');
+    return { main, accent };
+  });
+
+  /**
+   * Tiempo aproximado de aprobación que aparece en el badge flotante del hero.
+   * Extrae sólo la cifra y unidad (ej: "5 min", "4 minutos") del primer
+   * bullet que mencione una unidad de tiempo. Si no encuentra, usa "4 min".
+   */
+  public aprobacionTime = computed(() => {
+    const bullets = this.validatedBullets() || [];
+    for (const b of bullets) {
+      const match = (b.titulo || '').match(
+        /(\+?\d+\s*(min|minuto|minutos|hora|horas|seg|segundo|segundos))/i,
+      );
+      if (match) return match[1].toLowerCase();
+    }
+    return '4 min';
+  });
 
   // Estado de filtrado
   public activeTab = signal('Todos');
