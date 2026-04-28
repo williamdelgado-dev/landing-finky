@@ -1,194 +1,167 @@
 <app-header [universityIcon]="config()?.iconUniversity"></app-header>
 
 @if (config()) {
-  <main class="t2">
-    <!-- ─── HERO · texto izquierda + imagen derecha (dark navy) ─── -->
-    <section class="t2-hero">
-      <div class="t2-hero__bg" aria-hidden="true">
-        <picture>
-          <source media="(max-width: 768px)"
-            [srcset]="validatedBanner()?.movil || validatedBanner()?.pc" />
-          <img [src]="validatedBanner()?.pc" alt="" class="t2-hero__bg-img" fetchpriority="high" />
-        </picture>
-        <div class="t2-hero__veil"></div>
-        <div class="t2-hero__glow t2-hero__glow--orange"></div>
-        <div class="t2-hero__glow t2-hero__glow--navy"></div>
-      </div>
+<main class="t2">
+  <!-- ─── HERO · texto izquierda + imagen derecha (dark navy) ─── -->
+  <section class="t2-hero">
+    <div class="t2-hero__bg" aria-hidden="true">
+      <picture>
+        <source media="(max-width: 768px)"
+          [srcset]="validatedBanner()?.movil || validatedBanner()?.pc" />
+        <img [src]="validatedBanner()?.pc" alt="" class="t2-hero__bg-img"
+          fetchpriority="high" />
+      </picture>
+      <div class="t2-hero__veil"></div>
+      <div class="t2-hero__glow t2-hero__glow--orange"></div>
+      <div class="t2-hero__glow t2-hero__glow--navy"></div>
+    </div>
 
-      <div class="t2-container t2-hero__grid">
-        <!-- Columna texto -->
-        <div class="t2-hero__copy">
-          <span class="t2-hero__eyebrow">
-            <span class="t2-hero__eyebrow-dot" aria-hidden="true"></span>
-            {{ config()?.nombreUniversidad || 'Tu Institución' }} <span class="t2-hero__eyebrow-x">×</span> Finky
-          </span>
+    <div class="t2-container t2-hero__grid">
+      <!-- Columna texto -->
+      <div class="t2-hero__copy">
+        <span class="t2-hero__eyebrow">
+          <span class="t2-hero__eyebrow-dot" aria-hidden="true"></span>
+          {{ config()?.nombreUniversidad || 'Tu Institución' }} <span
+            class="t2-hero__eyebrow-x">×</span> Finky
+        </span>
 
-          <h1 id="banner-title" class="t2-hero__title">
-            @if (titleParts().main) {
-              <span class="t2-hero__title-main">{{ titleParts().main }}</span>
-              <span class="t2-hero__title-accent">{{ titleParts().accent }}</span>
-            } @else {
-              <span class="t2-hero__title-accent">{{ titleParts().accent }}</span>
-            }
-          </h1>
+        <h1 id="banner-title" class="t2-hero__title">
+          @if (titleParts().main) {
+          <span class="t2-hero__title-main">{{ titleParts().main }}</span>
+          <span class="t2-hero__title-accent">{{ titleParts().accent }}</span>
+          } @else {
+          <span class="t2-hero__title-accent">{{ titleParts().accent }}</span>
+          }
+        </h1>
 
-          <p id="banner-subtitle" class="t2-hero__lead">{{ validatedBanner()?.contenido }}</p>
+        <p id="banner-subtitle" class="t2-hero__lead">{{
+          validatedBanner()?.contenido }}</p>
 
-          <ul class="t2-hero__checks" role="list">
-            @for (bullet of validatedBullets(); track bullet.titulo; let i = $index) {
-              @if (i < 4) {
-                <li class="t2-hero__check">
-                  <span class="t2-hero__check-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none"
-                      stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="20 6 9 17 4 12"/>
-                    </svg>
-                  </span>
-                  <span class="t2-hero__check-text">{{ bullet.titulo }}</span>
-                </li>
-              }
-            }
-          </ul>
-
-          <div class="t2-hero__actions">
-            <button type="button" class="t2-btn t2-btn--primary"
-              (click)="scrollToSimulador()" data-testid="hero-cta-simular">
-              Simular mi crédito
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        <ul class="t2-hero__checks" role="list">
+          @for (bullet of validatedBullets(); track bullet.titulo; let i =
+          $index) {
+          @if (i < 4) { <li class="t2-hero__check">
+            <span class="t2-hero__check-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none"
+                stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
               </svg>
-            </button>
-            <button type="button" class="t2-btn t2-btn--ghost"
-              (click)="scrollToOferta()" data-testid="hero-cta-oferta">
-              Ver oferta académica
-            </button>
-          </div>
-        </div>
+            </span>
+            <span class="t2-hero__check-text">{{ bullet.titulo }}</span>
+            </li>
+            }
+            }
+        </ul>
 
-        <!-- Columna imagen -->
-        <div class="t2-hero__visual">
-          <div class="t2-hero__card">
-            <picture>
-              <source media="(max-width: 768px)"
-                [srcset]="validatedBanner()?.movil || validatedBanner()?.pc" />
-              <img [src]="validatedBanner()?.pc"
-                [alt]="config()?.nombreUniversidad + ' · Finky'"
-                class="t2-hero__card-img" />
-            </picture>
-            <div class="t2-hero__card-overlay">
-              <div class="t2-hero__card-brand">
-                @if (config()?.iconUniversity) {
-                  <img [src]="config()?.iconUniversity"
-                    [alt]="config()?.nombreUniversidad || ''"
-                    class="t2-hero__card-logo" />
-                }
-                <span class="t2-hero__card-divider"></span>
-                <img src="/assets/images/finkylogo.jpg"
-                  alt="Finky"
-                  class="t2-hero__card-finky" />
-              </div>
-            </div>
-          </div>
-
-          @if (validatedBullets().length > 0) {
-            <div class="t2-hero__badge" data-testid="hero-badge-aprobacion">
-              <span class="t2-hero__badge-label">APROBACIÓN</span>
-              <span class="t2-hero__badge-value">en {{ aprobacionTime() }}</span>
-            </div>
-          }
+        <div class="t2-hero__actions">
+          <app-simulador-button text="Simula tu crédito"></app-simulador-button>
+          <button type="button" class="t2-btn t2-btn--ghost"
+            (click)="scrollToOferta()" data-testid="hero-cta-oferta">
+            Ver oferta académica
+          </button>
         </div>
       </div>
-    </section>
 
-    <!-- ─── INTRO · texto centrado ─── -->
-    <section class="t2-intro">
-      <div class="t2-container">
-        <h2 class="t2-section-title">Somos la mejor opción para tu educación</h2>
-        <div class="t2-intro__text">
-          <p>
-            Somos una comunidad comprometida con la formación, la paz, la investigación, la
-            innovación, el emprendimiento, la enseñanza y el aprendizaje. Educamos para pensar,
-            decidir y servir. Excelencia educativa y transformación social.
-          </p>
-          <p>
-            Para nosotros, esta identidad se ve reflejada en nuestro trayecto, en nuestros
-            lineamientos institucionales, misión, visión, objetivos y el PEI — elementos que
-            son parte integral en la construcción de nuestra comunidad.
-          </p>
+      <!-- Columna imagen -->
+      <div class="t2-hero__visual">
+        <div class="t2-hero__card">
+          <picture>
+            <source media="(max-width: 768px)"
+              [srcset]="validatedBanner()?.movil || validatedBanner()?.pc" />
+            <img [src]="validatedBanner()?.pc"
+              [alt]="config()?.nombreUniversidad + ' · Finky'"
+              class="t2-hero__card-img" />
+          </picture>
+
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ─── OFERTA ACADÉMICA · tabs underline + cards blancas ─── -->
-    <section id="oferta" class="t2-offer">
-      <div class="t2-container">
-        <h2 class="t2-section-title">Tu futuro empieza con una decisión</h2>
-        <p class="t2-section-lead">
-          Elige el nivel de formación y encuentra el programa ideal para ti.
+  <!-- ─── INTRO · texto centrado ─── -->
+  <section class="t2-intro">
+    <div class="t2-container">
+      <h2 class="t2-section-title">Somos la mejor opción para tu educación</h2>
+      <div class="t2-intro__text">
+        <p>
+          Somos una comunidad comprometida con la formación, la paz, la
+          investigación, la
+          innovación, el emprendimiento, la enseñanza y el aprendizaje. Educamos
+          para pensar,
+          decidir y servir. Excelencia educativa y transformación social.
         </p>
-
-        <nav class="t2-tabs" role="tablist" aria-label="Nivel de formación">
-          @for (nivel of niveles(); track nivel) {
-            <button
-              type="button"
-              role="tab"
-              class="t2-tab"
-              [class.t2-tab--active]="activeTab() === nivel"
-              [attr.aria-selected]="activeTab() === nivel"
-              (click)="setActiveTab(nivel)"
-              [attr.data-testid]="'oferta-tab-' + nivel"
-            >
-              {{ nivel }}
-            </button>
-          }
-        </nav>
-
-        <div class="t2-cards">
-          @for (prog of filteredPrograms(); track prog.name) {
-            <article class="t2-card">
-              <span class="t2-card__tag">{{ prog.level }}</span>
-              <h3 class="t2-card__name">{{ prog.name }}</h3>
-              <div class="t2-card__divider"></div>
-              <div class="t2-card__price">
-                <span class="t2-card__price-label">Por semestre</span>
-                <span class="t2-card__price-value">{{ prog.price }}</span>
-              </div>
-            </article>
-          } @empty {
-            <p class="t2-cards__empty">No se encontraron programas en esta categoría.</p>
-          }
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── ALLIANCE ─── -->
-    <app-alliance-section
-      imageSrc="/assets/images/finker2.png"
-      [universityName]="config()?.nombreUniversidad || ''"
-    ></app-alliance-section>
-
-    <!-- ─── SIMULADOR ─── -->
-    <section id="simulador" class="t2-sim">
-      <div class="t2-container">
-        <h2 class="t2-section-title">Simula tu crédito educativo</h2>
-        <p class="t2-section-lead">
-          Obtén una respuesta en minutos y comienza el camino hacia tu futuro profesional.
+        <p>
+          Para nosotros, esta identidad se ve reflejada en nuestro trayecto, en
+          nuestros
+          lineamientos institucionales, misión, visión, objetivos y el PEI —
+          elementos que
+          son parte integral en la construcción de nuestra comunidad.
         </p>
-        <div class="t2-sim__frame">
-          <iframe
-            id="simulador-iframe"
-            [src]="simuladorUrl() | safeUrl"
-            width="100%"
-            [style.height.px]="iframeHeight()"
-            [style.width.px]="iframeWidth()"
-            class="t2-sim__iframe"
-            title="Simulador de crédito Finky"
-          ></iframe>
-        </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
+  <!-- ─── OFERTA ACADÉMICA · tabs underline + cards blancas ─── -->
+  <section id="oferta" class="t2-offer">
+    <div class="t2-container">
+      <h2 class="t2-section-title">Tu futuro empieza con una decisión</h2>
+      <p class="t2-section-lead">
+        Elige el nivel de formación y encuentra el programa ideal para ti.
+      </p>
+
+      <nav class="t2-tabs" role="tablist" aria-label="Nivel de formación">
+        @for (nivel of niveles(); track nivel) {
+        <button type="button" role="tab" class="t2-tab"
+          [class.t2-tab--active]="activeTab() === nivel"
+          [attr.aria-selected]="activeTab() === nivel"
+          (click)="setActiveTab(nivel)"
+          [attr.data-testid]="'oferta-tab-' + nivel">
+          {{ nivel }}
+        </button>
+        }
+      </nav>
+
+      <div class="t2-cards">
+        @for (prog of filteredPrograms(); track prog.name) {
+        <article class="t2-card">
+          <span class="t2-card__tag">{{ prog.level }}</span>
+          <h3 class="t2-card__name">{{ prog.name }}</h3>
+          <div class="t2-card__divider"></div>
+          <div class="t2-card__price">
+            <span class="t2-card__price-label">Por semestre</span>
+            <span class="t2-card__price-value">{{ prog.price }}</span>
+          </div>
+        </article>
+        } @empty {
+        <p class="t2-cards__empty">No se encontraron programas en esta
+          categoría.</p>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ALLIANCE ─── -->
+  <app-alliance-section imageSrc="/assets/images/finker2.png"
+    [universityName]="config()?.nombreUniversidad || ''"></app-alliance-section>
+
+  <!-- ─── SIMULADOR ─── -->
+  <section id="simulador" class="t2-sim">
+    <div class="t2-container">
+      <h2 class="t2-section-title">Simula tu crédito educativo</h2>
+      <p class="t2-section-lead">
+        Obtén una respuesta en minutos y comienza el camino hacia tu futuro
+        profesional.
+      </p>
+      <div class="t2-sim__frame">
+        <iframe id="simulador-iframe" [src]="simuladorUrl() | safeUrl"
+          width="100%" [style.height.px]="iframeHeight()"
+          [style.width.px]="iframeWidth()" class="t2-sim__iframe"
+          title="Simulador de crédito Finky"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
 }
 
 <app-footer></app-footer>

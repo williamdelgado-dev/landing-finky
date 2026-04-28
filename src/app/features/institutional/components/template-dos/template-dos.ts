@@ -16,6 +16,7 @@ import { AllianceSectionComponent } from '@shared/components/alliance-section/al
 
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { SafeUrlPipe } from '@shared/pipes/safe-url.pipe';
+import { SimuladorButtonComponent } from '@app/shared/components/simulador-button/simulador-button.component';
 
 @Component({
   selector: 'app-template-dos',
@@ -25,6 +26,7 @@ import { SafeUrlPipe } from '@shared/pipes/safe-url.pipe';
     AllianceSectionComponent,
     HeaderComponent,
     SafeUrlPipe,
+    SimuladorButtonComponent,
   ],
   templateUrl: './template-dos.html',
   styleUrl: './template-dos.css',
@@ -48,7 +50,6 @@ export class TemplateDos implements OnInit {
   public simuladorUrl = this.configService.simuladorUrl;
   public iframeHeight = signal<number>(600);
   public iframeWidth = signal<string | number>('100%');
-
 
   public scrollToSimulador() {
     const element = document.getElementById('simulador');

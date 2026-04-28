@@ -83,8 +83,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(70% 60% at 0% 50%, rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.92) 70%),
-    linear-gradient(180deg, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.95));
+    radial-gradient(70% 60% at 0% 50%, color-mix(in srgb, var(--color-oscuro, #0f172a) 60%, transparent), color-mix(in srgb, var(--color-oscuro, #0f172a) 92%, transparent) 70%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-oscuro, #0f172a) 40%, transparent), color-mix(in srgb, var(--color-oscuro, #0f172a) 95%, transparent));
 }
 
 .t2-hero__glow {
@@ -97,7 +97,7 @@
 .t2-hero__glow--orange {
   width: 460px;
   height: 460px;
-  background: radial-gradient(circle, rgba(241, 108, 45, 0.22), transparent 60%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-claro, #f16c2d) 22%, transparent), transparent 60%);
   top: -160px;
   right: -80px;
 }
@@ -155,8 +155,8 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--color-claro, var(--finky-orange, #f16c2d));
-  box-shadow: 0 0 0 4px rgba(241, 108, 45, 0.18);
+  background: var(--color-claro, #f16c2d);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-claro, #f16c2d) 18%, transparent);
   flex-shrink: 0;
 }
 
@@ -229,9 +229,9 @@
   width: 28px;
   height: 28px;
   border-radius: 999px;
-  background: rgba(241, 108, 45, 0.18);
-  border: 1px solid rgba(241, 108, 45, 0.32);
-  color: var(--color-claro, var(--finky-orange, #f16c2d));
+  background: color-mix(in srgb, var(--color-claro, #f16c2d) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-claro, #f16c2d) 32%, transparent);
+  color: var(--color-claro, #f16c2d);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -286,14 +286,15 @@
 }
 
 .t2-btn--ghost {
-  background: transparent;
+  background: var(--color-oscuro, #0f172a);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.3);
 }
 
 .t2-btn--ghost:hover {
+  background: color-mix(in srgb, var(--color-oscuro, #0f172a) 90%, white);
   border-color: rgba(255, 255, 255, 0.42);
-  background: rgba(255, 255, 255, 0.04);
   transform: translateY(-2px);
 }
 
@@ -335,88 +336,7 @@
   display: block;
 }
 
-.t2-hero__card-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(15, 23, 42, 0.85) 0%,
-    rgba(15, 23, 42, 0.05) 28%,
-    rgba(15, 23, 42, 0.05) 70%,
-    rgba(15, 23, 42, 0.6) 100%
-  );
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 28px 32px;
-}
 
-.t2-hero__card-brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 10px 16px;
-  border-radius: 12px;
-  width: fit-content;
-}
-
-.t2-hero__card-logo {
-  height: 28px;
-  width: auto;
-  max-width: 110px;
-  object-fit: contain;
-}
-
-.t2-hero__card-divider {
-  width: 1px;
-  height: 22px;
-  background: rgba(15, 23, 42, 0.18);
-}
-
-.t2-hero__card-finky {
-  height: 22px;
-  width: auto;
-  object-fit: contain;
-}
-
-/* Badge flotante "APROBACIÓN en X min" */
-.t2-hero__badge {
-  position: absolute;
-  bottom: -18px;
-  left: -18px;
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 18px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  box-shadow:
-    0 30px 60px -20px rgba(0, 0, 0, 0.45),
-    0 10px 20px -8px rgba(241, 108, 45, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  min-width: 150px;
-}
-
-.t2-hero__badge-label {
-  font-family: var(--font-body, 'Plus Jakarta Sans'), sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--t2-muted);
-}
-
-.t2-hero__badge-value {
-  font-family: var(--font-display, 'Outfit'), sans-serif;
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--color-oscuro, #0f172a);
-  line-height: 1.05;
-}
 
 @media (max-width: 1024px) {
   .t2-hero__visual {
@@ -492,9 +412,17 @@
 
 /* ─── OFERTA ACADÉMICA · tabs underline + cards blancas ──── */
 .t2-offer {
-  background: #ffffff;
+  background: var(--color-oscuro, #0f172a);
   padding: 100px 0 140px;
   text-align: center;
+}
+
+.t2-offer .t2-section-title {
+  color: #ffffff;
+}
+
+.t2-offer .t2-section-lead {
+  color: rgba(255, 255, 255, 0.66);
 }
 
 .t2-tabs {
@@ -503,7 +431,7 @@
   gap: 32px;
   flex-wrap: wrap;
   margin-bottom: 64px;
-  border-bottom: 1px solid var(--t2-line);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   padding-bottom: 0;
 }
 
@@ -514,7 +442,7 @@
   font-family: var(--font-body, 'Plus Jakarta Sans'), sans-serif;
   font-size: 15px;
   font-weight: 500;
-  color: var(--t2-muted);
+  color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   position: relative;
   transition: color 0.25s ease;
@@ -528,18 +456,18 @@
   right: 0;
   bottom: -1px;
   height: 2px;
-  background: var(--color-oscuro, #0f172a);
+  background: var(--color-claro, #f16c2d);
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .t2-tab:hover {
-  color: var(--color-oscuro, #0f172a);
+  color: #ffffff;
 }
 
 .t2-tab--active {
-  color: var(--color-oscuro, #0f172a);
+  color: #ffffff;
   font-weight: 600;
 }
 
@@ -663,9 +591,17 @@
 
 /* ─── SIMULADOR ───────────────────────────────────────────── */
 .t2-sim {
-  background: #ffffff;
+  background: var(--color-oscuro, #0f172a);
   padding: 140px 0;
   text-align: center;
+}
+
+.t2-sim .t2-section-title {
+  color: #ffffff;
+}
+
+.t2-sim .t2-section-lead {
+  color: rgba(255, 255, 255, 0.66);
 }
 
 .t2-sim__frame {

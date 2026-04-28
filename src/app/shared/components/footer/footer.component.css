@@ -3,7 +3,7 @@
    Navy text on near-white, orange accents on hover/icons.
    ─────────────────────────────────────────────────────────── */
 .fk-footer {
-  background: var(--finky-cream);
+  background: var(--finky-white);
   color: var(--finky-mute-700);
   padding: 80px 28px 28px;
   border-top: 1px solid rgba(15, 23, 42, 0.06);

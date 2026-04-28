@@ -150,21 +150,22 @@
 .t1-hero__link {
   font-family: var(--font-display);
   font-weight: 600;
-  color: var(--color-oscuro);
+  color: #fff;
+  background: var(--color-oscuro, #0f172a);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 15px;
-  border-bottom: 1px solid transparent;
-  padding: 4px 0;
-  transition: color 0.25s ease, border-color 0.25s ease, gap 0.25s ease;
+  gap: 10px;
+  font-size: 15.5px;
+  padding: 16px 30px;
+  border-radius: 999px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  box-shadow: 0 8px 24px -10px rgba(15, 23, 42, 0.4);
 }
 
 .t1-hero__link:hover {
-  color: var(--color-claro);
-  border-color: rgba(241, 108, 45, 0.4);
-  gap: 12px;
+  transform: translateY(-2px);
+  filter: brightness(1.1);
 }
 
 .t1-hero__quickstats {
@@ -422,7 +423,7 @@
 .t1-offer {
   position: relative;
   padding: 140px 0 160px;
-  background: var(--finky-navy);
+  background: var(--color-oscuro, #0f172a);
   color: #fff;
   overflow: hidden;
 }
@@ -432,8 +433,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(60% 50% at 100% 0%, rgba(241, 108, 45, 0.18), transparent 70%),
-    radial-gradient(50% 40% at 0% 100%, rgba(241, 108, 45, 0.1), transparent 70%);
+    radial-gradient(60% 50% at 100% 0%, color-mix(in srgb, var(--color-claro, #f16c2d) 18%, transparent), transparent 70%),
+    radial-gradient(50% 40% at 0% 100%, color-mix(in srgb, var(--color-claro, #f16c2d) 10%, transparent), transparent 70%);
   pointer-events: none;
 }
 
@@ -515,7 +516,7 @@
 .t1-chip--active {
   background: var(--color-claro);
   color: #fff;
-  box-shadow: 0 14px 30px -10px rgba(241, 108, 45, 0.5);
+  box-shadow: 0 14px 30px -10px color-mix(in srgb, var(--color-claro, #f16c2d) 50%, transparent);
 }
 
 .t1-chip--active .t1-chip__pill {
@@ -558,7 +559,7 @@
 .t1-program:hover {
   transform: translateX(4px);
   background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(241, 108, 45, 0.32);
+  border-color: color-mix(in srgb, var(--color-claro, #f16c2d) 40%, transparent);
 }
 
 .t1-program__main {
@@ -573,7 +574,7 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--finky-orange-soft);
+  color: var(--color-claro, var(--finky-orange-soft));
   font-family: var(--font-display);
 }
 
@@ -677,9 +678,7 @@
 /* ── SIMULADOR ────────────────────────────────────────────────── */
 .t1-sim {
   padding: 140px 0;
-  background:
-    radial-gradient(60% 60% at 50% 0%, rgba(241, 108, 45, 0.05), transparent 70%),
-    var(--finky-mute-50);
+  background: var(--color-oscuro, #0f172a);
   position: relative;
   overflow: hidden;
 }
@@ -695,7 +694,7 @@
   font-size: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
   font-weight: 700;
   letter-spacing: -0.03em;
-  color: var(--finky-navy);
+  color: #ffffff;
   margin: 0 0 18px;
   line-height: 1.05;
 }
@@ -708,7 +707,7 @@
 .t1-sim__lead {
   font-size: 17px;
   line-height: 1.6;
-  color: var(--finky-mute-600);
+  color: rgba(255, 255, 255, 0.66);
   max-width: 56ch;
   margin: 0 auto;
 }

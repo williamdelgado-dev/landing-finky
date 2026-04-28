@@ -2,7 +2,7 @@
    CTA pill · Finky Orange (default) / Ghost (useClaro=true)
    ─────────────────────────────────────────────────────────── */
 .fk-cta {
-  --bg: var(--color-oscuro);
+  --bg: var(--color-claro, #f16c2d);
   --fg: #ffffff;
   position: relative;
   display: inline-flex;
@@ -18,7 +18,7 @@
   font-size: 16px;
   letter-spacing: -0.01em;
   cursor: pointer;
-  box-shadow: var(--shadow-orange);
+  box-shadow: 0 10px 20px -8px color-mix(in srgb, var(--color-claro, #f16c2d) 40%, transparent);
   transition:
     transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.35s ease,
@@ -28,8 +28,8 @@
 .fk-cta:hover {
   transform: translateY(-2px);
   box-shadow:
-    0 22px 50px -14px rgba(241, 108, 45, 0.45),
-    0 6px 18px -8px rgba(241, 108, 45, 0.35);
+    0 22px 50px -14px color-mix(in srgb, var(--color-claro, #f16c2d) 45%, transparent),
+    0 6px 18px -8px color-mix(in srgb, var(--color-claro, #f16c2d) 35%, transparent);
 }
 
 .fk-cta:active {
