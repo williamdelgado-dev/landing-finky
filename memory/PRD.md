@@ -1,57 +1,61 @@
-# Finky - Landing + Sections Redesign
+# Finky · Landing Institucional · PRD
 
-## Problem Statement
-Cliente (Finky) pidió mejorar 3 secciones de su web usando solo #fc6223 (naranja) y #ffffff:
-1. Sección "Qué es Finky" — rediseño minimalista
-2. Página FAQ — basada en https://finky.la/preguntas/
-3. Página Instituciones Aliadas — basada en https://finky.la/instituciones-aliadas/
+## Contexto
+Rediseño de la landing institucional de Finky (Angular 21, Standalone Components,
+Signals + nuevo Control Flow) bajo el lineamiento estético **"Minimalismo Premium"**.
 
-Requerimiento clave: "solo maqueta, el dev implementa la lógica" + mantener el aspecto minimalista del home.
+## Repositorio
+https://github.com/williamdelgado-dev/landing-finky · rama `main`
 
-## Tech Stack
-- Angular 21 + TypeScript (standalone components)
-- CSS puro (Outfit + Plus Jakarta Sans)
-- pnpm
+## Stack
+- Angular 21.2 (Standalone, Signals, Control Flow `@if/@for/@switch`)
+- Tailwind 3.4 (preflight off — convive con CSS scoped por host)
+- Plus Jakarta Sans + Outfit (Google Fonts)
+- AOS para reveal motion + animaciones CSS personalizadas
 
-## What's Been Implemented (21 Abr 2026)
-- ✅ Rediseño completo `/que-es-finky` (hero + stats, misión con chip flotante, 6 pilares, 4 pasos, CTA naranja)
-- ✅ Nueva página `/preguntas` con sidebar de 5 categorías (Sobre Finky, Registro, Pagos, Renovación, Instituciones), acordeón animado, tarjeta WhatsApp y CTA final
-- ✅ Nueva página `/instituciones-aliadas` con hero stats, buscador decorativo, filtros por tipo (Todas/Universidades/Corporaciones/Instituciones/Fundaciones) y grid de 25 instituciones con cards premium
-- ✅ Header actualizado: tokens ahora usan #fc6223 (botones Ingreso y Registrarse en naranja); routerLink a nuevas rutas
-- ✅ Rutas añadidas: `/preguntas`, `/instituciones-aliadas`
-- ✅ `angular.json` → `serve.options.allowedHosts` para permitir preview domain
-- ✅ Lint pasa limpio
+## Tokens de marca
+- Deep Navy `#0f172a`
+- White `#FFFFFF`
+- Finky Orange `#f16c2d`
+- Display: Outfit · Body: Plus Jakarta Sans
+- Premium Shadows (difusas, opacidad baja, radio grande)
+- Glassmorphism: `backdrop-filter: blur(20px)` + borde 1px translúcido
+- Radios: tarjetas 24px, píldoras 999px
 
-## Design System (todas las páginas)
-- Primary: #fc6223 + hover #e5521a
-- Surface: #ffffff + soft bg #f8fafc + peach soft #fff4ee
-- Text: #0f172a (titles) / #64748b (body)
-- Fonts: Outfit (headings, 800 weight) + Plus Jakarta Sans (body)
-- Radius: 14-28px botones/cards, 100px pills
-- Animaciones fadeUp escalonadas (delays 0.08s)
+## Implementado en esta iteración (28-Abr-2026)
+- ✅ Sistema de tokens globales (`src/styles.css`) + utilidades `.fk-glass*`
+- ✅ Header glass sticky con divider y dual-logo Finky/IES
+- ✅ Footer minimal en 4 columnas con acentos naranja
+- ✅ Simulador button premium (pill orange + ghost variant)
+- ✅ Alliance section: layout aireado, lista de beneficios con check-pill
+- ✅ **Template Uno (rediseño completo):**
+  - Hero con velo claro y gradiente sutil (sin overlay oscuro pesado), eyebrow glass, quick-stats card glass
+  - Stats: **bento grid** 4 celdas (1 acento navy + 3 white) con micro-animaciones reveal con delay
+  - Oferta Académica: **chips reactivos** (custom selects integrados) sobre `tiposPrograma()` (signal) + lista glass con `programasFiltrados()` (signal)
+  - Simulador: contenedor radio 24px, glow sutil, sombra premium
+- ✅ Templates Dos/Tres: alineadas al sistema de tokens (fonts + colores) preservando su layout
+- ✅ Floating widget Lina: modal glassmorphism (navy header + orange CTA)
+- ✅ Mock HTTP interceptor en dev para previsualización offline (no afecta producción)
 
-## Files Touched
-- `/app/src/app/app.routes.ts`
-- `/app/src/app/features/site/components/header/header.component.ts`
-- `/app/src/app/features/site/pages/que-es-finky/*`
-- `/app/src/app/features/site/pages/preguntas/*` (new)
-- `/app/src/app/features/site/pages/instituciones-aliadas/*` (new)
-- `/app/angular.json`
+## Lógica preservada (no negociables)
+- Signals + computed: `config`, `validatedBanner`, `validatedBullets`, `simuladorUrl`,
+  `tiposPrograma`, `programasFiltrados`, `selectedTipo` — sin alteración
+- ConfigService aplica `--color-oscuro` y `--color-claro` por IES en `applyColors`
+- Imágenes responsive con `<picture>` + `<source media="(max-width: 768px)">`
+- Iframe del simulador centralizado, recibe `postMessage` para height/width
 
-## Sin lógica (tal como pidió el usuario)
-- Search inputs en FAQ e Instituciones son decorativos (sin filtrado por texto)
-- Los filtros por tipo en Instituciones SÍ funcionan en cliente (UI state only)
-- Acordeón FAQ funciona en UI (sin persistencia)
-- Todos los CTAs apuntan a URLs existentes (app.finky.la/registro, WhatsApp, etc.)
+## Personas
+- Estudiante prospecto (18-30) buscando financiación sin codeudor
+- Aliados IES configurando su landing co-branded
 
-## Backlog / P1
-- Implementar filtro por texto en los search inputs
-- Agregar animaciones on-scroll (IntersectionObserver) para sections largas
-- Agregar skeleton/lazy loading de logos de instituciones
-- Links "Ver detalles" → páginas individuales de institución
-- Integrar con API real para catálogo de instituciones/FAQs
+## Backlog
+- P0: Verificación con datos reales del backend `api-production.finky.la`
+- P1: Animaciones extra en bento (parallax sutil), variantes para plantillas 4-5 si las hay
+- P1: Modal Lina con nuevo CTA testimonial (avatar + nombre asesor)
+- P2: A/B test estilos del CTA principal (orange filled vs ghost)
+- P2: Estados vacíos ilustrados para "0 programas en categoría"
 
-## Backlog / P2
-- SEO meta tags por página
-- Open Graph images
-- Internacionalización (en/es)
+## Notas técnicas
+- Mock interceptor sólo activo cuando `environment.production === false`. Se sirven slugs `demo`, `areandina`, `ibero`, `salle`.
+- En este pod, el dev server corre con `pnpm exec ng serve --host 0.0.0.0 --port 3000`
+  (la plantilla supervisor estándar no aplica porque el repo es Angular puro, no Python+React).
