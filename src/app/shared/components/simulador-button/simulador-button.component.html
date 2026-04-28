@@ -1,13 +1,16 @@
 <button
   type="button"
   class="fk-cta"
-  [class.fk-cta--ghost]="useClaro"
+  [class.fk-cta--ghost]="useClaro && !flat"
+  [class.fk-cta--flat]="flat"
   (click)="scrollToSimulador()"
   data-testid="simulador-cta-btn"
 >
-  <span class="fk-cta__dot" aria-hidden="true">
-    <img src="/assets/images/icon_simulador.png" alt="" draggable="false" />
-  </span>
+  @if (!flat) {
+    <span class="fk-cta__dot" aria-hidden="true">
+      <img src="/assets/images/icon_simulador.png" alt="" draggable="false" />
+    </span>
+  }
   <span class="fk-cta__label">{{ text }}</span>
   <svg class="fk-cta__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

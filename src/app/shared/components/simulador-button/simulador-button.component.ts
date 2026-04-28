@@ -10,6 +10,7 @@ import { Component, Input } from '@angular/core';
 export class SimuladorButtonComponent {
   @Input() text = 'Simular mi crédito';
   @Input() useClaro = false;
+  @Input() flat = false;
 
   public scrollToSimulador() {
     const ids = ['simulador', 'seccion-simulador'];

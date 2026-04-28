@@ -1,165 +1,116 @@
 <app-header [universityIcon]="config()?.iconUniversity"></app-header>
 
 @if (config()) {
-  <main>
-    <section class="hero-section">
-      <div class="container relative">
-        <div class="hero-image-container">
-          <img
-            [src]="validatedBanner()?.pc || '/assets/images/fondo.jpg'"
-            alt="Banner institucional"
-            class="hero-main-img"
-          />
-        </div>
-        <div class="hero-text-overlay">
-          <h1 id="banner-title">{{ validatedBanner()?.titulo }}</h1>
-          <p id="banner-subtitle">{{ validatedBanner()?.contenido }}</p>
+  <main class="t2">
+    <!-- ─── HERO · centrado, blanco puro, sin imagen ─── -->
+    <section class="t2-hero">
+      <div class="t2-container t2-hero__inner">
+        <span class="t2-eyebrow">{{ config()?.nombreUniversidad }} · Aliada Finky</span>
+        <h1 id="banner-title" class="t2-hero__title">{{ validatedBanner()?.titulo }}</h1>
+        <p id="banner-subtitle" class="t2-hero__lead">{{ validatedBanner()?.contenido }}</p>
+        <div class="t2-hero__actions">
+          <app-simulador-button [flat]="true" text="Simular mi crédito"></app-simulador-button>
         </div>
       </div>
     </section>
-    <div class="hero-actions">
-      <app-simulador-button></app-simulador-button>
-    </div>
-    <section class="intro">
-      <div class="container text-center">
-        <h2 class="section-title dark-blue-text">Somos la mejor opción para tu educación</h2>
-        <div class="intro-description text-center">
-          <p class="section-subtitle">
+
+    <!-- ─── INTRO · texto centrado, mucho aire ─── -->
+    <section class="t2-intro">
+      <div class="t2-container">
+        <h2 class="t2-section-title">Somos la mejor opción para tu educación</h2>
+        <div class="t2-intro__text">
+          <p>
             Somos una comunidad comprometida con la formación, la paz, la investigación, la
             innovación, el emprendimiento, la enseñanza y el aprendizaje. Educamos para pensar,
             decidir y servir. Excelencia educativa y transformación social.
           </p>
-          <p class="section-subtitle">
+          <p>
             Para nosotros, esta identidad se ve reflejada en nuestro trayecto, en nuestros
-            lineamientos institucionales, misión, visión, objetivos, el PEI (Proyecto Educativo
-            Institucional), elementos que son parte integral en la construcción de nuestra comunidad
-            y el sentimiento de pertenencia que cada uno lleva por dentro.
+            lineamientos institucionales, misión, visión, objetivos y el PEI — elementos que
+            son parte integral en la construcción de nuestra comunidad.
           </p>
         </div>
       </div>
     </section>
-    <section class="stats">
-      <div class="container">
-        <div class="stats-pills-grid">
+
+    <!-- ─── STATS · números grandes, separadores verticales ─── -->
+    <section class="t2-stats">
+      <div class="t2-container">
+        <ul class="t2-stats__grid" role="list">
           @for (stat of validatedBullets(); track stat.titulo) {
-            <div class="stat-pill">
-              <span class="stat-number">{{ stat.desc }}</span>
-              <span class="stat-label">{{ stat.titulo }}</span>
-            </div>
+            <li class="t2-stats__item">
+              <span class="t2-stats__num">{{ stat.titulo }}</span>
+              <span class="t2-stats__label">{{ stat.desc }}</span>
+            </li>
           }
-        </div>
-        <div class="text-center" style="margin-top: 60px">
-          <app-simulador-button></app-simulador-button>
-        </div>
+        </ul>
       </div>
     </section>
-    <section class="academic-offer-premium">
-      <div class="container text-center">
-        <h2 class="section-title finky-yellow-text">Tu futuro empieza con una decisión.</h2>
-        <p class="section-subtitle white">
-          Elige el nivel de formación que deseas cursar (Técnico laboral, Técnico profesional,
-          Pregrado, Posgrado o Educación continuada) y encuentra el programa ideal para ti.
+
+    <!-- ─── OFERTA ACADÉMICA · tabs underline + tarjetas blancas ─── -->
+    <section id="oferta" class="t2-offer">
+      <div class="t2-container">
+        <h2 class="t2-section-title">Tu futuro empieza con una decisión</h2>
+        <p class="t2-section-lead">
+          Elige el nivel de formación y encuentra el programa ideal para ti.
         </p>
-        <!-- Caja Amarilla de Aviso -->
-        <div class="yellow-cta-box">
-          <h3 class="cta-box-title">¿Aún no te decides por una carrera? ¡No te detengas!</h3>
-          <p class="cta-box-body">
-            Para conocer tus cuotas y opciones de financiación, solo necesitas elegir el tipo de
-            formación,<br />el monto que necesitas y el plazo que prefieras.
-          </p>
-          <p class="cta-box-body">
-            Simula tu crédito ahora sin necesidad de haber elegido una carrera específica todavía.
-          </p>
-        </div>
-        <h2 class="section-title finky-yellow-text">Oferta académica</h2>
-        <!-- Barra de Búsqueda -->
-        <div class="search-bar-wrapper">
-          <div class="search-input-container">
-            <svg
-              class="search-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input
-              type="text"
-              placeholder="Busca la carrera que quieres estudiar"
-              class="search-input"
-            />
-          </div>
-        </div>
-        <!-- Tabs de Filtrado -->
-        <div class="offer-tabs">
+
+        <nav class="t2-tabs" role="tablist" aria-label="Nivel de formación">
           @for (nivel of niveles(); track nivel) {
             <button
-              class="tab-btn"
-              [class.active]="activeTab() === nivel"
-              [style.color]="
-                activeTab() === nivel
-                  ? config()?.colores?.oscuro || '#003151'
-                  : config()?.colores?.oscuro || '#003151'
-              "
-              [style.border-color]="config()?.colores?.oscuro || '#003151'"
-              [style.background-color]="
-                activeTab() === nivel ? config()?.colores?.claro || '#f7ab00' : '#fff'
-              "
+              type="button"
+              role="tab"
+              class="t2-tab"
+              [class.t2-tab--active]="activeTab() === nivel"
+              [attr.aria-selected]="activeTab() === nivel"
               (click)="setActiveTab(nivel)"
+              [attr.data-testid]="'oferta-tab-' + nivel"
             >
               {{ nivel }}
             </button>
           }
-        </div>
-        <!-- Grid de Programas -->
-        <div class="program-cards-grid">
+        </nav>
+
+        <div class="t2-cards">
           @for (prog of filteredPrograms(); track prog.name) {
-            <div class="program-card">
-              <div class="card-level-tag">{{ prog.level }}</div>
-              <h4 class="program-name">{{ prog.name }}</h4>
-              <div class="program-divider"></div>
-              <div class="program-details">
-                <div class="detail-item font-bold">
-                  <span>{{ prog.price }}</span>
-                </div>
+            <article class="t2-card">
+              <span class="t2-card__tag">{{ prog.level }}</span>
+              <h3 class="t2-card__name">{{ prog.name }}</h3>
+              <div class="t2-card__divider"></div>
+              <div class="t2-card__price">
+                <span class="t2-card__price-label">Por semestre</span>
+                <span class="t2-card__price-value">{{ prog.price }}</span>
               </div>
-            </div>
+            </article>
           } @empty {
-            <div class="col-span-full py-20 text-white opacity-60">
-              <p class="text-xl">No se encontraron programas en esta categoría.</p>
-            </div>
+            <p class="t2-cards__empty">No se encontraron programas en esta categoría.</p>
           }
         </div>
       </div>
     </section>
+
+    <!-- ─── ALLIANCE ─── -->
     <app-alliance-section
       imageSrc="/assets/images/finker2.png"
       [universityName]="config()?.nombreUniversidad || ''"
-    >
-    </app-alliance-section>
-    <section id="simulador" class="simulador bg-dynamic">
-      <div class="container text-center">
-        <h2 class="section-title finky-yellow-text">
-          <span class="material-icons calc-icon">calculate</span> Simula tu Crédito Educativo
-        </h2>
-        <p class="section-subtitle white">
+    ></app-alliance-section>
+
+    <!-- ─── SIMULADOR ─── -->
+    <section id="simulador" class="t2-sim">
+      <div class="t2-container">
+        <h2 class="t2-section-title">Simula tu crédito educativo</h2>
+        <p class="t2-section-lead">
           Obtén una respuesta en minutos y comienza el camino hacia tu futuro profesional.
         </p>
-        <div class="iframe-container" style="max-width: 900px; margin: 40px auto 0">
+        <div class="t2-sim__frame">
           <iframe
             id="simulador-iframe"
             [src]="simuladorUrl() | safeUrl"
             width="100%"
             [style.height.px]="iframeHeight()"
             [style.width.px]="iframeWidth()"
-            style="
-              border: none;
-              border-radius: 20px;
-              background: #fff;
-              box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            "
+            class="t2-sim__iframe"
+            title="Simulador de crédito Finky"
           ></iframe>
         </div>
       </div>
