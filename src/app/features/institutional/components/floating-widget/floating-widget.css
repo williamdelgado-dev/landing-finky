@@ -2,56 +2,70 @@
   display: block;
 }
 
-/* Avatar Flotante de Lina */
+/* ── Floating avatar (Lina) ─────────────────────────────────── */
 .lina-avatar-container {
-  background: #f96123;
-  width: 110px;
-  height: 110px;
+  background: var(--finky-orange, #f16c2d);
+  width: 86px;
+  height: 86px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 6px solid #ffffff;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  border: 4px solid #ffffff;
+  box-shadow:
+    0 18px 40px -8px rgba(241, 108, 45, 0.45),
+    0 6px 14px rgba(15, 23, 42, 0.15);
   overflow: hidden;
   position: relative;
   z-index: 4;
-  transition: all 0.3s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease;
+}
+
+.lina-avatar-container::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 14px;
+  height: 14px;
+  background: #22c55e;
+  border-radius: 50%;
+  border: 2px solid #fff;
 }
 
 .lina-avatar-img {
-  width: 85%;
-  height: 85%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  /* Ajuste ligero para que no se vea cortada */
-  object-position: center 20%;
+  object-position: center 22%;
 }
 
 @media (max-width: 768px) {
   .lina-avatar-container {
-    width: 85px;
-    height: 85px;
-    border-width: 4px;
+    width: 70px;
+    height: 70px;
+    border-width: 3px;
   }
 }
 
-/* Modal Styling */
+/* ── Modal (glassmorphism premium) ──────────────────────────── */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2000;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.4s ease;
-  backdrop-filter: blur(8px);
+  transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  padding: 20px;
 }
 
 .modal-overlay.active {
@@ -60,16 +74,22 @@
 }
 
 .modal-content {
-  background: #fff;
-  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 28px;
   padding: 0;
-  width: 90%;
-  max-width: 440px;
+  width: 100%;
+  max-width: 460px;
   position: relative;
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+  box-shadow:
+    0 50px 100px -20px rgba(15, 23, 42, 0.35),
+    0 20px 40px -16px rgba(15, 23, 42, 0.18);
   overflow: hidden;
-  transform: scale(0.9) translateY(40px);
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: scale(0.95) translateY(24px);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  font-family: var(--font-body, 'Plus Jakarta Sans');
 }
 
 .modal-overlay.active .modal-content {
@@ -77,29 +97,30 @@
 }
 
 .modal-header {
-  background: linear-gradient(135deg, #a5c34d, #8ca83d);
-  padding: 60px 30px; /* Aumentado para dar aire sin el avatar */
+  background:
+    radial-gradient(120% 100% at 0% 0%, rgba(241, 108, 45, 0.18), transparent 60%),
+    var(--finky-navy, #0f172a);
+  padding: 44px 32px 36px;
   text-align: center;
   position: relative;
-  border-bottom: 5px solid rgba(0, 0, 0, 0.05);
 }
 
 .modal-title {
   color: #fff;
-  font-size: 2.3rem; /* Un poco más grande para destacar */
-  font-weight: 800;
-  font-family: 'Archivo Narrow', sans-serif;
+  font-size: 1.85rem;
+  font-weight: 700;
+  font-family: var(--font-display, 'Outfit'), 'Outfit', sans-serif;
+  letter-spacing: -0.025em;
   margin: 0;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .modal-close {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  background: rgba(0, 0, 0, 0.15);
+  top: 14px;
+  right: 14px;
+  background: rgba(255, 255, 255, 0.1);
   color: #fff;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -107,38 +128,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10;
-  transition: background 0.2s;
+  transition: all 0.25s ease;
 }
 
 .modal-close:hover {
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--finky-orange, #f16c2d);
+  border-color: transparent;
+  transform: rotate(90deg);
 }
 
 .modal-body {
-  padding: 30px 40px 40px;
+  padding: 32px 36px 36px;
 }
 
 .modal-intro {
   text-align: center;
-  color: #666;
-  font-size: 1rem;
-  line-height: 1.5;
-  margin-bottom: 30px;
+  color: var(--finky-mute-600, #475569);
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin: 0 0 28px;
 }
 
 .form-group {
-  margin-bottom: 25px;
+  margin-bottom: 18px;
 }
 
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  font-weight: 700;
-  color: #444;
-  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--finky-navy, #0f172a);
+  font-size: 13px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.08em;
+  font-family: var(--font-display, 'Outfit'), 'Outfit', sans-serif;
 }
 
 .input-wrapper {
@@ -149,104 +172,107 @@
 
 .input-wrapper .material-icons {
   position: absolute;
-  left: 15px;
-  color: #a5c34d;
-  font-size: 20px;
+  left: 16px;
+  color: var(--finky-orange, #f16c2d);
+  font-size: 18px;
 }
 
 .input-wrapper input {
   width: 100%;
-  padding: 15px 15px 15px 45px;
-  border: 2px solid #f0f0f0;
-  background: #fdfdfd;
-  border-radius: 15px;
-  font-size: 1.1rem;
-  font-family: 'Inter', sans-serif;
-  transition: all 0.2s;
+  padding: 14px 16px 14px 46px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: #fff;
+  border-radius: 14px;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--finky-navy, #0f172a);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .input-wrapper input:focus {
   outline: none;
-  border-color: #a5c34d;
-  background: #fff;
-  box-shadow: 0 0 0 4px rgba(165, 195, 77, 0.1);
+  border-color: var(--finky-orange, #f16c2d);
+  box-shadow: 0 0 0 4px rgba(241, 108, 45, 0.12);
 }
 
 .form-check {
   display: flex;
   gap: 12px;
-  margin-bottom: 30px;
-  color: #666;
-  font-size: 0.9rem;
-  line-height: 1.4;
+  margin-bottom: 24px;
+  color: var(--finky-mute-600, #475569);
+  font-size: 13.5px;
+  line-height: 1.5;
   cursor: pointer;
+  align-items: flex-start;
 }
 
 .form-check input {
   width: 18px;
   height: 18px;
   margin-top: 2px;
-  accent-color: #a5c34d;
+  accent-color: var(--finky-orange, #f16c2d);
   flex-shrink: 0;
 }
 
 .form-check a {
-  color: #a5c34d;
+  color: var(--finky-orange, #f16c2d);
   text-decoration: underline;
 }
 
 .btn-submit {
   width: 100%;
-  background: linear-gradient(135deg, #00acca, #0093ad);
+  background: var(--finky-orange, #f16c2d);
   color: #fff;
   border: none;
-  padding: 18px;
-  border-radius: 15px;
-  font-size: 1.15rem;
-  font-weight: 800;
-  font-family: 'Inter', sans-serif;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 15.5px;
+  font-weight: 600;
+  font-family: var(--font-display, 'Outfit'), 'Outfit', sans-serif;
+  letter-spacing: 0.005em;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  box-shadow: 0 10px 25px rgba(0, 172, 202, 0.3);
-  transition: all 0.3s;
+  box-shadow: 0 18px 40px -14px rgba(241, 108, 45, 0.42);
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease,
+    filter 0.3s ease;
 }
 
 .btn-submit:hover:not(:disabled) {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 30px rgba(0, 172, 202, 0.4);
-  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 22px 50px -16px rgba(241, 108, 45, 0.55);
+  filter: brightness(1.05);
 }
 
 .btn-submit:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-  background: #ccc;
+  filter: saturate(0.6);
   box-shadow: none;
 }
 
 .spinner {
-  width: 20px;
-  height: 20px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
   border-top-color: #fff;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
 @media (max-width: 480px) {
   .modal-body {
-    padding: 25px;
+    padding: 28px;
   }
   .modal-title {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 }

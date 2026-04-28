@@ -1,43 +1,48 @@
-<footer class="footer">
-  <div class="container footer-grid">
-    <div class="footer-col">
-      <h4 class="footer-title">Finky S.A.S.</h4>
-      <p>
-        Tu aliado estratégico en financiamiento educativo.<br />Hacemos realidad tus sueños
-        académicos.
+<footer class="fk-footer">
+  <div class="fk-footer__inner">
+    <div class="fk-footer__primary">
+      <img src="/assets/images/finkylogo.jpg" alt="Finky" class="fk-footer__logo" />
+      <p class="fk-footer__tag">
+        Educación accesible para quien quiera estudiar.<br />
+        Sin codeudor. Sin trámites. 100% digital.
       </p>
     </div>
-    <div class="footer-col">
-      <h4 class="footer-title">Enlaces Rápidos</h4>
-      <ul>
-        <li><a routerLink="/que-es-finky" class="cursor-pointer">¿Qué es Finky?</a></li>
-        <li><a (click)="scrollToSimulador()" (keydown.enter)="scrollToSimulador()" tabindex="0" role="button" class="cursor-pointer">Simula tu crédito</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4 class="footer-title">Legal</h4>
-      <ul>
-        <li><a href="#">Términos y Condiciones</a></li>
-        <li><a href="#">Política de Privacidad</a></li>
-        <li><a href="#">Protección de Datos</a></li>
-        <li><a href="#">PQRS</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4 class="footer-title">Contacto</h4>
-      <div class="contact-item">
-        <span class="material-icons">phone</span>
-        +57 300 123 4567
-      </div>
-      <div class="contact-item">
-        <span class="material-icons">email</span>
-        info@edufinance.com
-      </div>
+
+    <nav class="fk-footer__col" aria-label="Enlaces rápidos">
+      <span class="fk-footer__title">Producto</span>
+      <a routerLink="/que-es-finky">¿Qué es Finky?</a>
+      <a
+        (click)="scrollToSimulador()"
+        (keydown.enter)="scrollToSimulador()"
+        tabindex="0"
+        role="button"
+      >
+        Simula tu crédito
+      </a>
+    </nav>
+
+    <nav class="fk-footer__col" aria-label="Legal">
+      <span class="fk-footer__title">Legal</span>
+      <a href="#">Términos y Condiciones</a>
+      <a href="#">Política de Privacidad</a>
+      <a href="#">Habeas Data</a>
+      <a href="#">PQRS</a>
+    </nav>
+
+    <div class="fk-footer__col">
+      <span class="fk-footer__title">Contacto</span>
+      <span class="fk-footer__contact">
+        <span class="material-icons">phone</span>+57 300 123 4567
+      </span>
+      <span class="fk-footer__contact">
+        <span class="material-icons">mail</span>hola&#64;finky.la
+      </span>
     </div>
   </div>
-  <div class="container">
-    <div class="footer-bottom">
-      <div class="copyright">© 2026 Finky S.A.S. Todos los derechos reservados.</div>
-    </div>
+
+  <div class="fk-footer__bottom">
+    <span>© 2026 Finky S.A.S.</span>
+    <span class="fk-footer__bottom-mark">Hecho con cuidado en Bogotá ·
+      <span class="fk-footer__dot"></span> Aliado IES</span>
   </div>
 </footer>

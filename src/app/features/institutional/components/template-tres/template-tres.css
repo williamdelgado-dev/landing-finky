@@ -9,16 +9,29 @@
 
 .template-tres-host {
   --primary-green: #a5c34d;
-  --secondary-blue: var(--color-oscuro, #003151);
-  --primary-yellow: var(--color-claro, #f7ab00);
-  --finky-yellow: var(--color-claro, #f7ab00);
-  --dark-bg: var(--color-oscuro, #003151);
+  --secondary-blue: var(--color-oscuro, #0f172a);
+  --primary-yellow: var(--color-claro, #f16c2d);
+  --finky-yellow: var(--color-claro, #f16c2d);
+  --dark-bg: var(--color-oscuro, #0f172a);
   --white: #ffffff;
-  --text-muted: #686868;
+  --text-muted: #94a3b8;
   --font-main:
-    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--color-oscuro, #003151);
-  overflow-x: hidden; /* Prevent horizontal scroll */
+    'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--color-oscuro, #0f172a);
+  overflow-x: hidden;
+  font-family: var(--font-body, 'Plus Jakarta Sans');
+}
+
+.template-tres-host h1,
+.template-tres-host h2,
+.template-tres-host h3,
+.template-tres-host .section-title,
+.template-tres-host .hero-title,
+.template-tres-host .best-option-title,
+.template-tres-host .yellow-cta-box .cta-box-title,
+.template-tres-host .highlight-title {
+  font-family: var(--font-display, 'Outfit'), 'Outfit', sans-serif !important;
+  letter-spacing: -0.025em;
 }
 
 /* Color Utilities */

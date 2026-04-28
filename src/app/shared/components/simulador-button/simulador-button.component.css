@@ -1,95 +1,111 @@
-.btn-ripple {
+/* ──────────────────────────────────────────────────────────────
+   CTA pill · Finky Orange (default) / Ghost (useClaro=true)
+   ─────────────────────────────────────────────────────────── */
+.fk-cta {
+  --bg: var(--finky-orange);
+  --fg: #ffffff;
   position: relative;
   display: inline-flex;
   align-items: center;
-  text-decoration: none;
-  background: transparent !important;
-  box-shadow: none !important;
+  gap: 14px;
+  padding: 14px 28px 14px 16px;
+  background: var(--bg);
+  color: var(--fg);
   border: none;
-  transition: transform 0.3s ease;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  box-shadow: var(--shadow-orange);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
+    background 0.25s ease;
 }
 
-.btn-ripple:hover {
-  transform: translateX(10px);
+.fk-cta:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 22px 50px -14px rgba(241, 108, 45, 0.45),
+    0 6px 18px -8px rgba(241, 108, 45, 0.35);
 }
 
-.btn-icon {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #f96123;
-  width: 85px;
-  height: 85px;
-  border-radius: 50%;
+.fk-cta:active {
+  transform: translateY(0);
+}
+
+.fk-cta__dot {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 5px solid #ffffff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  z-index: 10;
+  flex-shrink: 0;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.btn-icon img {
-  width: 55%;
-  height: 55%;
+.fk-cta:hover .fk-cta__dot {
+  transform: rotate(8deg) scale(1.04);
+}
+
+.fk-cta__dot img {
+  width: 22px;
+  height: 22px;
   object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
-.btn-ripple span {
-  background: var(--color-oscuro, #003151);
-  color: #ffffff;
-  height: 60px;
-  margin-left: 35px; /* Deja espacio para la mitad izquierda del círculo */
-  padding: 0 45px 0 60px; /* Padding izquierdo da espacio a la mitad derecha del círculo */
-  border-radius: 100px;
-  display: flex;
-  align-items: center;
-  font-weight: 800;
-  font-family: 'Inter', sans-serif;
-  font-size: 20px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+.fk-cta__label {
   white-space: nowrap;
-  -webkit-font-smoothing: antialiased;
 }
 
-.btn-ripple span.claro {
-  background: var(--color-claro, #00acca);
+.fk-cta__arrow {
+  width: 18px;
+  height: 18px;
+  margin-left: 4px;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.cursor-pointer {
-  cursor: pointer;
+.fk-cta:hover .fk-cta__arrow {
+  transform: translateX(4px);
 }
 
-/* Tablet / Intermediate Screen */
-@media (max-width: 991px) {
-  .btn-icon {
-    width: 75px;
-    height: 75px;
-    border-width: 4px;
+/* Ghost variant (useClaro): white pill on dark sections */
+.fk-cta--ghost {
+  --bg: rgba(255, 255, 255, 0.92);
+  --fg: var(--finky-navy);
+  box-shadow: 0 18px 40px -16px rgba(15, 23, 42, 0.25);
+}
+.fk-cta--ghost .fk-cta__dot {
+  background: var(--finky-orange);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+.fk-cta--ghost .fk-cta__dot img {
+  filter: brightness(0) invert(1);
+}
+.fk-cta--ghost:hover {
+  box-shadow:
+    0 24px 60px -18px rgba(15, 23, 42, 0.3),
+    0 6px 20px -10px rgba(241, 108, 45, 0.25);
+}
+
+@media (max-width: 480px) {
+  .fk-cta {
+    font-size: 15px;
+    padding: 12px 22px 12px 14px;
+    gap: 12px;
   }
-
-  .btn-ripple span {
-    height: 55px;
-    font-size: 18px;
-    margin-left: 30px;
-    padding: 0 35px 0 60px; /* Incrementado para evitar solapamiento */
+  .fk-cta__dot {
+    width: 34px;
+    height: 34px;
   }
-}
-
-/* Mobile Screen */
-@media (max-width: 768px) {
-  .btn-icon {
-    width: 65px;
-    height: 65px;
-  }
-
-  .btn-ripple span {
-    height: 48px;
-    font-size: 16px;
-    margin-left: 25px;
-    padding: 0 25px 0 55px; /* Incrementado para evitar solapamiento */
-    white-space: normal;
-    line-height: 1.2;
+  .fk-cta__dot img {
+    width: 18px;
+    height: 18px;
   }
 }
