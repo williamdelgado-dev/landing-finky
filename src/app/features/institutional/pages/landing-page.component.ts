@@ -117,7 +117,11 @@ export class LandingPageComponent implements OnInit {
 
   public config = this.configService.config;
 
-  public plantilla = computed(() => this.configService.config()?.plantilla || 1);
+  // Forzamos a Number para evitar errores si la API devuelve un string (ej: "2" vs 2)
+  public plantilla = computed(() => {
+    const p = this.configService.config()?.plantilla;
+    return p !== undefined ? Number(p) : 1;
+  });
 
   async ngOnInit() {
     // 1. Prioridad 1: Parámetro de ruta (/:slug)
@@ -134,11 +138,13 @@ export class LandingPageComponent implements OnInit {
     const success = await this.configService.loadConfig(slugValue || undefined);
 
     if (success) {
+      console.log('[LandingPage] Configuración cargada con éxito:', this.config());
+      console.log('[LandingPage] Plantilla activa:', this.plantilla());
       this.state.set('loaded');
       this.validateBannerDimensions();
     } else {
       // El ConfigService ya se encarga de redirigir si loadConfig devuelve false
-      console.warn('[LandingPage] Configuración fallida, redirigiendo...');
+      console.warn('[LandingPage] Configuración fallida para slug:', this.slug());
     }
   }
 

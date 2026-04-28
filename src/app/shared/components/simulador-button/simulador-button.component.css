@@ -2,7 +2,7 @@
    CTA pill · Finky Orange (default) / Ghost (useClaro=true)
    ─────────────────────────────────────────────────────────── */
 .fk-cta {
-  --bg: var(--finky-orange);
+  --bg: var(--color-oscuro);
   --fg: #ffffff;
   position: relative;
   display: inline-flex;
@@ -78,11 +78,11 @@
 /* Ghost variant (useClaro): white pill on dark sections */
 .fk-cta--ghost {
   --bg: rgba(255, 255, 255, 0.92);
-  --fg: var(--finky-navy);
+  --fg: var(--color-claro);
   box-shadow: 0 18px 40px -16px rgba(15, 23, 42, 0.25);
 }
 .fk-cta--ghost .fk-cta__dot {
-  background: var(--finky-orange);
+  background: var(--color-claro);
   border-color: rgba(255, 255, 255, 0.6);
 }
 .fk-cta--ghost .fk-cta__dot img {

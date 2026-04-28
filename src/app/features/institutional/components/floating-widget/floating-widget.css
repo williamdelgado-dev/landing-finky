@@ -2,70 +2,68 @@
   display: block;
 }
 
-/* ── Floating avatar (Lina) ─────────────────────────────────── */
+/* Floating Trigger (Igual al Home) */
+.lina-trigger {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lina-trigger:hover {
+  transform: translateY(-8px) scale(1.05);
+}
+
 .lina-avatar-container {
-  background: var(--finky-orange, #f16c2d);
-  width: 86px;
-  height: 86px;
+  background: var(--color-claro, #ff6b35); /* Dinámico */
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 4px solid #ffffff;
-  box-shadow:
-    0 18px 40px -8px rgba(241, 108, 45, 0.45),
-    0 6px 14px rgba(15, 23, 42, 0.15);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  position: relative;
-  z-index: 4;
-  transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.4s ease;
-}
-
-.lina-avatar-container::after {
-  content: '';
-  position: absolute;
-  bottom: 4px;
-  right: 4px;
-  width: 14px;
-  height: 14px;
-  background: #22c55e;
-  border-radius: 50%;
-  border: 2px solid #fff;
 }
 
 .lina-avatar-img {
-  width: 100%;
-  height: 100%;
+  width: 85%;
+  height: 85%;
   object-fit: cover;
   border-radius: 50%;
-  object-position: center 22%;
+  object-position: center 20%;
 }
 
 @media (max-width: 768px) {
   .lina-avatar-container {
-    width: 70px;
-    height: 70px;
-    border-width: 3px;
+    width: 75px;
+    height: 75px;
+  }
+  .lina-trigger {
+    bottom: 16px;
+    right: 16px;
   }
 }
 
-/* ── Modal (glassmorphism premium) ──────────────────────────── */
+/* Modal Styling (Igual al Home) */
 .modal-overlay {
   position: fixed;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.55);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(17, 24, 39, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2000;
+  z-index: 100000;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-  backdrop-filter: blur(12px) saturate(120%);
-  -webkit-backdrop-filter: blur(12px) saturate(120%);
-  padding: 20px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
 }
 
 .modal-overlay.active {
@@ -74,94 +72,77 @@
 }
 
 .modal-content {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(24px) saturate(150%);
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 28px;
-  padding: 0;
-  width: 100%;
-  max-width: 460px;
+  background: #fff;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 400px;
   position: relative;
-  box-shadow:
-    0 50px 100px -20px rgba(15, 23, 42, 0.35),
-    0 20px 40px -16px rgba(15, 23, 42, 0.18);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  transform: scale(0.95) translateY(24px);
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   font-family: var(--font-body, 'Plus Jakarta Sans');
 }
 
 .modal-overlay.active .modal-content {
-  transform: scale(1) translateY(0);
+  transform: translateY(0);
 }
 
 .modal-header {
-  background:
-    radial-gradient(120% 100% at 0% 0%, rgba(241, 108, 45, 0.18), transparent 60%),
-    var(--finky-navy, #0f172a);
-  padding: 44px 32px 36px;
+  background: var(--color-oscuro, #f16c2d); /* Dinámico */
+  padding: 40px 24px;
   text-align: center;
-  position: relative;
 }
 
 .modal-title {
   color: #fff;
-  font-size: 1.85rem;
-  font-weight: 700;
-  font-family: var(--font-display, 'Outfit'), 'Outfit', sans-serif;
-  letter-spacing: -0.025em;
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin: 0 0 8px 0;
+  font-family: var(--font-display, 'Outfit'), sans-serif;
+}
+
+.modal-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
   margin: 0;
 }
 
 .modal-close {
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 16px;
+  right: 16px;
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  width: 36px;
-  height: 36px;
+  border: none;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.25s ease;
+  transition: all 0.2s;
 }
 
 .modal-close:hover {
-  background: var(--finky-orange, #f16c2d);
-  border-color: transparent;
-  transform: rotate(90deg);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .modal-body {
-  padding: 32px 36px 36px;
-}
-
-.modal-intro {
-  text-align: center;
-  color: var(--finky-mute-600, #475569);
-  font-size: 14.5px;
-  line-height: 1.6;
-  margin: 0 0 28px;
+  padding: 32px;
 }
 
 .form-group {
-  margin-bottom: 18px;
+  margin-bottom: 24px;
 }
 
 .form-group label {
   display: block;
   margin-bottom: 8px;
   font-weight: 600;
-  color: var(--finky-navy, #0f172a);
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-family: var(--font-display, 'Outfit'), 'Outfit', sans-serif;
+  color: #374151;
+  font-size: 0.85rem;
 }
 
 .input-wrapper {
@@ -172,93 +153,76 @@
 
 .input-wrapper .material-icons {
   position: absolute;
-  left: 16px;
-  color: var(--finky-orange, #f16c2d);
-  font-size: 18px;
+  left: 12px;
+  color: #9ca3af;
+  font-size: 20px;
 }
 
 .input-wrapper input {
   width: 100%;
-  padding: 14px 16px 14px 46px;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  background: #fff;
-  border-radius: 14px;
-  font-size: 15px;
-  font-family: inherit;
-  color: var(--finky-navy, #0f172a);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  padding: 12px 12px 12px 40px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.2s;
 }
 
 .input-wrapper input:focus {
   outline: none;
-  border-color: var(--finky-orange, #f16c2d);
-  box-shadow: 0 0 0 4px rgba(241, 108, 45, 0.12);
+  border-color: var(--color-claro, #ff6b35); /* Dinámico */
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
 }
 
 .form-check {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   margin-bottom: 24px;
-  color: var(--finky-mute-600, #475569);
-  font-size: 13.5px;
-  line-height: 1.5;
-  cursor: pointer;
-  align-items: flex-start;
-}
-
-.form-check input {
-  width: 18px;
-  height: 18px;
-  margin-top: 2px;
-  accent-color: var(--finky-orange, #f16c2d);
-  flex-shrink: 0;
+  color: #6b7280;
+  font-size: 0.85rem;
+  align-items: center;
 }
 
 .form-check a {
-  color: var(--finky-orange, #f16c2d);
-  text-decoration: underline;
+  color: var(--color-claro, #ff6b35); /* Dinámico */
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .btn-submit {
   width: 100%;
-  background: var(--finky-orange, #f16c2d);
+  background: var(--color-claro, #ff6b35); /* Dinámico */
   color: #fff;
   border: none;
   padding: 16px;
   border-radius: 14px;
-  font-size: 15.5px;
-  font-weight: 600;
-  font-family: var(--font-display, 'Outfit'), 'Outfit', sans-serif;
-  letter-spacing: 0.005em;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  box-shadow: 0 18px 40px -14px rgba(241, 108, 45, 0.42);
-  transition:
-    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.3s ease,
-    filter 0.3s ease;
+  gap: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
 }
 
 .btn-submit:hover:not(:disabled) {
+  filter: brightness(1.1);
   transform: translateY(-2px);
-  box-shadow: 0 22px 50px -16px rgba(241, 108, 45, 0.55);
-  filter: brightness(1.05);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
 }
 
 .btn-submit:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-  filter: saturate(0.6);
+  background: #9ca3af;
   box-shadow: none;
 }
 
 .spinner {
   width: 18px;
   height: 18px;
-  border: 2.5px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-top-color: #fff;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
@@ -266,13 +230,4 @@
 
 @keyframes spin {
   to { transform: rotate(360deg); }
-}
-
-@media (max-width: 480px) {
-  .modal-body {
-    padding: 28px;
-  }
-  .modal-title {
-    font-size: 1.6rem;
-  }
 }

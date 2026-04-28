@@ -28,8 +28,12 @@ export class ConfigService {
     const host = window.location.hostname;
     const parts = host.split('.');
 
-    // Si no hay suficientes partes, no hay subdominio
-    if (parts.length < 3) return null;
+    // En localhost permitimos subdominios de 2 partes (ej: ucc.localhost)
+    // En producción/preview requerimos 3 partes (ej: ucc.finky.la)
+    const isLocal = host.includes('localhost') || host.includes('127.0.0.1');
+    const minParts = isLocal ? 2 : 3;
+
+    if (parts.length < minParts) return null;
 
     const potentialSubdomain = parts[0].toLowerCase();
     
@@ -50,12 +54,15 @@ export class ConfigService {
    * Si no se encuentra, redirige.
    */
   async loadConfig(slug?: string): Promise<boolean> {
+    const subdomain = this.getSubdomain();
+    console.log('[ConfigService] Intentando cargar configuración:', { slug, subdomain });
+    
     try {
       // 1. Determinar el slug (parámetro o subdominio)
-      const finalSlug = (slug || this.getSubdomain() || '').toLowerCase();
+      const finalSlug = (slug || subdomain || '').toLowerCase();
 
       if (!finalSlug) {
-        console.warn('[ConfigService] No se detectó slug ni subdominio.');
+        console.warn('[ConfigService] No se detectó slug ni subdominio. Abortando llamada API.');
         return false;
       }
 
@@ -136,7 +143,7 @@ export class ConfigService {
     return bullets.slice(0, 10).map((b, i) => {
       // Golden Rule #4 check (2 words title for statistics)
       const words = (b.titulo || '').trim().split(/\s+/);
-      if (words.length !== 2 && this._config()?.plantilla === 1) {
+      if (words.length !== 2 && Number(this._config()?.plantilla) === 1) {
         console.warn(
           `[ConfigService] Bullet #${i + 1}: El título debería tener 2 palabras para Template 1 ("${b.titulo}")`,
         );

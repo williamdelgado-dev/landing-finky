@@ -86,7 +86,8 @@
         "serve": {
           "builder": "@angular/build:dev-server",
           "options": {
-            "allowedHosts": [".preview.emergentagent.com", ".preview.emergentcf.cloud", ".emergentagent.com", ".emergentcf.cloud", "localhost"]
+            "allowedHosts": [".preview.emergentagent.com", ".preview.emergentcf.cloud", ".emergentagent.com", ".emergentcf.cloud",
+            ".tunnelmole.net","localhost"]
           },
           "configurations": {
             "production": {
