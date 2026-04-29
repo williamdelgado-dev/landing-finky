@@ -1,61 +1,62 @@
-# Finky · Landing Institucional · PRD
+# PRD · Landing Finky — Template 3 Redesign
 
-## Contexto
-Rediseño de la landing institucional de Finky (Angular 21, Standalone Components,
-Signals + nuevo Control Flow) bajo el lineamiento estético **"Minimalismo Premium"**.
+## Problema original
+El usuario tiene 2 templates de landing ya diseñados:
+- **Template 1**: Minimalismo Premium / Pantalla Completa (glassmorphism, hero full-screen, bento grid, listas horizontales).
+- **Template 2**: Hero Dividido + Minimalismo Estructurado (split corporativo, cards verticales blancas 3x3).
 
-## Repositorio
-https://github.com/williamdelgado-dev/landing-finky · rama `main`
+El **Template 3** (https://b4mlatam.finky.la, repo: github.com/williamdelgado-dev/landing-finky, ruta `src/app/features/institutional/components/template-tres`) debía ser **rediseñado** para diferenciarse, con estas restricciones del usuario:
+- Mantener el **header**, **simulador** (iframe) y **footer** intactos.
+- Conservar la **distribución del hero** (texto-izquierda / imagen-derecha).
+- Conservar la **tipografía** existente (`Outfit` display + `Plus Jakarta Sans` body).
+- Mantener paleta dinámica navy (`--color-oscuro`) + naranja (`--color-claro`).
+- Estilo: **minimalismo refinado**.
 
 ## Stack
-- Angular 21.2 (Standalone, Signals, Control Flow `@if/@for/@switch`)
-- Tailwind 3.4 (preflight off — convive con CSS scoped por host)
-- Plus Jakarta Sans + Outfit (Google Fonts)
-- AOS para reveal motion + animaciones CSS personalizadas
+- **Angular 21** standalone components
+- **TypeScript** + signals + computed
+- **AOS** para animaciones on-scroll
+- **TailwindCSS** + CSS por componente
+- API externa Finky en `api-production.finky.la`
 
-## Tokens de marca
-- Deep Navy `#0f172a`
-- White `#FFFFFF`
-- Finky Orange `#f16c2d`
-- Display: Outfit · Body: Plus Jakarta Sans
-- Premium Shadows (difusas, opacidad baja, radio grande)
-- Glassmorphism: `backdrop-filter: blur(20px)` + borde 1px translúcido
-- Radios: tarjetas 24px, píldoras 999px
+## Tareas completadas (29 abril 2026)
 
-## Implementado en esta iteración (28-Abr-2026)
-- ✅ Sistema de tokens globales (`src/styles.css`) + utilidades `.fk-glass*`
-- ✅ Header glass sticky con divider y dual-logo Finky/IES
-- ✅ Footer minimal en 4 columnas con acentos naranja
-- ✅ Simulador button premium (pill orange + ghost variant)
-- ✅ Alliance section: layout aireado, lista de beneficios con check-pill
-- ✅ **Template Uno (rediseño completo):**
-  - Hero con velo claro y gradiente sutil (sin overlay oscuro pesado), eyebrow glass, quick-stats card glass
-  - Stats: **bento grid** 4 celdas (1 acento navy + 3 white) con micro-animaciones reveal con delay
-  - Oferta Académica: **chips reactivos** (custom selects integrados) sobre `tiposPrograma()` (signal) + lista glass con `programasFiltrados()` (signal)
-  - Simulador: contenedor radio 24px, glow sutil, sombra premium
-- ✅ Templates Dos/Tres: alineadas al sistema de tokens (fonts + colores) preservando su layout
-- ✅ Floating widget Lina: modal glassmorphism (navy header + orange CTA)
-- ✅ Mock HTTP interceptor en dev para previsualización offline (no afecta producción)
+### Rediseño Template 3 — Minimalismo refinado
+**Files modificados:**
+- `src/app/features/institutional/components/template-tres/template-tres.html` (rewrite)
+- `src/app/features/institutional/components/template-tres/template-tres.css` (rewrite)
+- `template-tres.ts` **sin cambios** (lógica preservada)
 
-## Lógica preservada (no negociables)
-- Signals + computed: `config`, `validatedBanner`, `validatedBullets`, `simuladorUrl`,
-  `tiposPrograma`, `programasFiltrados`, `selectedTipo` — sin alteración
-- ConfigService aplica `--color-oscuro` y `--color-claro` por IES en `applyColors`
-- Imágenes responsive con `<picture>` + `<source media="(max-width: 768px)">`
-- Iframe del simulador centralizado, recibe `postMessage` para height/width
+**Diferenciadores aplicados vs Templates 1 y 2:**
 
-## Personas
-- Estudiante prospecto (18-30) buscando financiación sin codeudor
-- Aliados IES configurando su landing co-branded
+| Sección | Template 1 | Template 2 | **Template 3 (nuevo)** |
+|---|---|---|---|
+| Estilo global | Glass + immersivo | Corporate split | **Minimal editorial** |
+| Hero | Full-screen + chips | Split + bullets check | Split limpio + stats hairline + bloque acento offset detrás de la imagen |
+| "Por qué Finky" | 2-col párrafo | Centrado bloque | **4-col grid hairline + numeración 01-04** |
+| Oferta tabs | Chips translúcidos | Tabs subrayados clásicos | **Tabs subrayados con scale animado** |
+| Programas | Filas horizontales | Cards verticales 3-col | **Grid 2-col, divisor 1px hairline, índice monospace `N° 001`, hover con border-left acento scaleY** |
+| CTA intermedio | Yellow box llamativo | – | **Notice slim con border-left acento** |
 
-## Backlog
-- P0: Verificación con datos reales del backend `api-production.finky.la`
-- P1: Animaciones extra en bento (parallax sutil), variantes para plantillas 4-5 si las hay
-- P1: Modal Lina con nuevo CTA testimonial (avatar + nombre asesor)
-- P2: A/B test estilos del CTA principal (orange filled vs ghost)
-- P2: Estados vacíos ilustrados para "0 programas en categoría"
+**Detalles de minimalismo:**
+- Bordes 1px hairline, paddings 96–120px
+- Eyebrow editorial con barritas acento
+- Patrón sutil de líneas verticales en navy
+- Hover restrained
+- Index de programas en `Courier New`
 
-## Notas técnicas
-- Mock interceptor sólo activo cuando `environment.production === false`. Se sirven slugs `demo`, `areandina`, `ibero`, `salle`.
-- En este pod, el dev server corre con `pnpm exec ng serve --host 0.0.0.0 --port 3000`
-  (la plantilla supervisor estándar no aplica porque el repo es Angular puro, no Python+React).
+**Preservado intacto:**
+- `<app-header>`, `<app-alliance-section>`, sección `#simulador` (iframe), `<app-footer>`
+
+### Validación
+- ✅ `ng build --configuration=development` compila sin errores
+- ✅ Servido en `http://localhost:4200/b4mlatam` y testeado visualmente
+- ✅ Animaciones AOS funcionando con stagger
+- ✅ Responsive 1024 / 768 / 540 px
+- ✅ Data-testids en todos los elementos interactivos
+
+## Backlog / Mejoras futuras
+- **P2**: Marquee horizontal entre secciones ("Aprobado · 4 min · 100% digital ·")
+- **P2**: Lazy-load de imagen hero
+- **P3**: Ajuste responsive del bloque acento `.t3-hero__corner` en pantallas muy pequeñas
+- **P3**: Variante dark mode para "Por qué Finky" si la institución tiene paleta clara
