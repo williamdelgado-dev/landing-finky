@@ -26,6 +26,12 @@ export class ConfigService {
   public getSubdomain(): string | null {
     if (typeof window === 'undefined') return null;
     const host = window.location.hostname;
+    
+    // Si estamos en un túnel de desarrollo, no procesamos el subdominio
+    if (host.includes('tunnelmole.net') || host.includes('ngrok-free.app') || host.includes('loca.lt')) {
+      return null;
+    }
+
     const parts = host.split('.');
 
     // En localhost permitimos subdominios de 2 partes (ej: ucc.localhost)
@@ -36,9 +42,18 @@ export class ConfigService {
     if (parts.length < minParts) return null;
 
     const potentialSubdomain = parts[0].toLowerCase();
-    
+
     // Lista de subdominios que NUNCA son instituciones
-    const ignoredSubdomains = ['www', 'staging', 'dev', 'portal', 'app', 'localhost', 'api', 'admin'];
+    const ignoredSubdomains = [
+      'www',
+      'staging',
+      'dev',
+      'portal',
+      'app',
+      'localhost',
+      'api',
+      'admin',
+    ];
     if (ignoredSubdomains.includes(potentialSubdomain)) {
       return null;
     }
@@ -56,7 +71,7 @@ export class ConfigService {
   async loadConfig(slug?: string): Promise<boolean> {
     const subdomain = this.getSubdomain();
     console.log('[ConfigService] Intentando cargar configuración:', { slug, subdomain });
-    
+
     try {
       // 1. Determinar el slug (parámetro o subdominio)
       const finalSlug = (slug || subdomain || '').toLowerCase();
@@ -80,14 +95,14 @@ export class ConfigService {
 
       console.log(`[ConfigService] Respuesta de API para "${finalSlug}":`, response);
 
-      if (response && response.status && response.data) {
+      if (response && response?.status && response?.data) {
         this._config.set(response.data);
         this.applyColors(response.data.colores);
         return true;
       }
 
       console.warn(`[ConfigService] Configuración no encontrada para "${finalSlug}"`);
-      
+
       // Registramos el fallo y redirigimos
       this.failedSlugs.add(finalSlug);
       this.router.navigate(['/']);
